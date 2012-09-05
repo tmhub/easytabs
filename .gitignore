@@ -6,6 +6,7 @@
 # *~
 
 # Dynamic data that doesn't need to be in the repo
+.gitignore
 nbproject/*
 /var/*
 /media/*

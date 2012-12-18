@@ -1,0 +1,16 @@
+<?php 
+$_helper = $this->helper('catalog/output');
+$attrCode = Mage::getStoreConfig('easy_tabs/custom/customtabid1');
+if($attrCode){
+	$product = $this->getProduct();
+	$attribute = $product->getResource()->getAttribute($attrCode);
+	if ($attribute) {
+		$content = $attribute->getFrontend()->getValue($product);
+		if(!empty($content)){
+			echo '<div class="product-specs">'
+				. $_helper->productAttribute($this->getProduct(), $content, $attrCode)
+				. '</div>';
+		}
+	}
+}
+?>

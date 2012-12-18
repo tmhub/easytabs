@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="easy_tabs/general/enabled"><type>skin_css</type><name>css/easytabs.css</name></action>
+        </reference>
+    </default>
+
+    <catalog_product_view>
+        <reference name="product.info">
+            <action method="unsetChild" ifconfig="easy_tabs/general/descriptiontabbed"><name>description</name></action>
+            <action method="unsetChild" ifconfig="easy_tabs/general/additionaltabbed"><name>additional</name></action>
+            <action method="unsetChild" ifconfig="easy_tabs/general/upsellproductstabbed"><name>upsell_products</name></action>
+        </reference>
+        <reference name="right">
+            <action method="unsetChild" ifconfig="easy_tabs/general/relatedtabbed"><name>catalog.product.related</name></action>
+        </reference>
+        <reference name="product.info.additional">
+            <action method="unsetChild" ifconfig="easy_tabs/general/tagstabbed"><name>product_tag_list</name></action>
+            <block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs">
+                <action method="setTemplate" ifconfig="easy_tabs/general/enabled"><template>easytabs/tabs.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/descriptiontabbed"><alias>description_tabbed</alias><title>Product Description</title><block>catalog/product_view_description</block><template>easytabs/description.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/additionaltabbed"><alias>additional_tabbed</alias><title>Additional Information</title><block>catalog/product_view_attributes</block><template>easytabs/attributes.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/upsellproductstabbed"><alias>upsell_products_tabbed</alias><title>We Also Recommend</title><block>catalog/product_list_upsell</block><template>catalog/product/list/upsell.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/general/relatedtabbed"><alias>related_tabbed</alias><title>Related Products</title><block>catalog/product_list_related</block><template>easytabs/catalogproductrelated.phtml</template></action>
+                <action method="addTab" translate="title" module="tag"     ifconfig="easy_tabs/general/tagstabbed"><alias>tags_tabbed</alias><title>Product Tags</title><block>tag/product_list</block><template>easytabs/catalogproducttags.phtml</template></action>
+                <action method="addTab" translate="title" module="review"  ifconfig="easy_tabs/general/reviewtabbed"><alias>review_tabbed</alias><title>Product's Review</title><block>review/product_view_list</block><template>easytabs/catalogproductreview.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/custom/customtab"><alias>custom</alias><title>Custom tab</title><block>catalog/product_view</block><template>easytabs/catalogproductcustom.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/custom/customtab1"><alias>custom1</alias><title>Custom tab</title><block>catalog/product_view</block><template>easytabs/catalogproductcustom1.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/custom/customtab2"><alias>custom2</alias><title>Custom tab</title><block>catalog/product_view</block><template>easytabs/catalogproductcustom2.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/custom/customtab3"><alias>custom3</alias><title>Custom tab</title><block>catalog/product_view</block><template>easytabs/catalogproductcustom3.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/custom/customtab4"><alias>custom4</alias><title>Custom tab</title><block>catalog/product_view</block><template>easytabs/catalogproductcustom4.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/customcms/tabcms"><alias>cms</alias><title>CMS tab</title><block>core/template</block><template>easytabs/catalogproductcms.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/customcms/tabcms1"><alias>cms1</alias><title>CMS tab</title><block>core/template</block><template>easytabs/catalogproductcms1.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/customcms/tabcms2"><alias>cms2</alias><title>CMS tab</title><block>core/template</block><template>easytabs/catalogproductcms2.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/customcms/tabcms3"><alias>cms3</alias><title>CMS tab</title><block>core/template</block><template>easytabs/catalogproductcms3.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ifconfig="easy_tabs/customcms/tabcms4"><alias>cms4</alias><title>CMS tab</title><block>core/template</block><template>easytabs/catalogproductcms4.phtml</template></action>
+            </block>
+        </reference>
+    </catalog_product_view>
+</layout>

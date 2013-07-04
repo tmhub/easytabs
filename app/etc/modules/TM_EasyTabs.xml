@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TM_EasyTabs>
+            <active>true</active>
+            <codePool>community</codePool>
+            <tm_link><![CDATA[http://templates-master.com/magento-extensions/magento-easy-tabs.html]]></tm_link>
+            <depends>
+                <Mage_Catalog />
+            </depends>
+        </TM_EasyTabs>     
+    </modules>
+</config>

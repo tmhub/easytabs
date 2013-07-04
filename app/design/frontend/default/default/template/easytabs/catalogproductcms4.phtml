@@ -1,0 +1,6 @@
+<?php
+$cmsblockid = Mage::getStoreConfig('easy_tabs/customcms/tabidcms4');
+if(!empty($cmsblockid)){
+		echo '<div class="product-specs">'.$this->getLayout()->createBlock('cms/block')->setBlockId($cmsblockid)->toHtml().'</div>';
+}
+?>

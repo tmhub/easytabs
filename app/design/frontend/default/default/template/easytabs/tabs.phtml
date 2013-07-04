@@ -1,0 +1,96 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ */
+?>
+<ul class="tabs">
+    <?php $i = 0; ?>
+    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+        <?php if($this->getChildHtml($_tab['alias']) && strlen(strip_tags(trim($this->getChildHtml($_tab['alias']))))>0): ?>
+            <?php
+                $tab_title = $_tab['title'];
+                $tab_is_custom = strpos($_tab['alias'], 'custom');
+                $tab_is_cms= strpos($_tab['alias'], 'cms');
+                if($tab_is_custom === 0){
+                    $tab_is_tmp_id =  substr($_tab['alias'], 6);
+                    $tab_is_custom_id = (!empty($tab_is_tmp_id)) ? $tab_is_tmp_id : '';
+                    $tab_title = Mage::getStoreConfig('easy_tabs/custom/customtabname'.$tab_is_custom_id);
+                } elseif($tab_is_cms === 0) {
+                    $tab_is_tmp_id =  substr($_tab['alias'], 3);
+                    $tab_is_custom_id = (!empty($tab_is_tmp_id)) ? $tab_is_tmp_id : '';
+                    $tab_title = Mage::getStoreConfig('easy_tabs/customcms/tabnamecms'.$tab_is_custom_id);
+                }
+
+            ?>
+            <li id="product_tabs_<?php echo $_tab['alias'] ?>" <?php echo !$i  ? 'class="active first"' : '' ?>><a href="#"><?php echo $tab_title; ?></a></li>
+	    <?php $i++; ?>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</ul>
+<div class="padder">
+    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+        <?php if($this->getChildHtml($_tab['alias'])): ?>
+            <div id="product_tabs_<?php echo $_tab['alias'] ?>_contents"><?php echo $this->getChildHtml($_tab['alias']); ?></div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+</div>
+<script type="text/javascript">
+var EasyTabs = Class.create();
+EasyTabs.prototype = {
+    initialize: function(selector) {
+        $$(selector).each(this.initTab.bind(this));
+    },
+
+    initTab: function(el) {
+        el.href = 'javascript:void(0)';
+        if ($(el).up('li').hasClassName('active')) {
+            this.showContent(el);
+        }
+        el.observe('click', this.showContent.bind(this, el));
+    },
+
+    showContent: function(a) {
+        var li = $(a).up('li'),
+            ul = $(li).up('ul');
+
+        ul.select('li'/*, 'ol'*/).each(function(el) {
+            var contents = $(el.id + '_contents');
+            if (el.id == li.id) {
+                el.addClassName('active');
+                contents.show();
+            } else {
+                el.removeClassName('active');
+                contents.hide();
+            }
+        });
+    }
+}
+new EasyTabs('.tabs a');
+</script>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <easy_tabs translate="title" module="easytabs">
+                                            <title>Easy Tabs Section</title>
+                                            <sort_order>60</sort_order>
+                                        </easy_tabs>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+ </config>

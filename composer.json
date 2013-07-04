@@ -13,7 +13,7 @@
     ],
     "require": {
         "magento-hackathon/magento-composer-installer": "*",
-        "tm/core": "*",
+        "tm/core": "*"
     },
     "repositories": [
         {

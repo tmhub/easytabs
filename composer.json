@@ -1,0 +1,35 @@
+{
+    "name": "tm/easytabs",
+    "type": "magento-module",
+    "homepage": "http://gitlab.templates-master.com/tm/easytabs",
+    "license": "OSL-3.0",
+    "description": "Templates Master EasyTabs module",
+    "version": "2.0.0",
+    "authors": [
+        {
+            "name": "Template Masters Team",
+            "email": "support@templates-master.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*",
+        "tm/core": "*",
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.templates-master.com"
+        }
+    ],
+    "extra": {
+        "map": [
+            ["app/code/community/TM/EasyTabs", "app/code/community/TM/EasyTabs"],
+            ["app/design/adminhtml/default/default/layout/easytabs.xml", "app/design/adminhtml/default/default/layout/easytabs.xml"],
+            ["app/design/frontend/base/default/layout/easytabs.xml", "app/design/frontend/base/default/layout/easytabs.xml"],
+            ["app/design/frontend/base/default/template/easytabs", "app/design/frontend/base/default/template/easytabs"],
+            ["app/etc/modules/TM_EasyTabs.xml", "app/etc/modules/TM_EasyTabs.xml"],
+            ["app/locale/en_US/TM_EasyTabs.csv", "app/locale/en_US/TM_EasyTabs.csv"]
+        ],
+        "changelog": ""
+    }
+}

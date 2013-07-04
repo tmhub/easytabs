@@ -36,17 +36,18 @@
         <?php if($this->getChildHtml($_tab['alias']) && strlen(strip_tags(trim($this->getChildHtml($_tab['alias']))))>0): ?>
             <?php
                 $tab_title = $_tab['title'];
-                $tab_is_custom = strpos($_tab['alias'], 'custom');
-                $tab_is_cms= strpos($_tab['alias'], 'cms');
-                if($tab_is_custom === 0){
-                    $tab_is_tmp_id =  substr($_tab['alias'], 6);
-                    $tab_is_custom_id = (!empty($tab_is_tmp_id)) ? $tab_is_tmp_id : '';
-                    $tab_title = Mage::getStoreConfig('easy_tabs/custom/customtabname'.$tab_is_custom_id);
-                } elseif($tab_is_cms === 0) {
-                    $tab_is_tmp_id =  substr($_tab['alias'], 3);
-                    $tab_is_custom_id = (!empty($tab_is_tmp_id)) ? $tab_is_tmp_id : '';
-                    $tab_title = Mage::getStoreConfig('easy_tabs/customcms/tabnamecms'.$tab_is_custom_id);
-                }
+//                $tab_is_custom = strpos($_tab['alias'], 'custom');
+//                $tab_is_cms= strpos($_tab['alias'], 'cms');
+//
+//                if($tab_is_custom === 0){
+//                    $tab_is_tmp_id =  substr($_tab['alias'], 6);
+//                    $tab_is_custom_id = (!empty($tab_is_tmp_id)) ? $tab_is_tmp_id : '';
+//                    $tab_title = Mage::getStoreConfig('easy_tabs/custom/customtabname'.$tab_is_custom_id);
+//                } elseif($tab_is_cms === 0) {
+//                    $tab_is_tmp_id =  substr($_tab['alias'], 3);
+//                    $tab_is_custom_id = (!empty($tab_is_tmp_id)) ? $tab_is_tmp_id : '';
+//                    $tab_title = Mage::getStoreConfig('easy_tabs/customcms/tabnamecms'.$tab_is_custom_id);
+//                }
 
             ?>
             <li id="product_tabs_<?php echo $_tab['alias'] ?>" <?php echo !$i  ? 'class="active first"' : '' ?>><a href="#"><?php echo $tab_title; ?></a></li>

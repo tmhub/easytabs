@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-        <acl>
-            <resources>
-                <admin>
-                    <children>
-                        <system>
-                            <children>
-                                <config>
-                                    <children>
-                                        <easy_tabs translate="title" module="easytabs">
-                                            <title>Easy Tabs Section</title>
-                                            <sort_order>60</sort_order>
-                                        </easy_tabs>
-                                    </children>
-                                </config>
-                            </children>
-                        </system>
-                    </children>
-                </admin>
-            </resources>
-        </acl>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <easytabs translate="title" module="easytabs">
+                    <title>Easy Tabs</title>
+                    <sort_order>60</sort_order>
+                    <action>adminhtml/easytabs_index/index</action>
+                </easytabs>
+            </children>
+        </templates_master>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <easy_tabs translate="title" module="easytabs">
+                                        <title>Easy Tabs Section</title>
+                                        <sort_order>60</sort_order>
+                                    </easy_tabs>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <children>
+                            <easytabs module="easytabs">
+                                <title>Easy Tabs</title>
+                                <sort_order>10</sort_order>
+                                <action>adminhtml/easytabs_index/index</action>
+                            </easytabs>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
  </config>

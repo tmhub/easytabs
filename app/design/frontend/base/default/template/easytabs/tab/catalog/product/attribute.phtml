@@ -1,0 +1,24 @@
+<?php
+
+    $attributeCode = $this->getAttributeCode();
+    //Mage::getStoreConfig('easy_tabs/custom/customtabid');
+    $product = $this->getProduct();
+
+    if(!$attributeCode || !$product) {
+        return;
+    }
+    $attribute = $product->getResource()->getAttribute($attributeCode);
+    if (!$attribute) {
+        return;
+    }
+    $content = $attribute->getFrontend()->getValue($product);
+    if(empty($content)) {
+        return;
+    }
+    $_helper = $this->helper('catalog/output');
+    ?>
+    <div class="product-specs">
+    <?php echo $_helper->productAttribute(
+        $this->getProduct(), $content, $attributeCode
+    )?>
+    </div>

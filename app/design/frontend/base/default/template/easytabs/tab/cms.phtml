@@ -1,0 +1,14 @@
+<?php
+    $id = $this->getCmsBlockId();
+    if (empty($id)) {
+        return;
+    }
+    ?>
+<div class="product-specs">
+    <?php
+        echo $this->getLayout()
+            ->createBlock('cms/block')
+            ->setBlockId($id)
+            ->toHtml();
+    ?>
+</div>

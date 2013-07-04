@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <adminhtml_easytabs_index_index>
+        <reference name="content">
+            <block type="easytabs/adminhtml_list" name="easytabs_list" />
+        </reference>
+    </adminhtml_easytabs_index_index>
+
+    <adminhtml_easytabs_index_edit>
+        <reference name="content">
+            <block type="easytabs/adminhtml_edit" name="easytabs_edit"/>
+        </reference>
+        <reference name="left">
+            <block type="easytabs/adminhtml_edit_tabs" name="easytabs_edit_tabs">
+                <block type="easytabs/adminhtml_edit_tab_main" name="easytabs_edit_tab_main" />
+                <action method="addTab">
+                    <name>main_section</name>
+                    <block>easytabs_edit_tab_main</block>
+                </action>
+            </block>
+        </reference>
+    </adminhtml_easytabs_index_edit>
+</layout>

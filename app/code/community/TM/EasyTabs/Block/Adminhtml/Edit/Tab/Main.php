@@ -6,19 +6,14 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
 {
     protected function _getBlockTypes()
     {
-        return array(
-            ''                                 => 'Anything',
-            'catalog/product_view_description' => 'Product Description',
-            'catalog/product_view_attributes'  => 'Additional Information',
-            'catalog/product_list_upsell'      => 'We Also Recommend',
-            'catalog/product_list_related'     => 'Related Products',
-            'tag/product_list'                 => 'Product Tags',
-            'review/product_view_list'         => 'Product\'s Review',
-
-            'easytabs/tab_attribute'           => 'EasyTabs Product\'s Attribute',
-            'easytabs/tab_cms'                 => 'EasyTabs Static Block',
-
-        );
+        $widgets = Mage::getModel('widget/widget')->getWidgetsArray();
+        $types = array();
+        foreach ($widgets as $widget) {
+            if (0 === strpos($widget['code'], 'easytabs_')) {
+                $types[$widget['type']] = $widget['name'];
+            }
+        }
+        return $types;
     }
 
 
@@ -61,9 +56,10 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
 
         $block = $model->getBlock();
         $blockTypes = $this->_getBlockTypes();
-        $blockType  = isset($blockTypes[$block]) ? $block : '';
-
-        $model->setBlockType($blockType);
+        if (!isset($blockTypes[$block])) {
+            $model->setBlock('easytabs/tab_template');
+        }
+        $model->setBlockType($model->getBlock());
 
         $fieldset->addField('block_type', 'select', array(
             'label'     => Mage::helper('easytabs')->__('Block Type'),
@@ -81,77 +77,18 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'name'      => 'block',
         ));
 
-        $el = $fieldset->addField('custom_option', 'text', array(
-            'label'     => Mage::helper('easytabs')->__('Custom Option'),
-//            'class'     => 'required-entry',
-//            'required'  => true,
-            'disabled'  => true,
-            'name'      => 'custom_option',
-        ));
-
-        $el->setAfterElementHtml(
-        "<script type=\"text/javascript\">
-            Event.observe(window, 'load', function(){
-                function hasCustomOption()
-                {
-                    var element = $('block_type');
-                    if (!element) {
-                        return false;
-                    }
-                    if ('easytabs/tab_attribute' == element.value
-                        || 'easytabs/tab_cms' == element.value) {
-
-                        return true;
-                    }
-                    return false;
-                }
-                if (!hasCustomOption()) {
-                    $('custom_option').up('tr').hide();
-                } else {
-                    $('custom_option').enable();
-                }
-                $('block_type').observe('change', function(event){
-                    var element = $(Event.element(event)), target = $('block');
-                    if ('' == element.value) {
-                        target.enable();
-                        target.setValue('');
-                    } else {
-                        target.disable();
-                        target.setValue(element.value);
-                    }
-
-                    if (hasCustomOption()) {
-                        $('custom_option').up('tr').show();
-                        $('custom_option').enable();
-                    } else {
-                        $('custom_option').up('tr').hide();
-                        $('custom_option').disable();
-                    }
-                });
-            });
-        </script>");
-
-        $fieldset->addField('template', 'text', array(
-            'label'     => Mage::helper('easytabs')->__('Template'),
-            'class'     => 'required-entry',
-            'required'  => true,
-            'name'      => 'template',
-        ));
-
-        $fieldset->addField('unset', 'text', array(
-            'label'     => Mage::helper('easytabs')->__('Unset'),
-//            'class'     => 'required-entry',
-            'name'      => 'unset',
-        ));
-
+        $sortOrder = $model->getSortOrder();
+        if (empty($sortOrder)) {
+            $model->setSortOrder(0);
+        }
         $fieldset->addField('sort_order', 'text', array(
             'label'     => Mage::helper('easytabs')->__('Sort Order'),
 //            'class'     => 'required-entry',
             'name'      => 'sort_order',
-            'class' => 'validate-digits',
+            'class'     => 'validate-digits',
         ));
 
-        $fieldset->addField('status', 'select', array(
+        $el = $fieldset->addField('status', 'select', array(
             'label'     => Mage::helper('easytabs')->__('Status'),
             'title'     => Mage::helper('easytabs')->__('Status'),
             'name'      => 'status',
@@ -159,27 +96,8 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'options'   => Mage::getSingleton('easytabs/config_status')->getOptionHash(),
         ));
 
-        if (Mage::app()->isSingleStoreMode()) {
-            $websiteId = Mage::app()->getStore(true)->getWebsiteId();
-            $fieldset->addField('website_id', 'hidden', array(
-                'name'  => 'website_id',
-                'value' => $websiteId
-            ));
-            $model->setWebsiteIds($websiteId);
-        } else {
-            $field = $fieldset->addField('website_id', 'select', array(
-                'name'  => 'website_id',
-                'label' => Mage::helper('easytabs')->__('Websites'),
-                'title' => Mage::helper('easytabs')->__('Websites'),
-                'required' => true,
-                'values'   => Mage::getSingleton('adminhtml/system_store')->getWebsiteValuesForForm()
-            ));
-            $renderer = $this->getLayout()->createBlock('adminhtml/store_switcher_form_renderer_fieldset_element');
-            $field->setRenderer($renderer);
-        }
-
         if (!Mage::app()->isSingleStoreMode()) {
-            $field = $fieldset->addField('store_id', 'select', array(
+            $field = $fieldset->addField('store_id', 'multiselect', array(
                 'name'      => 'store_id',
                 'label'     => Mage::helper('checkout')->__('Store View'),
                 'title'     => Mage::helper('checkout')->__('Store View'),
@@ -196,6 +114,55 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             ));
             $model->setStoreId(Mage::app()->getStore(true)->getId());
         }
+
+        $values = $model->getData();
+        $values = isset($values['id']) ?
+            Mage::helper('core')->jsonEncode($values) : 'false';
+
+        $el->setAfterElementHtml(
+        "<script type=\"text/javascript\">
+            Event.observe(window, 'load', function(){
+
+                WidgetOptions = function(){
+                    var _values = {$values},
+                    _url = '{$this->getUrl('*/widget/loadOptions')}';
+
+                    function _insertHtml(html){
+                        var container = $('widget_options');
+                        if (!container) {
+                            $('easytabs_tabs_main_section_content').insert({
+                                bottom: '<div id=\"widget_options\"></div>'
+                            });
+                        }
+                        $('widget_options').innerHTML = html;
+                    }
+                    return {
+                        load: function(type){
+                            var params = {widget_type: type};
+                            if (_values) {
+                                params['values'] = _values;
+                            }
+                            new Ajax.Request(_url, {
+                                parameters: {widget: Object.toJSON(params)},
+                                onSuccess: function(transport) {
+                                    try {
+                                        _insertHtml(transport.responseText);
+                                    } catch(e) {
+                                        alert(e.message);
+                                    }
+                                }.bind(this)
+                            });
+                        }
+                    }
+                }();
+
+                $('block_type').observe('change', function(event){
+                    var element = $(Event.element(event)), target = $('block');
+                    WidgetOptions.load(element.value);
+                });
+                WidgetOptions.load('{$model->getData('block')}');
+            });
+        </script>");
 
 //        Zend_Debug::dump($model->getData());
         $form->setValues($model->getData());

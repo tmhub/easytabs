@@ -17,6 +17,8 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
 
         $this->setCollection($collection);
 
+//        Zend_Debug::dump($collection->getFirstItem()->getData());
+//        die;
         return parent::_prepareCollection();
     }
 
@@ -50,6 +52,7 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
             'header'    => Mage::helper('easytabs')->__('Template'),
             'align'     => 'left',
             'index'     => 'template',
+            'width'      => 300,
         ));
 
 
@@ -76,23 +79,26 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
             'options'   => Mage::getSingleton('easytabs/config_status')->getOptionHash(),
         ));
         if (!Mage::app()->isSingleStoreMode()) {
-            $this->addColumn('website_id', array(
-                'header'    => Mage::helper('salesrule')->__('Website'),
-                'align'     =>'left',
-                'index'     => 'website_id',
-                'type'      => 'options',
-                'sortable'  => false,
-                'options'   => Mage::getModel('core/website')->getCollection()->toOptionHash(),
-                'width'     => 200,
-            ));
+//            $this->addColumn('website_id', array(
+//                'header'    => Mage::helper('salesrule')->__('Website'),
+//                'align'     =>'left',
+//                'index'     => 'website_id',
+//                'type'      => 'options',
+//                'sortable'  => false,
+//                'options'   => Mage::getModel('core/website')->getCollection()->toOptionHash(),
+//                'width'     => 200,
+//            ));
 
             $this->addColumn('store_id', array(
                 'header'     => Mage::helper('catalog')->__('Store'),
                 'index'      => 'store_id',
                 'type'       => 'store',
+                'store_all'  => true,
                 'store_view' => true,
                 'sortable'   => false,
-                'width'      => 200,
+                'width'      => 100,
+                'filter_condition_callback'
+                                => array($this, '_filterStoreCondition'),
             ));
         }
 
@@ -153,5 +159,15 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
         ));
 
         return $this;
+    }
+
+    protected function _filterStoreCondition($collection, $column)
+    {
+        if (!$value = $column->getFilter()->getValue()) {
+            return;
+        }
+
+        $this->getCollection()
+            ->addFieldToFilter('store_id', array('in' => array($value)));
     }
 }

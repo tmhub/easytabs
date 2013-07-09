@@ -7,11 +7,11 @@ class TM_EasyTabs_Block_Tabs extends Mage_Catalog_Block_Product_View_Tabs
     {
         $collection = new TM_EasyTabs_Model_Config_Collection();
         $storeId = Mage::app()->getStore()->getStoreId();
-        $websiteId = Mage::app()->getWebsite()->getId();
+//        $websiteId = Mage::app()->getWebsite()->getId();
         return $collection
             ->setOrder('sort_order', Varien_Data_Collection::SORT_ORDER_ASC)
             ->addFieldToFilter('status', array('eq' => 1))
-            ->addFieldToFilter('website_id', array('in' => array($websiteId, 0)))
+//            ->addFieldToFilter('website_id', array('in' => array($websiteId, 0)))
             ->addFieldToFilter('store_id', array('in' => array($storeId, 0)))
             ;
     }

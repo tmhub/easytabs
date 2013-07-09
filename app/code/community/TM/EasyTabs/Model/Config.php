@@ -81,14 +81,15 @@ class TM_EasyTabs_Model_Config extends Varien_Object
             'title'         => $this->getTitle(),
             'alias'         => $this->getAlias(),
             'block'         => $this->getBlock(),
-            'custom_option' => $this->getCustomOption(),
+//            'custom_option' => $this->getCustomOption(),
             'template'      => $this->getTemplate(),
             'unset'         => $this->getUnset(),
             'sort_order'    => (int)$this->getSortOrder(),
             'status'        => (bool)$this->getStatus(),
-            'website_id'    => (int) $this->getWebsiteId(),
-            'store_id'      => (int) $this->getStoreId()
+//            'website_id'    => (int) $this->getWebsiteId(),
+            'store_id'      => $this->getStoreId()
         );
+//        $customOption = 
 //        Zend_Debug::dump($tabs);
 //        die;
         $this->_save($items);

@@ -50,6 +50,10 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
                 $params['block'] = $params['block_type'];
             }
             unset($params['block_type']);
+            if (isset($params['parameters'])) {
+                $params = array_merge($params['parameters'], $params);
+                unset($params['parameters']);
+            }
 //            Zend_Debug::dump($params);
 //            die;
             Mage::getModel('easytabs/config')

@@ -33,7 +33,7 @@ class TM_EasyTabs_Model_Config_Collection extends Varien_Data_Collection
 //        Zend_Debug::dump($configOption); die;
         $this->_rawItems = json_decode($configOption, true);
 //        Zend_Debug::dump($this->_rawItems);
-
+//        Zend_Debug::dump($this->_filters);
         $this->_filterAndSort();
         // calculate totals
         $this->_totalRecords = count($this->_rawItems);
@@ -368,7 +368,11 @@ class TM_EasyTabs_Model_Config_Collection extends Varien_Data_Collection
      */
     public function filterCallbackInArray($field, $filterValue, $row)
     {
-        return in_array($row[$field], $filterValue);
+        $_value = $row[$field];
+        if (!is_array($_value))  {
+            $_value = array($_value);
+        }
+        return (bool)count(array_intersect($_value, $filterValue));
     }
 
     /**

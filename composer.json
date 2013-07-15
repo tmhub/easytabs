@@ -28,7 +28,8 @@
             ["app/design/frontend/base/default/layout/easytabs.xml", "app/design/frontend/base/default/layout/easytabs.xml"],
             ["app/design/frontend/base/default/template/easytabs", "app/design/frontend/base/default/template/easytabs"],
             ["app/etc/modules/TM_EasyTabs.xml", "app/etc/modules/TM_EasyTabs.xml"],
-            ["app/locale/en_US/TM_EasyTabs.csv", "app/locale/en_US/TM_EasyTabs.csv"]
+            ["app/locale/en_US/TM_EasyTabs.csv", "app/locale/en_US/TM_EasyTabs.csv"],
+            ["skin/frontend/base/default/css/easytabs.css", "skin/frontend/base/default/css/easytabs.css"]
         ],
         "changelog": ""
     }

@@ -105,7 +105,9 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
                 'values'    => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
             ));
             $renderer = $this->getLayout()->createBlock('adminhtml/store_switcher_form_renderer_fieldset_element');
-            $field->setRenderer($renderer);
+            if ($renderer) {
+                $field->setRenderer($renderer);
+            }
         }
         else {
             $fieldset->addField('store_id', 'hidden', array(

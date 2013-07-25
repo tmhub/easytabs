@@ -89,7 +89,10 @@ class TM_EasyTabs_Model_Config extends Varien_Object
 //            'website_id'    => (int) $this->getWebsiteId(),
             'store_id'      => $this->getStoreId()
         );
-//        $customOption = 
+        $customOption = $this->getCustomOption();
+        if (!empty($customOption)) {
+            $items[$id]['custom_option'] = $customOption;
+        }
 //        Zend_Debug::dump($tabs);
 //        die;
         $this->_save($items);

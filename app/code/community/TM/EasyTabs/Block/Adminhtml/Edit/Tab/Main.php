@@ -159,14 +159,14 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
                 }();
 
                 $('block_type').observe('change', function(event){
-                    var element = $(Event.element(event)), target = $('block');
-                    WidgetOptions.load(element.value);
+                    var value = $(this).getValue();
+                    WidgetOptions.load(value);
+                    $('block').setValue(value);
                 });
                 WidgetOptions.load('{$model->getData('block')}');
             });
         </script>");
 
-//        Zend_Debug::dump($model->getData());
         $form->setValues($model->getData());
 
         return parent::_prepareForm();

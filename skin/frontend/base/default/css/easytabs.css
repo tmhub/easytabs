@@ -6,7 +6,7 @@
 .product-view .tabs a { display:block; padding:6px 10px; color:#444; text-decoration: none;}
 .product-view .tabs a:hover { background-color:#ddd; text-decoration:none; color:#444; text-decoration: none;}
 .product-view .tabs li.active a,
-.product-view .tabs li.active a:hover { background:#496778; font-weight:bold; color:#fff; }
+.product-view .tabs li.active a:hover { background:#496778; color:#fff; }
 
 #product_tabs_tags_tabbed_contents.input-box input { width: 300px; }
 #product_tabs_tags_tabbed_contents .input-box { width: 300px; float:left; margin-right: 10px;}

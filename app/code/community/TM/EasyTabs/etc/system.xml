@@ -7,7 +7,7 @@
         </templates_master>
     </tabs>
     <sections>
-        <easy_tabs translate="label" module="easytabs">
+        <tm_easytabs translate="label" module="easytabs">
             <label>Easy Tabs</label>
             <tab>templates_master</tab>
             <frontend_type>text</frontend_type>
@@ -37,6 +37,6 @@
                     </fields>
                 </general>
             </groups>
-        </easy_tabs>
+        </tm_easytabs>
     </sections>
 </config>

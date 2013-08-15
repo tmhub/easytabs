@@ -14,6 +14,9 @@ class TM_EasyTabs_Block_Tabs extends Mage_Catalog_Block_Product_View_Tabs
 
     protected function _prepareLayout()
     {
+        if (!Mage::getStoreConfig('tm_easytabs/general/enabled')) {
+            return parent::_prepareLayout();
+        }
         foreach ($this->_getCollection() as $tab) {
             $this->addTab(
                 $tab->getAlias(),

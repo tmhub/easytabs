@@ -28,7 +28,7 @@ class TM_EasyTabs_Model_Config extends Varien_Object
 
     protected function _save($items)
     {
-        $section  = 'easy_tabs';
+        $section  = 'tm_easytabs';
         $websiteId = $storeId = 0;
 
         $groups = array(

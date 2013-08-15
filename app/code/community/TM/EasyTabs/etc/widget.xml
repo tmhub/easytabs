@@ -38,7 +38,7 @@
                 <type>text</type>
                 <visible>1</visible>
                 <required>1</required>
-                <value>easytabs/tab/catalog/product/view/description.phtml</value>
+                <value>tm/easytabs/tab/catalog/product/view/description.phtml</value>
             </template>
             <unset>
                 <label>Unset</label>
@@ -59,7 +59,7 @@
                 <type>text</type>
                 <visible>1</visible>
                 <required>1</required>
-                <value>easytabs/tab/catalog/product/view/attributes.phtml</value>
+                <value>tm/easytabs/tab/catalog/product/view/attributes.phtml</value>
             </template>
             <unset>
                 <label>Unset</label>
@@ -101,7 +101,7 @@
                 <type>text</type>
                 <visible>1</visible>
                 <required>1</required>
-                <value>easytabs/tab/catalog/product/related.phtml</value>
+                <value>tm/easytabs/tab/catalog/product/related.phtml</value>
             </template>
             <unset>
                 <label>Unset</label>
@@ -122,7 +122,7 @@
                 <type>text</type>
                 <visible>1</visible>
                 <required>1</required>
-                <value>easytabs/tab/tag/product/list.phtml</value>
+                <value>tm/easytabs/tab/tag/product/list.phtml</value>
             </template>
             <unset>
                 <label>Unset</label>
@@ -143,7 +143,7 @@
                 <type>text</type>
                 <visible>1</visible>
                 <required>1</required>
-                <value>easytabs/tab/review/product/view/list.phtml</value>
+                <value>tm/easytabs/tab/review/product/view/list.phtml</value>
             </template>
         </parameters>
     </easytabs_tab_product_review>
@@ -165,7 +165,7 @@
                 <type>text</type>
                 <visible>1</visible>
                 <required>1</required>
-                <value>easytabs/tab/cms.phtml</value>
+                <value>tm/easytabs/tab/cms.phtml</value>
             </template>
         </parameters>
     </easytabs_tab_cms>
@@ -187,7 +187,7 @@
                 <type>text</type>
                 <visible>1</visible>
                 <required>1</required>
-                <value>easytabs/tab/catalog/product/attribute.phtml</value>
+                <value>tm/easytabs/tab/catalog/product/attribute.phtml</value>
             </template>
         </parameters>
     </easytabs_tab_atribute>

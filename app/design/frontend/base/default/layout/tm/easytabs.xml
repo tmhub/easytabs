@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="tm_easytabs/general/enabled">
+                <type>skin_css</type>
+                <name>css/tm/easytabs.css</name>
+            </action>
+        </reference>
+    </default>
+
+    <catalog_product_view>
+        <reference name="product.info.additional">
+            <block type="easytabs/tabs" name="product.info.tabs" as="info_tabs">
+                <action method="setTemplate" ifconfig="tm_easytabs/general/enabled">
+                    <template>tm/easytabs/tabs.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </catalog_product_view>
+</layout>

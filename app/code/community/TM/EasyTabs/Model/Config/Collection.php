@@ -29,7 +29,7 @@ class TM_EasyTabs_Model_Config_Collection extends Varien_Data_Collection
             return $this;
         }
 
-        $configOption = Mage::getStoreConfig('easy_tabs/general/config', 0);
+        $configOption = Mage::getStoreConfig('tm_easytabs/general/config', 0);
 //        Zend_Debug::dump($configOption); die;
         $this->_rawItems = json_decode($configOption, true);
 //        Zend_Debug::dump($this->_rawItems);

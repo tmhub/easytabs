@@ -43,16 +43,16 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'name'      => 'title',
         ));
 
-//        $fieldset->addField('alias', 'text', array(
-//            'label'     => Mage::helper('easytabs')->__('Alias'),
-//            'class'     => 'required-entry',
-//            'required'  => true,
-//            'name'      => 'alias',
-//        ));
-
-        $fieldset->addField('alias', 'hidden', array(
-            'name'     => 'alias',
+        $fieldset->addField('alias', 'text', array(
+            'label'     => Mage::helper('easytabs')->__('Alias'),
+            'class'     => 'required-entry',
+            'required'  => true,
+            'name'      => 'alias',
         ));
+
+//        $fieldset->addField('alias', 'hidden', array(
+//            'name'     => 'alias',
+//        ));
 
         $block = $model->getBlock();
         $blockTypes = $this->_getBlockTypes();

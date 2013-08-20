@@ -22,13 +22,10 @@ class TM_EasyTabs_Block_Tabs extends Mage_Catalog_Block_Product_View_Tabs
                 $tab->getAlias(),
                 $tab->getTitle(),
                 $tab->getBlock(),
-                $tab->getTemplate()
+                $tab->getTemplate(),
+                $tab->getData()
+//                array('custom_option' => $tab->getCustomOption())
             );
-            //set custom option
-            $this->getChild($tab->getAlias())
-                ->setCustomOption(
-                    $tab->getCustomOption()
-                );
 
             //remove
             $unset = $tab->getUnset();
@@ -41,5 +38,23 @@ class TM_EasyTabs_Block_Tabs extends Mage_Catalog_Block_Product_View_Tabs
             }
         }
         return parent::_prepareLayout();
+    }
+
+    public function addTab($alias, $title, $block, $template, $attributes = array())
+    {
+        if (!$title || !$block || !$template) {
+            return false;
+        }
+
+        $this->_tabs[] = array(
+            'alias' => $alias,
+            'title' => $title
+        );
+
+        $this->setChild($alias,
+            $this->getLayout()
+                ->createBlock($block, $alias, $attributes)
+                ->setTemplate($template)
+        );
     }
 }

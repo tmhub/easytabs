@@ -8,11 +8,14 @@
 <ul class="tabs">
     <?php $i = 0; ?>
     <?php foreach ($this->getTabs() as $_index => $_tab): ?>
-        <?php if($this->getChildHtml($_tab['alias']) && strlen(strip_tags(trim($this->getChildHtml($_tab['alias']))))>0): ?>
+        <?php if($this->getChildHtml($_tab['alias'])
+            && strlen(strip_tags(trim($this->getChildHtml($_tab['alias'])))) > 0): ?>
             <?php
-                $tab_title = $_tab['title'];
+                $tabTitle = $this->__($_tab['title']);
             ?>
-            <li id="product_tabs_<?php echo $_tab['alias'] ?>" <?php echo !$i  ? 'class="active first"' : '' ?>><a href="#"><?php echo $tab_title; ?></a></li>
+            <li id="product_tabs_<?php echo $_tab['alias'] ?>" <?php echo !$i ? 'class="active first"' : '' ?>>
+                <a href="#"><?php echo $tabTitle; ?></a>
+            </li>
 	    <?php $i++; ?>
         <?php endif; ?>
     <?php endforeach; ?>
@@ -20,7 +23,9 @@
 <div class="padder">
     <?php foreach ($this->getTabs() as $_index => $_tab): ?>
         <?php if($this->getChildHtml($_tab['alias'])): ?>
-            <div id="product_tabs_<?php echo $_tab['alias'] ?>_contents"><?php echo $this->getChildHtml($_tab['alias']); ?></div>
+            <div id="product_tabs_<?php echo $_tab['alias'] ?>_contents">
+                <?php echo $this->getChildHtml($_tab['alias']); ?>
+            </div>
         <?php endif; ?>
     <?php endforeach; ?>
 </div>

@@ -5,7 +5,7 @@
  * @see Mage_Catalog_Block_Product_View
  */
 ?>
-<ul class="tabs">
+<ul class="easytabs">
     <?php $i = 0; ?>
     <?php foreach ($this->getTabs() as $_index => $_tab): ?>
         <?php if($this->getChildHtml($_tab['alias'])
@@ -13,8 +13,8 @@
             <?php
                 $tabTitle = $this->__($_tab['title']);
             ?>
-            <li id="product_tabs_<?php echo $_tab['alias'] ?>" <?php echo !$i ? 'class="active first"' : '' ?>>
-                <a href="#"><?php echo $tabTitle; ?></a>
+            <li <?php echo !$i ? 'class="active first"' : '' ?>>
+                <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor"><?php echo $tabTitle; ?></a>
             </li>
 	    <?php $i++; ?>
         <?php endif; ?>
@@ -30,35 +30,5 @@
     <?php endforeach; ?>
 </div>
 <script type="text/javascript">
-var EasyTabs = Class.create();
-EasyTabs.prototype = {
-    initialize: function(selector) {
-        $$(selector).each(this.initTab.bind(this));
-    },
-
-    initTab: function(el) {
-        el.href = 'javascript:void(0)';
-        if ($(el).up('li').hasClassName('active')) {
-            this.showContent(el);
-        }
-        el.observe('click', this.showContent.bind(this, el));
-    },
-
-    showContent: function(a) {
-        var li = $(a).up('li'),
-            ul = $(li).up('ul');
-
-        ul.select('li'/*, 'ol'*/).each(function(el) {
-            var contents = $(el.id + '_contents');
-            if (el.id == li.id) {
-                el.addClassName('active');
-                contents.show();
-            } else {
-                el.removeClassName('active');
-                contents.hide();
-            }
-        });
-    }
-}
-new EasyTabs('.tabs a');
+    new EasyTabs('.easytabs-anchor');
 </script>

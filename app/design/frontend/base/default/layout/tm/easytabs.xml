@@ -6,6 +6,10 @@
                 <type>skin_css</type>
                 <name>css/tm/easytabs.css</name>
             </action>
+            <action method="addItem" ifconfig="tm_easytabs/general/enabled">
+                <type>skin_js</type>
+                <name>js/tm/easytabs.js</name>
+            </action>
         </reference>
     </default>
 

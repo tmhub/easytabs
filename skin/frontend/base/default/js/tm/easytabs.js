@@ -6,13 +6,11 @@ EasyTabs.prototype = {
         var contents = $$(window.location.hash + '_contents').first();
         if (contents) {
             contents.scrollTo();
-        } else {
-
         }
     },
 
     initTab: function(el) {
-        if ($(el).up('li').hasClassName('active')) {
+        if ($(el).up('li') && $(el).up('li').hasClassName('active')) {
             this.showContent(el);
         }
         el.observe('click', this.showContent.bind(this, el));
@@ -32,16 +30,17 @@ EasyTabs.prototype = {
         if (!contentToShow) {
             return;
         }
+        var easytabContainer = contentToShow.up('.padder').previous('.easytabs');
         contentToShow.siblings().each(function(contentToHide) {
             contentToHide.hide();
             var _hash = contentToHide.id.replace('_contents', ''),
-                a = $$('a[href="#' + _hash + '"]').first();
+                a = easytabContainer.select('a[href="#' + _hash + '"]').first();
             if (a) {
                 a.up('li').removeClassName('active');
             }
         });
         contentToShow.show();
-        a = $$('a[href="#' + hash + '"]').first();
+        a = easytabContainer.select('a[href="#' + hash + '"]').first();
         if (a) {
             a.up('li').addClassName('active');
         }

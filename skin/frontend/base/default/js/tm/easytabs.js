@@ -46,4 +46,4 @@ EasyTabs.prototype = {
         }
         return this;
     }
-}
+};

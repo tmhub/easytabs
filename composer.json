@@ -30,7 +30,7 @@
             ["app/etc/modules/TM_EasyTabs.xml", "app/etc/modules/TM_EasyTabs.xml"],
             ["app/locale/en_US/TM_EasyTabs.csv", "app/locale/en_US/TM_EasyTabs.csv"],
             ["skin/frontend/base/default/css/tm/easytabs.css", "skin/frontend/base/default/css/tm/easytabs.css"],
-            ["skin/frontend/base/default/css/tm/easytabs.js", "skin/frontend/base/default/css/tm/easytabs.js"]
+            ["skin/frontend/base/default/js/tm/easytabs.js", "skin/frontend/base/default/js/tm/easytabs.js"]
         ],
         "changelog": ""
     }

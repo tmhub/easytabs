@@ -11,7 +11,7 @@
             <label>Easy Tabs</label>
             <tab>templates_master</tab>
             <frontend_type>text</frontend_type>
-            <sort_order>57</sort_order>
+            <sort_order>540</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
@@ -33,7 +33,6 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </enabled>
-
                     </fields>
                 </general>
             </groups>

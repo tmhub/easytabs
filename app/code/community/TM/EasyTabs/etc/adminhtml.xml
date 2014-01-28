@@ -7,7 +7,7 @@
             <children>
                 <easytabs translate="title" module="easytabs">
                     <title>Easy Tabs</title>
-                    <sort_order>60</sort_order>
+                    <sort_order>540</sort_order>
                     <action>adminhtml/easytabs_index/index</action>
                 </easytabs>
             </children>
@@ -24,7 +24,6 @@
                                 <children>
                                     <tm_easytabs translate="title" module="easytabs">
                                         <title>Easy Tabs Section</title>
-                                        <sort_order>60</sort_order>
                                     </tm_easytabs>
                                 </children>
                             </config>
@@ -34,7 +33,7 @@
                         <children>
                             <easytabs module="easytabs">
                                 <title>Easy Tabs</title>
-                                <sort_order>10</sort_order>
+                                <sort_order>540</sort_order>
                                 <action>adminhtml/easytabs_index/index</action>
                             </easytabs>
                         </children>

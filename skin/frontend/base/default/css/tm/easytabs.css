@@ -1,36 +1,74 @@
-.product-view .easytabs { margin: 15px 0px; overflow:hidden; border-bottom:1px solid #496778; zoom: 1;}
-.product-view .easytabs li { float:left; border-right:1px solid #ffffff;
-    border-left: 1px solid #fff; font-size:0.9em; line-height:1em; background: #f2f2f2; }
-.product-view .easytabs li.first { border-left:0; }
-.product-view .easytabs li.last { border-right:0; }
-.product-view .easytabs a { display:block; padding:6px 10px; color:#444; text-decoration: none;}
-.product-view .easytabs a:hover { background-color:#ddd; text-decoration:none; color:#444; text-decoration: none;}
-.product-view .easytabs li.active a,
-.product-view .easytabs li.active a:hover { background:#496778; color:#fff; }
-
-#product_tabs_tags_tabbed_contents.input-box input { width: 300px; }
-#product_tabs_tags_tabbed_contents .input-box { width: 300px; float:left; margin-right: 10px;}
+.easytabs-wrapper { margin: 10px 0; }
+.easytabs { margin: 0; display: table; border-spacing: 0 0; width: 100%; }
+.easytabs li { display: table-cell; text-align: center; vertical-align: middle; max-width: 130px; }
+.easytabs li,
+.easytabs-a-accordion {
+    line-height: normal;
+    position: relative;
+    z-index: 20;
+    background: #fff;
+    background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+    background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+    box-shadow:
+        0px 0px 0px 1px rgba(155,155,155,0.3),
+        1px 0px 0px 0px rgba(255,255,255,0.9) inset,
+        0px 2px 2px rgba(0,0,0,0.1);
+}
+.easytabs li:hover,
+.easytabs-a-accordion:hover { background: #fff; text-decoration: none; }
+.easytabs li.active,
+.easytabs li.active:hover,
+.easytabs-a-accordion.active,
+.easytabs-a-accordion.active:hover {
+    background: #E1E6E8;
+    color: #3d7489;
+    text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+    box-shadow:
+        0px 0px 0px 1px rgba(155,155,155,0.3),
+        0px 2px 2px rgba(0,0,0,0.1);
+}
+.easytabs-a {
+    display: block;
+    padding: 9px 5px;
+    color: #777;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+    font-size: 12px;
+    line-height: normal;
+    font-weight: bold;
+}
+.easytabs-a-accordion { display: none; padding: 12px 12px; }
+.easytabs-content { padding: 7px 8px; }
+.easytabs-content {
+    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+    margin-top: -1px;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+#product_tabs_tags_tabbed_contents .input-box input { width: 300px; }
+#product_tabs_tags_tabbed_contents .input-box { width: 300px; float:left; margin: 0 10px 3px 0;}
 #product_tabs_related_tabbed_contents li { float:left; margin-right: 10px;}
 #product_tabs_related_tabbed_contents ol { clear: both;}
-.product-collateral:after { content:"."; display:block; clear:both; font-size:0; line-height:0; height:0; overflow:hidden; zoom: 1}
 
-@media (max-width: 979px) {
-    .product-view .easytabs {
-        float: left; width: 23%; overflow: visible;
-        height: auto; background: none; margin: 0 0 15px;
-        border: none;
+.easytabs,
+.product-collateral { zoom: 1; }
+.easytabs:after,
+.product-collateral:after { content: '.'; visibility: hidden; clear: both; display: block; height: 0; font-size: 0; }
+
+@media (max-width: 480px) {
+    .easytabs, .easytabs-a-tab { display: none; } /* .easytabs-a-tab should be hidden. See the easytabs.js~12: el.getStyle('display') !== 'none' */
+    .easytabs-a-accordion { display: block; }
+    .easytabs-content {
+        box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+        margin-top: -1px;
+        overflow: hidden;
+        position: relative;
+        z-index: 10;
     }
-    .product-view .easytabs li {
-        margin: 0; float: none; height: auto; padding: 0;
-        border-right: 1px solid #e3e3e3; border-bottom: 1px solid #fff;
-    }
-    .product-view .easytabs li a {
-        white-space: normal; padding: 10px 0 10px 3px;
-        letter-spacing: 0; min-width: 0; float: none; display: block;
-        height: auto;
-    }
-    .product-view .easytabs li.active { border-right: none; }
-    .product-view .padder { float: right; padding: 10px 1%; width: 75%; border: none; }
-    .product-view .padder,
-    .product-view .easytabs { border-top: 1px solid #e3e3e3; }
 }

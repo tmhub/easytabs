@@ -1,7 +1,9 @@
 <?php
 
-class TM_EasyTabs_Block_Tabs extends Mage_Catalog_Block_Product_View_Tabs
+class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
 {
+    protected $_tabs = array();
+
     protected function _getCollection()
     {
         $collection = new TM_EasyTabs_Model_Config_Collection();
@@ -40,6 +42,12 @@ class TM_EasyTabs_Block_Tabs extends Mage_Catalog_Block_Product_View_Tabs
         return parent::_prepareLayout();
     }
 
+    /**
+     * @param string $title
+     * @param string $block
+     * @param string $template
+     * @param array  $attributes
+     */
     public function addTab($alias, $title, $block, $template, $attributes = array())
     {
         if (!$title || !$block || !$template) {
@@ -56,5 +64,10 @@ class TM_EasyTabs_Block_Tabs extends Mage_Catalog_Block_Product_View_Tabs
                 ->createBlock($block, $alias, $attributes)
                 ->setTemplate($template)
         );
+    }
+
+    public function getTabs()
+    {
+        return $this->_tabs;
     }
 }

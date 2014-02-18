@@ -1,36 +1,20 @@
 .easytabs-wrapper { margin: 10px 0; }
-.easytabs { margin: 0; display: table; border-spacing: 0 0; width: 100%; }
-.easytabs li { display: table-cell; text-align: center; vertical-align: middle; max-width: 130px; }
-.easytabs li,
-.easytabs-a-accordion {
-    line-height: normal;
-    position: relative;
-    z-index: 20;
-    background: #fff;
-    background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
-    background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
-    box-shadow:
-        0px 0px 0px 1px rgba(155,155,155,0.3),
-        1px 0px 0px 0px rgba(255,255,255,0.9) inset,
-        0px 2px 2px rgba(0,0,0,0.1);
+.easytabs { display: table; margin: 0; padding: 0; border-spacing: 0 0; width: 100%; }
+.easytabs li {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
 }
+.easytabs li,
+.easytabs-a-accordion { line-height: normal; }
 .easytabs li:hover,
-.easytabs-a-accordion:hover { background: #fff; text-decoration: none; }
+.easytabs-a-accordion:hover { text-decoration: none; }
 .easytabs li.active,
 .easytabs li.active:hover,
 .easytabs-a-accordion.active,
 .easytabs-a-accordion.active:hover {
-    background: #E1E6E8;
     color: #3d7489;
     text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
-    box-shadow:
-        0px 0px 0px 1px rgba(155,155,155,0.3),
-        0px 2px 2px rgba(0,0,0,0.1);
 }
 .easytabs-a {
     display: block;
@@ -44,17 +28,135 @@
 }
 .easytabs-a-accordion { display: none; padding: 12px 12px; }
 .easytabs-content { padding: 7px 8px; }
-.easytabs-content {
-    box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
-    margin-top: -1px;
-    overflow: hidden;
-    position: relative;
-    z-index: 10;
-}
 #product_tabs_tags_tabbed_contents .input-box input { width: 300px; }
 #product_tabs_tags_tabbed_contents .input-box { width: 300px; float:left; margin: 0 10px 3px 0;}
 #product_tabs_related_tabbed_contents li { float:left; margin-right: 10px;}
 #product_tabs_related_tabbed_contents ol { clear: both;}
+
+/* Tab Styles. */
+    /* Shadow. IE buggy */
+    /*.easytabs li,
+    .easytabs-a-accordion {
+        position: relative;
+        background: #fff;
+        background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+        background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+        z-index: 20;
+        box-shadow:
+            0px 0px 0px 1px rgba(155,155,155,0.3),
+            1px 0px 0px 0px rgba(255,255,255,0.9) inset,
+            0px 2px 2px rgba(0,0,0,0.1);
+    }
+    .easytabs li:hover,
+    .easytabs-a-accordion:hover { background: #fff; }
+    .easytabs li.active,
+    .easytabs li.active:hover,
+    .easytabs-a-accordion.active,
+    .easytabs-a-accordion.active:hover {
+        background: #E1E6E8;
+        box-shadow:
+            0px 0px 0px 1px rgba(155,155,155,0.3),
+            0px 2px 2px rgba(0,0,0,0.1);
+    }
+    .easytabs-content {
+        box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
+        overflow: hidden;
+        position: relative;
+        z-index: 10;
+    }*/
+    /* eof Shadows */
+
+    /* Borders */
+    /*.easytabs li,
+    .easytabs-a-accordion {
+        background: #fff;
+        background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
+        background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
+        border: 1px solid #ccc;
+    }
+    .easytabs-a-accordion { margin-top: -1px; }
+    .easytabs li { border-left-color: #fff; }
+    .easytabs li:first-child {
+        border-left-color: #ccc;
+    }
+    .easytabs li.active,
+    .easytabs li.active:hover {
+        background: #E1E6E8;
+        border-left-color: #f4f4f4;
+    }
+    .easytabs li.active:first-child,
+    .easytabs li.active:first-child:hover {
+        border-left-color: #ccc;
+    }
+    .easytabs-content {
+        border: 1px solid #ccc;
+        border-top: none;
+    }*/
+    /* eof Borders */
+
+    /* Corners */
+    /*.easytabs { display: block; border-bottom: 1px solid #aaa; }
+    .easytabs li { display: block; float: left; }
+    .easytabs a {
+        -moz-box-shadow: -4px 0 0 rgba(0, 0, 0, .2);
+        -webkit-box-shadow: -4px 0 0 rgba(0, 0, 0, .2);
+        box-shadow: -4px 0 0 rgba(0, 0, 0, .2);
+        background: #7F8589;
+        background: #e1e1e1;
+        background:    -moz-linear-gradient(220deg, #fff 10px, #e1e1e1 10px);
+        background:    -webkit-linear-gradient(220deg, #fff 10px, #e1e1e1 10px);
+        background:     -ms-linear-gradient(220deg, #fff 10px, #e1e1e1 10px);
+        background:      -o-linear-gradient(220deg, #fff 10px, #e1e1e1 10px);
+        background:         linear-gradient(220deg, #fff 10px, #e1e1e1 10px);
+        text-shadow: 0 1px 0 rgba(0,0,0,.5);
+        text-shadow: 0 1px 0 rgba(255,255,255,.5);
+        color: #515151;
+        float: left;
+        font: bold 12px/36px 'Lucida sans', Arial, Helvetica;
+        height: 35px;
+        padding: 0 15px;
+        text-decoration: none;
+    }
+    .easytabs li:first-child a {
+        box-shadow: none;
+    }
+    .easytabs a:hover {
+        background: #d0d0d0;
+        background:    -moz-linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        background:    -webkit-linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        background:     -ms-linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        background:      -o-linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        background:         linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+    }
+    .easytabs a:focus {
+        outline: none;
+    }
+    .easytabs a.active {
+        background: #d0d0d0;
+        background:    -moz-linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        background:    -webkit-linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        background:     -ms-linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        background:      -o-linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        background:         linear-gradient(220deg, #fff 10px, #d0d0d0 10px);
+        text-shadow: none;
+        color: #333;
+    }
+    .easytabs-content {
+        border: 1px solid #ccc;
+        border-top: none;
+    }*/
+    /* Corners */
+/* eof Styles */
 
 .easytabs,
 .product-collateral { zoom: 1; }
@@ -62,13 +164,10 @@
 .product-collateral:after { content: '.'; visibility: hidden; clear: both; display: block; height: 0; font-size: 0; }
 
 @media (max-width: 480px) {
-    .easytabs, .easytabs-a-tab { display: none; } /* .easytabs-a-tab should be hidden. See the easytabs.js~12: el.getStyle('display') !== 'none' */
+    /*
+     * .easytabs-a-tab should be hidden.
+     * See the easytabs.js~12: el.getStyle('display') !== 'none'
+     */
+    .easytabs, .easytabs-a-tab { display: none; }
     .easytabs-a-accordion { display: block; }
-    .easytabs-content {
-        box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
-        margin-top: -1px;
-        overflow: hidden;
-        position: relative;
-        z-index: 10;
-    }
 }

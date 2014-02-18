@@ -44,11 +44,11 @@ EasyTabs.prototype = {
         }
 
         content.addClassName('active');
-        content.show();
-        // content.blindDown();
-        // content.appear({
-            // duration: 0.4
-        // });
+        content.appear({
+            duration: 0.3
+        });
+        // content.show();
+
         if (-1 === this.activeTabs.indexOf(tab)) {
             this.activeTabs.push(tab);
         }

@@ -1,34 +1,46 @@
-<?php
-/**
- * Product view template
- *
- * @see Mage_Catalog_Block_Product_View
- */
-?>
-<ul class="easytabs">
-    <?php $i = 0; ?>
-    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
-        <?php if($this->getChildHtml($_tab['alias'])
-            && strlen(strip_tags(trim($this->getChildHtml($_tab['alias'])))) > 0): ?>
+<div class="easytabs-wrapper" id="easytabs">
+    <div class="easytabs-ul-wrapper">
+        <ul class="easytabs">
+            <?php foreach ($this->getTabs() as $_index => $_tab) : ?>
+                <?php
+                    if (!$childHtml = $this->getChildHtml($_tab['alias'])) :
+                        continue;
+                    endif;
+
+                    // $childHtml = strip_tags(trim($childHtml));
+                    // if (strlen($childHtml) <= 0) :
+                        // continue;
+                    // endif;
+                ?>
+
+                <li>
+                    <a href="#product_tabs_<?php echo $_tab['alias'] ?>"
+                        class="easytabs-anchor easytabs-a easytabs-a-tab"
+                    ><?php echo $this->__($_tab['title']); ?></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <div class="padder easytabs-content-wrapper">
+        <?php foreach ($this->getTabs() as $_index => $_tab) : ?>
             <?php
-                $tabTitle = $this->__($_tab['title']);
+                if (!$childHtml = $this->getChildHtml($_tab['alias'])) :
+                    continue;
+                endif;
             ?>
-            <li <?php echo !$i ? 'class="active first"' : '' ?>>
-                <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor"><?php echo $tabTitle; ?></a>
-            </li>
-	    <?php $i++; ?>
-        <?php endif; ?>
-    <?php endforeach; ?>
-</ul>
-<div class="padder">
-    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
-        <?php if($this->getChildHtml($_tab['alias'])): ?>
-            <div id="product_tabs_<?php echo $_tab['alias'] ?>_contents">
-                <?php echo $this->getChildHtml($_tab['alias']); ?>
+
+            <a href="#product_tabs_<?php echo $_tab['alias'] ?>"
+                class="easytabs-anchor easytabs-a easytabs-a-accordion"
+            ><?php echo $this->__($_tab['title']); ?></a>
+            <div class="easytabs-content"
+                id="product_tabs_<?php echo $_tab['alias'] ?>_contents"
+                style="display:none">
+                <?php echo $childHtml; ?>
             </div>
-        <?php endif; ?>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
+    </div>
+
+    <script type="text/javascript">
+        var easytabs = new EasyTabs();
+    </script>
 </div>
-<script type="text/javascript">
-    new EasyTabs('.easytabs-anchor');
-</script>

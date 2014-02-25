@@ -1,21 +1,48 @@
 .easytabs-wrapper { margin: 10px 0; }
-.easytabs { display: table; margin: 0; padding: 0; border-spacing: 0 0; width: 100%; box-sizing: border-box; -moz-box-sizing: border-box; }
+.easytabs {
+    display: table;
+    margin: 0;
+    padding: 0;
+    border-spacing: 5px 0;
+    margin-left: -5px;
+    position: relative;
+    z-index: 6;
+    /*width: 100%; box-sizing: border-box; -moz-box-sizing: border-box; */
+}
 .easytabs li { display: table-cell; text-align: center; vertical-align: middle; }
 .easytabs li,
-.easytabs-a-accordion { line-height: normal; }
-.easytabs li:hover,
+.easytabs-a-accordion {
+    line-height: normal;
+    background: #eaeaea;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 -12px 8px -14px rgba(0, 0, 0, 0.2);
+}
+.easytabs li:hover { text-decoration: none; box-shadow: none; }
 .easytabs-a-accordion:hover { text-decoration: none; }
-.easytabs li.active,
-.easytabs li.active:hover { text-shadow: 0px 1px 1px rgba(255,255,255, 0.6); }
+.easytabs li.active {
+    background: #fbfbfb;
+    border-width: 1px 1px 0;
+    box-shadow: none;
+    text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
+}
 .easytabs-a {
     display: block;
-    padding: 9px 5px;
+    padding: 9px 12px;
     color: #777;
     text-decoration: none;
     text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
-    font: bold 12px/normal Arial, Helvetica, Tahoma, sans-serif;
+    font: bold 12px/16px Arial, Helvetica, Tahoma, sans-serif;
 }
-.easytabs-content { padding: 7px 8px; }
+.easytabs-content {
+    padding: 7px 8px;
+    border: 1px solid #ccc;
+    position: relative;
+    z-index: 5;
+    margin-top: -1px;
+    background: #fbfbfb;
+}
+.easytabs-a-accordion { margin-top: -1px; background: #f1f1f1; display: none; padding: 12px; }
+.easytabs-a-accordion.active { box-shadow: none; color: #48494a; }
 
 .easytabs-content .box-collateral { margin: 0; }
 .easytabs-content .box-up-sell .products-grid td { padding-left: 7px; padding-right: 7px; }
@@ -32,40 +59,6 @@
 #product_tabs_related_tabbed_contents .product-details { margin-left: 75px; }
 #product_tabs_related_tabbed_contents .price-box { margin: 0; }
 
-.easytabs-a-accordion { display: none; padding: 12px; }
-.easytabs-a-accordion.active,
-.easytabs-a-accordion.active:hover { color: #48494a; text-shadow: 0px 1px 1px rgba(255,255,255, 0.6); }
-
-/* tab styles */
-.easytabs { border: 1px solid #ccc; border-width: 1px 0 1px 1px; }
-.easytabs li,
-.easytabs-a-accordion {
-    background: #fff;
-    background: -moz-linear-gradient(top, #ffffff 1%, #eaeaea 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ffffff), color-stop(100%,#eaeaea));
-    background: -webkit-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    background: -o-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    background: -ms-linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    background: linear-gradient(top, #ffffff 1%,#eaeaea 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
-    border: 1px solid #ccc;
-}
-.easytabs-a-accordion { margin-top: -1px; }
-.easytabs li { border-width: 0 1px 0 1px; border-left-color: #fff; }
-.easytabs li:hover { background: #fff; }
-.easytabs li:first-child { border-left-color: #ccc; border-width: 0 1px 0 0; }
-.easytabs li.active { background: #e1e6e8; border-left-color: #f4f4f4; }
-.easytabs-content { border: 1px solid #ccc; border-width: 0 1px 1px; }
-
-/* traditional tabs */
-/*
-.easytabs { border-bottom: 1px solid #ccc; }
-.easytabs li:hover { background: #eee;  }
-.easytabs li.active { background: #e1e6e8; }
-.easytabs-content { border: 1px solid #ccc; border-width: 0 1px 1px; }
-*/
-/* tab styles */
-
 .easytabs,
 .easytabs-content,
 .product-collateral { zoom: 1; }
@@ -80,6 +73,9 @@
      */
     .easytabs, .easytabs-a-tab { display: none; }
     .easytabs-a-accordion { display: block; }
+
+    #product_tabs_tags_tabbed_contents .input-box input { width: 200px; }
+    #product_tabs_tags_tabbed_contents .input-box { width: 200px; }
 
     #product_tabs_related_tabbed_contents li { float:none; margin: 0 0 10px; width: auto; }
     #product_tabs_related_tabbed_contents li:nth-child(1n) { width: auto; }

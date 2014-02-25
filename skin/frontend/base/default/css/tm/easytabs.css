@@ -17,7 +17,8 @@
     border: 1px solid #ccc;
     box-shadow: inset 0 -12px 8px -14px rgba(0, 0, 0, 0.2);
 }
-.easytabs li:hover { text-decoration: none; box-shadow: none; }
+.easytabs li:hover { box-shadow: none; }
+.easytabs li a:hover,
 .easytabs-a-accordion:hover { text-decoration: none; }
 .easytabs li.active {
     background: #fbfbfb;

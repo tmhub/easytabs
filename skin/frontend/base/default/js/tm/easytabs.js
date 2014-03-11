@@ -2,8 +2,8 @@ var EasyTabs = Class.create();
 EasyTabs.prototype = {
     tpl: {
         tab    : '(.+)?',
-        href   : '#product_tabs_(.+)?_tabbed',
-        content: 'product_tabs_(.+)?_tabbed_contents'
+        href   : '#product_tabs_(.+)?',
+        content: 'product_tabs_(.+)?_contents'
     },
     config: {
         tabs     : '.easytabs-anchor',

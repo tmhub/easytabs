@@ -3,14 +3,11 @@
         <ul class="easytabs">
             <?php foreach ($this->getTabs() as $_index => $_tab) : ?>
                 <?php
-                    if (!$childHtml = $this->getChildHtml($_tab['alias'])) :
+                    if (!($childHtml = $this->getChildHtml($_tab['alias']))
+                        || $this->isEmptyString($childHtml)) :
+
                         continue;
                     endif;
-
-                    // $childHtml = strip_tags(trim($childHtml));
-                    // if (strlen($childHtml) <= 0) :
-                        // continue;
-                    // endif;
                 ?>
 
                 <li>
@@ -24,7 +21,9 @@
     <div class="padder easytabs-content-wrapper">
         <?php foreach ($this->getTabs() as $_index => $_tab) : ?>
             <?php
-                if (!$childHtml = $this->getChildHtml($_tab['alias'])) :
+                if (!($childHtml = $this->getChildHtml($_tab['alias']))
+                    || $this->isEmptyString($childHtml)) :
+
                     continue;
                 endif;
             ?>

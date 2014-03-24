@@ -70,4 +70,17 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
     {
         return $this->_tabs;
     }
+
+    /**
+     * Check tab content for anything except html tags and spaces
+     *
+     * @param  string  $content
+     * @return boolean
+     */
+    public function isEmptyString($content)
+    {
+        $content = strip_tags($content);
+        $content = trim($content);
+        return strlen($content) === 0;
+    }
 }

@@ -11,7 +11,25 @@ EasyTabs.prototype = {
         trackHashValue: true
     },
     container : false,
-    activeTabs: [], // multiple tabs allowed in accordion mode
+
+    /**
+     * Tabs that are active at this moment
+     * Multiple tabs allowed in accordion mode
+     *
+     * @type {Array}
+     */
+    activeTabs: [],
+
+    /**
+     * Activity counters
+     * {
+     *   tab_id: activation_count,
+     *   ...
+     * }
+     *
+     * @type {Object}
+     */
+    counters: {},
 
     initialize: function(options) {
         Object.extend(this.config, options || {});
@@ -43,10 +61,14 @@ EasyTabs.prototype = {
             return false;
         }
 
+        document.fire('easytabs:beforeActivate', {
+            'tab'     : tab,
+            'content' : content,
+            'easytabs': this
+        });
+
+        this._updateCounter(tab);
         content.addClassName('active');
-        // content.appear({
-        //     duration: 0.3
-        // });
         content.show();
 
         if (-1 === this.activeTabs.indexOf(tab)) {
@@ -70,6 +92,12 @@ EasyTabs.prototype = {
                 visibleTab.scrollTo();
             }
         }
+
+        document.fire('easytabs:afterActivate', {
+            'tab'     : tab,
+            'content' : content,
+            'easytabs': this
+        });
 
         return tab;
     },
@@ -96,6 +124,12 @@ EasyTabs.prototype = {
             return false;
         }
 
+        document.fire('easytabs:beforeDeactivate', {
+            'tab'     : tab,
+            'content' : content,
+            'easytabs': this
+        });
+
         content.removeClassName('active');
         content.hide();
 
@@ -106,6 +140,12 @@ EasyTabs.prototype = {
             a.removeClassName('active');
             var parentLi = a.up('li');
             parentLi && parentLi.removeClassName('active');
+        });
+
+        document.fire('easytabs:afterDeactivate', {
+            'tab'     : tab,
+            'content' : content,
+            'easytabs': this
         });
 
         return tab;
@@ -150,5 +190,31 @@ EasyTabs.prototype = {
             return false;
         }
         return tab[1];
+    },
+
+    /**
+     * Update activation counter
+     *
+     * @param  {String} tab
+     * @return void
+     */
+    _updateCounter: function(tab) {
+        if (!this.counters[tab]) {
+            this.counters[tab] = 0;
+        }
+        this.counters[tab]++;
+    },
+
+    /**
+     * Retreive activation count for specified tab
+     *
+     * @param  {String} tab
+     * @return {Integer}
+     */
+    getActivationCount: function(tab) {
+        if (!this.counters[tab]) {
+            this.counters[tab] = 0;
+        }
+        return this.counters[tab];
     }
 };

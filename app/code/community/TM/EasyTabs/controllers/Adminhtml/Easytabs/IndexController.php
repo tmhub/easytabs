@@ -6,10 +6,10 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
     {
         $this->loadLayout();
         $this->_setActiveMenu('easytabs')
-        ->_addBreadcrumb(
-            Mage::helper('easytabs')->__('easytabs'),
-            Mage::helper('easytabs')->__('easytabs')
-        );
+            ->_addBreadcrumb(
+                Mage::helper('easytabs')->__('easytabs'),
+                Mage::helper('easytabs')->__('easytabs')
+            );
 
         return $this;
     }
@@ -35,7 +35,6 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
     {
         $id = $this->getRequest()->getParam('id');
         $model = Mage::getModel('easytabs/config')->load($id);
-
         Mage::register('easytabs_tab_data', $model);
         $this->_initAction();
         $this->renderLayout();
@@ -54,37 +53,35 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
                 $params = array_merge($params['parameters'], $params);
                 unset($params['parameters']);
             }
-//            Zend_Debug::dump($params);
-//            die;
             Mage::getModel('easytabs/config')
                 ->setData($params)
-                ->save()
-            ;
+                ->save();
 
-            $session->addSuccess(Mage::helper('adminhtml')->__('The configuration has been saved.'));
+            $session->addSuccess(Mage::helper('adminhtml')->__(
+                'The configuration has been saved.'
+            ));
         } catch (Mage_Core_Exception $e) {
             foreach(explode("\n", $e->getMessage()) as $message) {
                 $session->addError($message);
             }
         } catch (Exception $e) {
             $session->addException($e,
-                Mage::helper('adminhtml')->__('An error occurred while saving this configuration:') . ' '
-                . $e->getMessage());
+                Mage::helper('adminhtml')->__(
+                    'An error occurred while saving this configuration:'
+                )
+                . ' ' . $e->getMessage()
+            );
         }
-//        $this->_redirectReferer();
         $this->_redirect('*/*/');
     }
 
     public function deleteAction()
     {
-        if($this->getRequest()->getParam('id') > 0 ) {
+        if ($this->getRequest()->getParam('id') > 0 ) {
             try {
                 $id = $this->getRequest()->getParam('id');
                 $model = Mage::getModel('easytabs/config');
-
-                $model->load($id)
-                    ->delete();
-
+                $model->load($id)->delete();
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('adminhtml')->__('Item was successfully deleted')
                 );
@@ -100,9 +97,9 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
     public function massDeleteAction()
     {
         $ids = $this->getRequest()->getParam('easytabs');
-        if(!is_array($ids)) {
+        if (!is_array($ids)) {
             Mage::getSingleton('adminhtml/session')
-            ->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
+                ->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
         } else {
             try {
                 foreach ($ids as $id) {
@@ -124,14 +121,12 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
     public function massStatusAction()
     {
         $ids = $this->getRequest()->getParam('easytabs');
-        if(!is_array($ids)) {
+        if (!is_array($ids)) {
             Mage::getSingleton('adminhtml/session')
-            ->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
+                ->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
         } else {
             try {
                 $status = $this->getRequest()->getParam('status');
-//                Zend_Debug::dump($status);
-//                die;
                 foreach ($ids as $id) {
                     $model = Mage::getModel('easytabs/config')->load($id);
                     $model->setStatus($status)

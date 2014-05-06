@@ -9,10 +9,20 @@ class TM_EasyTabs_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_Form_
         $this->_blockGroup = 'easytabs';
         $this->_controller = 'adminhtml';
 
+        $this->_addButton('saveandcontinue', array(
+            'label'     => Mage::helper('adminhtml')->__('Save and Continue Edit'),
+            'onclick'   => 'saveAndContinueEdit()',
+            'class'     => 'save',
+        ), -100);
+
         $model  = Mage::registry('easytabs_tab_data');
         $values = $model->getData();
         $values = isset($values['id']) ? Mage::helper('core')->jsonEncode($values) : 'false';
         $this->_formScripts[] = "
+            function saveAndContinueEdit(){
+                editForm.submit($('edit_form').action + 'back/1');
+            }
+
             EasytabsTabOptions = function() {
                 var _values = {$values},
                 _url = '{$this->getUrl('*/*/loadTabOptions')}';

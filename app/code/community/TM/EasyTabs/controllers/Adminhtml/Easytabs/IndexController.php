@@ -44,7 +44,8 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
     {
         $session = Mage::getSingleton('adminhtml/session');
         try {
-            $params = $this->getRequest()->getParams();
+            $params = $this->getRequest()->getPost();
+            unset($params['form_key']);
             if (empty($params['block']) && !empty($params['block_type'])) {
                 $params['block'] = $params['block_type'];
             }
@@ -53,13 +54,20 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
                 $params = array_merge($params['parameters'], $params);
                 unset($params['parameters']);
             }
-            Mage::getModel('easytabs/config')
+            $model = Mage::getModel('easytabs/config')
                 ->setData($params)
                 ->save();
 
             $session->addSuccess(Mage::helper('adminhtml')->__(
                 'The configuration has been saved.'
             ));
+
+            if ($this->getRequest()->getParam('back') && $model->getLastSavedId()) {
+                $this->_redirect('*/*/edit', array('id' => $model->getLastSavedId()));
+                return;
+            }
+            $this->_redirect('*/*/');
+            return;
         } catch (Mage_Core_Exception $e) {
             foreach(explode("\n", $e->getMessage()) as $message) {
                 $session->addError($message);

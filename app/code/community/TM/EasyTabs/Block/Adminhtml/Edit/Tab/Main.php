@@ -6,12 +6,10 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
 {
     protected function _getBlockTypes()
     {
-        $widgets = Mage::getModel('widget/widget')->getWidgetsArray();
+        $tabs = Mage::getSingleton('easytabs/tabs')->getTabsArray();
         $types = array();
-        foreach ($widgets as $widget) {
-            if (0 === strpos($widget['code'], 'easytabs_')) {
-                $types[$widget['type']] = $widget['name'];
-            }
+        foreach ($tabs as $tab) {
+            $types[$tab['type']] = $tab['name'];
         }
         return $types;
     }
@@ -127,7 +125,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
 
                 WidgetOptions = function(){
                     var _values = {$values},
-                    _url = '{$this->getUrl('*/widget/loadOptions')}';
+                    _url = '{$this->getUrl('*/*/loadTabOptions')}';
 
                     function _insertHtml(html){
                         var container = $('widget_options');

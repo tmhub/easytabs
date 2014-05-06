@@ -143,4 +143,27 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
         }
         $this->_redirect('*/*/index');
     }
+
+    public function loadTabOptionsAction()
+    {
+        try {
+            $this->loadLayout('empty');
+            if ($paramsJson = $this->getRequest()->getParam('widget')) {
+                $request = Mage::helper('core')->jsonDecode($paramsJson);
+                if (is_array($request)) {
+                    $optionsBlock = $this->getLayout()->getBlock('easytabs.tab.options');
+                    if (isset($request['widget_type'])) {
+                        $optionsBlock->setWidgetType($request['widget_type']);
+                    }
+                    if (isset($request['values'])) {
+                        $optionsBlock->setWidgetValues($request['values']);
+                    }
+                }
+                $this->renderLayout();
+            }
+        } catch (Mage_Core_Exception $e) {
+            $result = array('error' => true, 'message' => $e->getMessage());
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
+        }
+    }
 }

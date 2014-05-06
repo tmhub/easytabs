@@ -161,7 +161,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
                     WidgetOptions.load(value);
                     $('block').setValue(value);
                 });
-                WidgetOptions.load('{$model->getData('block')}');
+                WidgetOptions.load($('block_type').getValue());
             });
         </script>");
 

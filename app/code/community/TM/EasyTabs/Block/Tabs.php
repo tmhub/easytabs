@@ -26,10 +26,8 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
                 $tab->getBlock(),
                 $tab->getTemplate(),
                 $tab->getData()
-//                array('custom_option' => $tab->getCustomOption())
             );
 
-            //remove
             $unset = $tab->getUnset();
             if (false !== strpos($unset, '::')) {
                 list($blockName, $alias) = explode('::', $unset);
@@ -50,7 +48,7 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
      */
     public function addTab($alias, $title, $block, $template, $attributes = array())
     {
-        if (!$title || !$block || !$template) {
+        if (!$title || !$block || ($block !== 'easytabs/tab_html' && !$template)) {
             return false;
         }
 

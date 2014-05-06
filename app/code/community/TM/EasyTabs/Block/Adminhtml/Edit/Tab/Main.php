@@ -49,7 +49,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
         $block = $model->getBlock();
         $blockTypes = $this->_getBlockTypes();
         if (!isset($blockTypes[$block])) {
-            $model->setBlock('easytabs/tab_template');
+            $model->setBlock('easytabs/tab_html');
         }
         $model->setBlockType($model->getBlock());
 

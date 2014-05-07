@@ -5,7 +5,7 @@
         <parameters>
             <content>
                 <label>Content</label>
-                <type>textarea</type>
+                <type>tmcore/adminhtml_widget_form_renderer_wysiwyg</type>
                 <visible>1</visible>
                 <required>1</required>
                 <value></value>

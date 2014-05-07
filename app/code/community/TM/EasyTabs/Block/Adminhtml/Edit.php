@@ -10,10 +10,33 @@ class TM_EasyTabs_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_Form_
         $this->_controller = 'adminhtml';
 
         $this->_addButton('saveandcontinue', array(
-            'label'     => Mage::helper('adminhtml')->__('Save and Continue Edit'),
-            'onclick'   => 'saveAndContinueEdit()',
-            'class'     => 'save',
+            'label'   => Mage::helper('adminhtml')->__('Save and Continue Edit'),
+            'onclick' => 'saveAndContinueEdit()',
+            'class'   => 'save'
         ), -100);
+    }
+
+    public function getHeaderText()
+    {
+        $data = Mage::registry('easytabs_tab_data');
+        if ($data && $data->getId()) {
+            return Mage::helper('easytabs')->__(
+                "Edit Tab # %s", $data->getTitle()
+            );
+        }
+        return Mage::helper('easytabs')->__('Add New Tab');
+    }
+
+    /**
+     * Prepare Layout Content
+     *
+     * @return TM_EasyTabs_Block_Adminhtml_Edit
+     */
+    protected function _prepareLayout()
+    {
+        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()) {
+            $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
+        }
 
         $model  = Mage::registry('easytabs_tab_data');
         $values = $model->getData();
@@ -63,16 +86,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_Form_
             });
             EasytabsTabOptions.load($('block_type').getValue());
         ";
-    }
 
-    public function getHeaderText()
-    {
-        $data = Mage::registry('easytabs_tab_data');
-        if ($data && $data->getId()) {
-            return Mage::helper('easytabs')->__(
-                "Edit Tab # %s", $data->getTitle()
-            );
-        }
-        return Mage::helper('easytabs')->__('Add New Tab');
+        return parent::_prepareLayout();
     }
 }

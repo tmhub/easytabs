@@ -7,6 +7,10 @@
     </adminhtml_easytabs_index_index>
 
     <adminhtml_easytabs_index_edit>
+        <update handle="editor"/>
+        <reference name="js">
+            <block type="core/template" template="catalog/wysiwyg/js.phtml" name="catalog.wysiwyg.js" />
+        </reference>
         <reference name="content">
             <block type="easytabs/adminhtml_edit" name="easytabs_edit"/>
         </reference>

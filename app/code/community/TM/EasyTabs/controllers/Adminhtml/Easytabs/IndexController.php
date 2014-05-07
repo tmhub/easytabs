@@ -174,4 +174,27 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($result));
         }
     }
+
+    /**
+     * Overriden Mage_Adminhtml_Catalog_CategoryController::wysiwygAction
+     * Changed block type to allow to use widgets
+     */
+    public function wysiwygAction()
+    {
+        $elementId = $this->getRequest()->getParam('element_id', md5(microtime()));
+        $storeId = $this->getRequest()->getParam('store_id', 0);
+        $storeMediaUrl = Mage::app()->getStore($storeId)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
+
+        $content = $this->getLayout()->createBlock(
+            'tmcore/adminhtml_widget_form_element_wysiwyg_content',
+            '',
+            array(
+                'editor_element_id' => $elementId,
+                'store_id'          => $storeId,
+                'store_media_url'   => $storeMediaUrl,
+            )
+        );
+
+        $this->getResponse()->setBody($content->toHtml());
+    }
 }

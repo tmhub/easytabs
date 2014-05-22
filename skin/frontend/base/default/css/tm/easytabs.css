@@ -48,6 +48,7 @@
 .easytabs-content .box-collateral { margin: 0; }
 .easytabs-content .box-up-sell .products-grid td { padding-left: 7px; padding-right: 7px; }
 .easytabs-content .block-related .block-title { display: none; }
+#product_tabs_tags_tabbed_contents label { display: block; }
 #product_tabs_tags_tabbed_contents .input-box input { width: 300px; }
 #product_tabs_tags_tabbed_contents .input-box { width: 300px; float:left; margin: 0 10px 3px 0;}
 #product_tabs_related_tabbed_contents ol { clear: both; }
@@ -62,10 +63,12 @@
 
 .easytabs,
 .easytabs-content,
-.product-collateral { zoom: 1; }
+.product-collateral,
+.easytabs-content .form-add { zoom: 1; }
 .easytabs:after,
 .easytabs-content:after,
-.product-collateral:after { content: '.'; visibility: hidden; clear: both; display: block; height: 0; font-size: 0; }
+.product-collateral:after,
+.easytabs-content .form-add:after { content: '.'; visibility: hidden; clear: both; display: block; height: 0; font-size: 0; }
 
 @media (max-width: 480px) {
     /*

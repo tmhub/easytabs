@@ -78,8 +78,8 @@
             <unset>
                 <label>Unset</label>
                 <type>text</type>
-                <visible>0</visible>
-                <required>1</required>
+                <visible>1</visible>
+                <required>0</required>
                 <value>product.info::description</value>
             </unset>
         </parameters>
@@ -97,8 +97,8 @@
             <unset>
                 <label>Unset</label>
                 <type>text</type>
-                <visible>0</visible>
-                <required>1</required>
+                <visible>1</visible>
+                <required>0</required>
                 <value>product.info::additional</value>
             </unset>
         </parameters>
@@ -116,8 +116,8 @@
             <unset>
                 <label>Unset</label>
                 <type>text</type>
-                <visible>0</visible>
-                <required>1</required>
+                <visible>1</visible>
+                <required>0</required>
                 <value>product.info::upsell_products</value>
             </unset>
         </parameters>
@@ -135,8 +135,8 @@
             <unset>
                 <label>Unset</label>
                 <type>text</type>
-                <visible>0</visible>
-                <required>1</required>
+                <visible>1</visible>
+                <required>0</required>
                 <value>right::catalog.product.related</value>
             </unset>
         </parameters>
@@ -154,8 +154,8 @@
             <unset>
                 <label>Unset</label>
                 <type>text</type>
-                <visible>0</visible>
-                <required>1</required>
+                <visible>1</visible>
+                <required>0</required>
                 <value>product.info.additional::product_tag_list</value>
             </unset>
         </parameters>

@@ -170,6 +170,13 @@
                 <required>1</required>
                 <value>tm/easytabs/tab/review/product/view/list.phtml</value>
             </template>
+            <unset>
+                <label>Unset</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>product.info::reviews</value>
+            </unset>
         </parameters>
     </product_review>
     <cms type="easytabs/tab_cms">

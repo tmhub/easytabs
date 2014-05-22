@@ -127,7 +127,7 @@
       "block":"easytabs\/tab_product_review",
       "custom_option":null,
       "template":"tm\/easytabs\/tab\/review\/product\/view\/list.phtml",
-      "unset":"",
+      "unset":"product.info::reviews",
       "sort_order":7,
       "status":true,
       "store_id":[

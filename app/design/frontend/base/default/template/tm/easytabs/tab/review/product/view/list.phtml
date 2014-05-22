@@ -61,3 +61,23 @@
 <br/>
 
 <?php echo $this->getChildHtml('review_form') ?>
+
+<script type="text/javascript">
+    $$('.rating-links a, .no-rating a').each(function(el) {
+        el.observe('click', function(e) {
+            var writeReview = (el.href.indexOf('#review-form') > -1);
+            if (writeReview && !$('review-form')) {
+                return;
+            }
+
+            e.stop();
+            var tab  = "<?php echo $this->getAlias(); ?>",
+                href = easytabs.tpl.href.replace(easytabs.tpl.tab, tab);
+            window.location.hash = href;
+            easytabs.onclick(el, e, tab, true);
+            if (writeReview) {
+                $('review-form').scrollTo();
+            }
+        });
+    });
+</script>

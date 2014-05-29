@@ -81,4 +81,17 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
         $content = trim($content);
         return strlen($content) === 0;
     }
+
+    public function getTabTitle($tab)
+    {
+        if (!strstr($tab['title'], '{{') || !strstr($tab['title'], '}}')) {
+            return $tab['title'];
+        }
+        $scope = $this->getChild($tab['alias']);
+        /** @var TM_EasyTabs_Model_Template_Filter $processor **/
+        $processor = Mage::getModel('easytabs/template_filter')
+            ->setScope($scope);
+        
+        return $processor->filter($tab['title']);
+    }
 }

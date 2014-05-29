@@ -142,7 +142,7 @@
         </parameters>
     </product_related>
     <product_tags type="easytabs/tab_product_tags">
-        <name>Product Tags</name>
+        <name>Product Tags ({{eval code="getCount()"}})</name>
         <parameters>
             <template>
                 <label>Template</label>
@@ -161,7 +161,7 @@
         </parameters>
     </product_tags>
     <product_review type="easytabs/tab_product_review">
-        <name>Product's Reviews</name>
+        <name>Product's Reviews ({{eval  code="getReviewsCollection()->count()"}})</name>
         <parameters>
             <template>
                 <label>Template</label>

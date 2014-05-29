@@ -1,15 +1,21 @@
+<?php
+    $tabs = array();
+    foreach ($this->getTabs() as $_index => $_tab) {
+        if (!($childHtml = $this->getChildHtml($_tab['alias']))
+            || $this->isEmptyString($childHtml)) {
+
+            continue;
+        }
+        $_tab['child_html'] = $childHtml;
+        $_tab['title'] = $this->getTabTitle($_tab);
+
+        $tabs[$_index] = $_tab;
+    }
+?>
 <div class="easytabs-wrapper" id="easytabs">
     <div class="easytabs-ul-wrapper">
         <ul class="easytabs">
-            <?php foreach ($this->getTabs() as $_index => $_tab) : ?>
-                <?php
-                    if (!($childHtml = $this->getChildHtml($_tab['alias']))
-                        || $this->isEmptyString($childHtml)) :
-
-                        continue;
-                    endif;
-                ?>
-
+            <?php foreach ($tabs as $_index => $_tab) : ?>
                 <li>
                     <a href="#product_tabs_<?php echo $_tab['alias'] ?>"
                         class="easytabs-anchor easytabs-a easytabs-a-tab"
@@ -19,23 +25,15 @@
         </ul>
     </div>
     <div class="padder easytabs-content-wrapper">
-        <?php foreach ($this->getTabs() as $_index => $_tab) : ?>
-            <?php
-                if (!($childHtml = $this->getChildHtml($_tab['alias']))
-                    || $this->isEmptyString($childHtml)) :
-
-                    continue;
-                endif;
-            ?>
-
+        <?php foreach ($tabs as $_index => $_tab) : ?>
             <a href="#product_tabs_<?php echo $_tab['alias'] ?>"
                 class="easytabs-anchor easytabs-a easytabs-a-accordion"
             ><?php echo $this->__($_tab['title']); ?></a>
             <div class="easytabs-content"
                 id="product_tabs_<?php echo $_tab['alias'] ?>_contents"
                 style="display:none">
-                <?php echo $childHtml; ?>
-            </div>
+                <?php echo $_tab['child_html']; ?>
+                </div>
         <?php endforeach; ?>
     </div>
 

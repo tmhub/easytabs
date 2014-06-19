@@ -108,7 +108,7 @@
    },
    "5":{
       "id":5,
-      "title":"Product Tags ({{eval code="getCount()"}})",
+      "title":"Product Tags ({{eval code=\"getCount()\"}})",
       "alias":"tags_tabbed",
       "block":"easytabs\/tab_product_tags",
       "custom_option":null,
@@ -122,7 +122,7 @@
    },
    "6":{
       "id":6,
-      "title":"Product's Review ({{eval  code="getReviewsCollection()->count()"}})",
+      "title":"Product's Review ({{eval  code=\"getReviewsCollection()->count()\"}})",
       "alias":"review_tabbed",
       "block":"easytabs\/tab_product_review",
       "custom_option":null,

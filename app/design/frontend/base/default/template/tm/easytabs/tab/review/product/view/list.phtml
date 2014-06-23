@@ -35,7 +35,7 @@
         <?php foreach ($_items as $_review):?>
             <li>
                 <strong><?php echo $this->htmlEscape($_review->getTitle()) ?></strong> <?php echo $this->__('Review by %s', $this->htmlEscape($_review->getNickname())) ?>
-                <table class="ratings-list" cellspacing="0">
+                <table class="ratings-list ratings-table" cellspacing="0">
                     <tbody>
                         <?php foreach ($_review->getRatingVotes() as $_vote): ?>
                         <tr>

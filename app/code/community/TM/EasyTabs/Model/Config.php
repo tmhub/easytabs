@@ -80,6 +80,7 @@ class TM_EasyTabs_Model_Config extends Varien_Object
         }
 
         $items[$id] = $this->getData();
+        $items[$id]['id'] = $id;
         $this->_lastSavedId = $id;
         $this->_save($items);
 

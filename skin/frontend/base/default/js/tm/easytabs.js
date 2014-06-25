@@ -42,10 +42,12 @@ EasyTabs.prototype = {
             }.bind(this));
         }
 
+        if (!this.activeTabs.length) {
+            var first = this.container.down(this.config.tabs);
+            this.activate(this.getTabByHref(first.href));
+        }
+
         $$(this.config.tabs).each(function(el ,i) {
-            if (0 === i && !this.activeTabs.length) {
-                this.activate(this.getTabByHref(el.href));
-            }
             el.observe('click', this.onclick.bind(this, el));
         }.bind(this));
     },

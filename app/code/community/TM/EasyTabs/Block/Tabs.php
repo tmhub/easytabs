@@ -77,7 +77,10 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
      */
     public function isEmptyString($content)
     {
-        $content = strip_tags($content);
+        $content = strip_tags(
+            $content,
+            '<hr><img><embed><video><audio><input><textarea><script><style><link><meta>'
+        );
         $content = trim($content);
         return strlen($content) === 0;
     }
@@ -91,7 +94,7 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
         /** @var TM_EasyTabs_Model_Template_Filter $processor **/
         $processor = Mage::getModel('easytabs/template_filter')
             ->setScope($scope);
-        
+
         return $processor->filter($tab['title']);
     }
 }

@@ -99,7 +99,7 @@
       "block":"easytabs\/tab_product_related",
       "custom_option":null,
       "template":"tm\/easytabs\/tab\/catalog\/product\/related.phtml",
-      "unset":"right::catalog.product.related",
+      "unset":"right::catalog.product.related,product.info::related_products",
       "sort_order":5,
       "status":true,
       "store_id":[

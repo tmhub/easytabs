@@ -28,8 +28,12 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
                 $tab->getData()
             );
 
-            $unset = $tab->getUnset();
-            if (false !== strpos($unset, '::')) {
+            $unsets = (string) $tab->getUnset();
+            $unsets = explode(',', $unsets);
+            foreach ($unsets as $unset) {
+                if (false === strpos($unset, '::')) {
+                    continue;
+                }
                 list($blockName, $alias) = explode('::', $unset);
                 $block = $this->getLayout()->getBlock($blockName);
                 if ($block) {

@@ -37,6 +37,23 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
                 list($blockName, $alias) = explode('::', $unset);
                 $block = $this->getLayout()->getBlock($blockName);
                 if ($block) {
+                    /**
+                     * @see http://www.magentocommerce.com/bug-tracking/issue/index/id/142
+                     * Call sortChildren before unset to fix Magento bug in
+                     *     Mage_Core_Block_Abstract::sortChildren:
+                     *  1. Unset drop the key from the _sortedChildren array
+                     *  2. sortChildren method finds the block index to remove
+                     *  3. sortChildren method uses array_splice wich reorder array
+                     *      and previously founded block index become incorrect.
+                     *
+                     * The fix is works because sort is called only once.
+                     * The correct way is to add the following line to
+                     *     Mage_Core_Block_Abstract::unsetChild after
+                     *     `unset($this->_sortedChildren[$key]);`:
+                     *
+                     *  $this->_sortedChildren = array_values($this->_sortedChildren);
+                     */
+                    $block->sortChildren();
                     $block->unsetChild($alias);
                 }
             }

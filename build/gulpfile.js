@@ -43,6 +43,37 @@ gulp.task('composer', function(cb) {
             fs.mkdirSync(folder, function(e) { console.log(e); });
         }
     });
+    
+    var filename = 'composer.json';
+    if (!fs.existsSync(filename)) {
+        var content = {
+            "minimum-stability": "dev",
+            "require": {
+                "%packagename%": "*"
+            },
+            "repositories": [
+                {
+                    "type": "composer",
+                    "url": "http://tmhub.github.io/packages"
+                }
+            ],
+            "extra": {
+                "magento-root-dir": "code/",
+                "magento-deploystrategy": "copy",
+                "magento-force": true
+            }
+        };
+        content = JSON.stringify(content)
+            .replace('"%packagename%"', '"' + tm.getModuleInfo().name + '"');
+
+        fs.writeFile(filename, content, 'utf8', function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("The " + filename + " file was generated!");
+            }
+        });
+    }
 
     fs.exists('composer.lock', function(exists) {
         var cmd = exists ? 'composer update' : 'composer install';

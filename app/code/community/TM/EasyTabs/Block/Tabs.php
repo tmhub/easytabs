@@ -100,7 +100,7 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
     {
         $content = strip_tags(
             $content,
-            '<hr><img><iframe><embed><video><audio><input><textarea><script><style><link><meta>'
+            '<hr><img><iframe><embed><object><video><audio><input><textarea><script><style><link><meta>'
         );
         $content = trim($content);
         return strlen($content) === 0;

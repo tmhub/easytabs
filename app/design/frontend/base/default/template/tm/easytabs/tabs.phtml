@@ -29,9 +29,9 @@
     </div>
     <div class="padder easytabs-content-wrapper">
         <?php foreach ($tabs as $_index => $_tab) : ?>
-            <a href="#product_tabs_<?php echo $_tab['alias'] ?>"
+            <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>"
                 class="easytabs-anchor easytabs-a easytabs-a-accordion"
-            ><?php echo $this->__($_tab['title']); ?></a>
+            ><?php echo $this->__($_tab['title']); ?></span>
             <div class="easytabs-content"
                 id="product_tabs_<?php echo $_tab['alias'] ?>_contents"
                 style="display:none">

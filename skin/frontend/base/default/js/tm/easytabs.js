@@ -42,6 +42,20 @@ EasyTabs.prototype = {
             }.bind(this));
         }
 
+        Event.observe(window, "hashchange", function() {
+            var href = window.location.hash;
+            if (href.length <= 1) {
+                var first = this.container.down(this.config.tabs);
+                href = first.href || first.readAttribute('data-href');
+            } else {
+                if (-1 === href.indexOf('#product_tabs_')) {
+                    return;
+                }
+            }
+            this.deactivate();
+            this.activate(this.getTabByHref(href));
+        }.bind(this));
+
         if (!this.activeTabs.length) {
             var first = this.container.down(this.config.tabs);
             this.activate(this.getTabByHref(first.href || first.readAttribute('data-href')));

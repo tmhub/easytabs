@@ -48,6 +48,7 @@
         <tm_easytabs>
             <general>
                 <enabled>0</enabled>
+                <show_anchor>1</show_anchor>
                 <config><![CDATA[
 {
    "1":{

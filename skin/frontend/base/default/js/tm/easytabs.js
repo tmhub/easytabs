@@ -44,7 +44,7 @@ EasyTabs.prototype = {
 
         if (!this.activeTabs.length) {
             var first = this.container.down(this.config.tabs);
-            this.activate(this.getTabByHref(first.href));
+            this.activate(this.getTabByHref(first.href || first.readAttribute('data-href')));
         }
 
         $$(this.config.tabs).each(function(el ,i) {
@@ -78,7 +78,10 @@ EasyTabs.prototype = {
         }
 
         var href = this.tpl.href.replace(this.tpl.tab, tab),
-            tabs = this.container.select(this.config.tabs + '[href="' + href + '"]');
+            tabs = this.container.select(
+                this.config.tabs + '[href="' + href + '"]',
+                this.config.tabs + '[data-href="' + href + '"]'
+            );
 
         tabs.each(function(a) {
             a.addClassName('active');
@@ -136,7 +139,10 @@ EasyTabs.prototype = {
         content.hide();
 
         var href = this.tpl.href.replace(this.tpl.tab, tab),
-            tabs = this.container.select(this.config.tabs + '[href="' + href + '"]');
+            tabs = this.container.select(
+                this.config.tabs + '[href="' + href + '"]',
+                this.config.tabs + '[data-href="' + href + '"]'
+            );
 
         tabs.each(function(a) {
             a.removeClassName('active');
@@ -167,7 +173,7 @@ EasyTabs.prototype = {
             isAccordion = (accordionTrigger.getStyle('display') !== 'none');
         }
 
-        tab    = tab || this.getTabByHref(el.href);
+        tab    = tab || this.getTabByHref(el.href || el.readAttribute('data-href'));
         scroll = scroll || el.hasClassName('easytabs-scroll');
         if (isAccordion) {
             if (el.hasClassName('active')) {

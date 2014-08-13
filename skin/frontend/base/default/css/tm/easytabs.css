@@ -29,10 +29,18 @@
 .easytabs-a {
     display: block;
     padding: 9px 12px;
+    cursor: pointer;
+}
+.easytabs-a,
+.easytabs-a .easytabs-anchor-icon {
     color: #777;
     text-decoration: none;
     text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
     font: bold 12px/16px Arial, Helvetica, Tahoma, sans-serif;
+}
+.easytabs-a .easytabs-anchor-icon:hover {
+    color: #777;
+    text-decoration: none;
 }
 .easytabs-content {
     padding: 7px 8px;
@@ -44,6 +52,19 @@
 }
 .easytabs-a-accordion { margin-top: -1px; background: #f1f1f1; display: none; padding: 12px; }
 .easytabs-a-accordion.active { box-shadow: none; color: #48494a; }
+
+.easytabs-a .easytabs-anchor-icon {
+    font-size: 12px;
+    height: 16px;
+    width: 10px;
+    margin-left: -10px;
+    float: left;
+    opacity: 0.7;
+    visibility: hidden;
+    text-decoration: none;
+}
+.easytabs-a:hover .easytabs-anchor-icon { visibility: visible; }
+.easytabs-a .easytabs-anchor-icon:hover { opacity: 1; }
 
 .easytabs-content .box-collateral { margin: 0; }
 .easytabs-content .box-up-sell .products-grid td { padding-left: 7px; padding-right: 7px; }

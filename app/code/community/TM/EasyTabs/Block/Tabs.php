@@ -118,4 +118,14 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
 
         return $processor->filter($tab['title']);
     }
+
+    /**
+     * Returns show anchor flag
+     *
+     * @return boolean
+     */
+    public function canShowAnchor()
+    {
+        return Mage::getStoreConfigFlag('tm_easytabs/general/show_anchor');
+    }
 }

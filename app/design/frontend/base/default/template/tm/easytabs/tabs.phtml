@@ -17,12 +17,18 @@
         <ul class="easytabs">
             <?php foreach ($tabs as $_index => $_tab) : ?>
                 <li>
-                    <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab">
-                        <?php if ($this->canShowAnchor()) : ?>
-                            <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor-icon">#</a>
-                        <?php endif ?>
-                        <?php echo $this->__($_tab['title']); ?>
-                    </span>
+                    <?php if ($this->getUpdateUrlHash()) : ?>
+                        <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab">
+                            <?php echo $this->__($_tab['title']); ?>
+                        </a>
+                    <?php else : ?>
+                        <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab">
+                            <?php if ($this->getShowAnchor()) : ?>
+                                <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor-icon">#</a>
+                            <?php endif ?>
+                            <?php echo $this->__($_tab['title']); ?>
+                        </span>
+                    <?php endif ?>
                 </li>
             <?php endforeach; ?>
         </ul>

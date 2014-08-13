@@ -48,6 +48,7 @@
         <tm_easytabs>
             <general>
                 <enabled>0</enabled>
+                <update_url_hash>1</update_url_hash>
                 <show_anchor>0</show_anchor>
                 <config><![CDATA[
 {

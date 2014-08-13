@@ -124,7 +124,17 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
      *
      * @return boolean
      */
-    public function canShowAnchor()
+    public function getUpdateUrlHash()
+    {
+        return Mage::getStoreConfigFlag('tm_easytabs/general/update_url_hash');
+    }
+
+    /**
+     * Returns show anchor flag
+     *
+     * @return boolean
+     */
+    public function getShowAnchor()
     {
         return Mage::getStoreConfigFlag('tm_easytabs/general/show_anchor');
     }

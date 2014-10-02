@@ -39,7 +39,12 @@
             <?php else: ?>
                 <span class="checkbox-container">&nbsp;</span>
             <?php endif; ?>
-                <a href="<?php echo $_item->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50) ?>" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" width="50" height="50" /></a>
+                <a href="<?php echo $_item->getProductUrl() ?>"
+                ><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50) ?>"
+                    srcset="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50 * 2) ?> 2x"
+                    alt="<?php echo $this->htmlEscape($_item->getName()) ?>"
+                    width="50" height="50"
+                /></a>
             </div>
             <div class="product-details">
                     <a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a>
@@ -52,9 +57,9 @@
         <?php endforeach ?>
         </ol>
 <script type="text/javascript">
-<!--
+//<![CDATA[
 $$('.related-checkbox').each(function(elem){
-    Event.observe(elem, 'click', addRelatedToProduct)
+    Event.observe(elem, 'click', addRelatedToProduct);
 });
 
 var relatedProductsCheckFlag = false;
@@ -85,6 +90,6 @@ function addRelatedToProduct(){
         $('related-products-field').value = values.join(',');
     }
 }
-//-->
+//]]>
 </script>
 <?php endif ?>

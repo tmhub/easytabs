@@ -69,8 +69,19 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
      */
     public function addTab($alias, $title, $block, $template, $attributes = array())
     {
-        if (!$title || !$block || ($block !== 'easytabs/tab_html' && !$template)) {
+        if (!$title || ($block && $block !== 'easytabs/tab_html' && !$template)) {
             return false;
+        }
+
+        if (!$block) {
+            $block = $this->getLayout()->getBlock($alias);
+            if (!$block) {
+                return false;
+            }
+        } else {
+            $block = $this->getLayout()
+                ->createBlock($block, $alias, $attributes)
+                ->setTemplate($template);
         }
 
         $this->_tabs[] = array(
@@ -78,11 +89,7 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
             'title' => $title
         );
 
-        $this->setChild($alias,
-            $this->getLayout()
-                ->createBlock($block, $alias, $attributes)
-                ->setTemplate($template)
-        );
+        $this->setChild($alias, $block);
     }
 
     public function getTabs()

@@ -83,7 +83,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'title'    => Mage::helper('easytabs')->__('Status'),
             'name'     => 'status',
             'required' => true,
-            'options'  => Mage::getSingleton('easytabs/config_status')->getOptionHash(),
+            'options'  => Mage::getSingleton('easytabs/config_status')->toOptionHash(),
         ));
 
         if (!Mage::app()->isSingleStoreMode()) {

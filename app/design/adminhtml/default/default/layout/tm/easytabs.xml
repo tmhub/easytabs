@@ -24,6 +24,10 @@
             </block>
         </reference>
     </adminhtml_easytabs_index_edit>
+    
+    <adminhtml_easytabs_index_loadTabOptions>
+        <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
+    </adminhtml_easytabs_index_loadTabOptions>
 
     <adminhtml_easytabs_index_loadtaboptions>
         <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />

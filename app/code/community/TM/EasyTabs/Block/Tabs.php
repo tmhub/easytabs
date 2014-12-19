@@ -69,24 +69,54 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
      */
     public function addTab($alias, $title, $block, $template, $attributes = array())
     {
-        if (!$title || !$block || ($block !== 'easytabs/tab_html' && !$template)) {
+        if (!$title || ($block && $block !== 'easytabs/tab_html' && !$template)) {
             return false;
         }
 
-        $this->_tabs[] = array(
+        if (!$block) {
+            $block = $this->getLayout()->getBlock($alias);
+            if (!$block) {
+                return false;
+            }
+        } else {
+            $block = $this->getLayout()
+                ->createBlock($block, $alias, $attributes)
+                ->setTemplate($template);
+        }
+
+        $tab = array(
             'alias' => $alias,
             'title' => $title
         );
 
-        $this->setChild($alias,
-            $this->getLayout()
-                ->createBlock($block, $alias, $attributes)
-                ->setTemplate($template)
-        );
+        if (isset($attributes['sort_order'])) {
+            $tab['sort_order'] = $attributes['sort_order'];
+        }
+
+        $this->_tabs[] = $tab;
+
+        $this->setChild($alias, $block);
+    }
+
+    protected function _sort($tab1, $tab2)
+    {
+        if (!isset($tab2['sort_order'])) {
+            return -1;
+        }
+
+        if (!isset($tab1['sort_order'])) {
+            return 1;
+        }
+
+        if ($tab1['sort_order'] == $tab2['sort_order']) {
+            return 0;
+        }
+        return ($tab1['sort_order'] < $tab2['sort_order']) ? -1 : 1;
     }
 
     public function getTabs()
     {
+        usort($this->_tabs, array($this, '_sort'));
         return $this->_tabs;
     }
 

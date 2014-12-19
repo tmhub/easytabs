@@ -6,16 +6,16 @@ class TM_EasyTabs_Model_Config_Status extends Varien_Object
     const STATUS_ENABLE	 = 1;
 
 
-    public function getOptionArray()
+    public function toOptionArray()
     {
         $res = array();
-        foreach ($this->getOptionHash() as $value => $label) {
+        foreach ($this->toOptionHash() as $value => $label) {
             $res[] = array('value' => $value, 'label' => $label);
         }
         return $res;
     }
 
-    public function getOptionHash()
+    public function toOptionHash()
     {
         return array(
             self::STATUS_DISABLE => Mage::helper('easytabs')->__('Disable'),

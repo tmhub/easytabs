@@ -43,13 +43,14 @@ gulp.task('composer', function(cb) {
             fs.mkdirSync(folder, function(e) { console.log(e); });
         }
     });
-    
+
     var filename = 'composer.json';
     if (!fs.existsSync(filename)) {
         var content = {
             "minimum-stability": "dev",
             "require": {
-                "%packagename%": "*"
+                "%packagename%": "*",
+                "symfony/console": "<2.5"
             },
             "repositories": [
                 {

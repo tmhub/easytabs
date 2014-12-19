@@ -3,8 +3,8 @@
     "type": "magento-module",
     "homepage": "https://github.com/tmhub/easytabs",
     "license": "OSL-3.0",
-    "description": "Templates Master EasyTabs module",
-    "version": "2.3.1",
+    "description": "Tabs for product page",
+    "version": "2.3.2",
     "authors": [
         {
             "name": "Template Masters Team",

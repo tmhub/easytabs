@@ -3,8 +3,8 @@
     "type": "magento-module",
     "homepage": "https://github.com/tmhub/easytabs",
     "license": "OSL-3.0",
-    "description": "Templates Master EasyTabs module",
-    "version": "2.3.1",
+    "description": "Tabs for product page",
+    "version": "2.3.2",
     "authors": [
         {
             "name": "Template Masters Team",
@@ -12,7 +12,6 @@
         }
     ],
     "require": {
-        "magento-hackathon/magento-composer-installer": "*",
         "tm/core": "*"
     },
     "repositories": [
@@ -20,23 +19,5 @@
             "type": "composer",
             "url": "http://tmhub.github.io/packages/"
         }
-    ],
-    "extra": {
-        "map": [
-            ["app/code/community/TM/EasyTabs", "app/code/community/TM/EasyTabs"],
-            ["app/design/adminhtml/default/default/layout/tm/easytabs.xml", "app/design/adminhtml/default/default/layout/tm/easytabs.xml"],
-            ["app/design/frontend/base/default/layout/tm/easytabs.xml", "app/design/frontend/base/default/layout/tm/easytabs.xml"],
-            ["app/design/frontend/base/default/template/tm/easytabs", "app/design/frontend/base/default/template/tm/easytabs"],
-            ["app/etc/modules/TM_EasyTabs.xml", "app/etc/modules/TM_EasyTabs.xml"],
-            ["app/locale/en_US/TM_EasyTabs.csv", "app/locale/en_US/TM_EasyTabs.csv"],
-            ["app/locale/es_ES/TM_EasyTabs.csv", "app/locale/es_ES/TM_EasyTabs.csv"],
-            ["app/locale/fr_FR/TM_EasyTabs.csv", "app/locale/fr_FR/TM_EasyTabs.csv"],
-            ["app/locale/it_IT/TM_EasyTabs.csv", "app/locale/it_IT/TM_EasyTabs.csv"],
-            ["app/locale/nl_NL/TM_EasyTabs.csv", "app/locale/nl_NL/TM_EasyTabs.csv"],
-            ["app/locale/pt_PT/TM_EasyTabs.csv", "app/locale/pt_PT/TM_EasyTabs.csv"],
-            ["skin/frontend/base/default/css/tm/easytabs.css", "skin/frontend/base/default/css/tm/easytabs.css"],
-            ["skin/frontend/base/default/js/tm/easytabs.js", "skin/frontend/base/default/js/tm/easytabs.js"]
-        ],
-        "changelog": ""
-    }
+    ]
 }

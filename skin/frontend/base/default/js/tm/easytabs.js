@@ -63,6 +63,18 @@ EasyTabs.prototype = {
 
         $$(this.config.tabs).each(function(el ,i) {
             el.observe('click', this.onclick.bind(this, el));
+            
+            var id = $(el).getAttribute('data-href');
+            if (!id) {
+                return;
+            }
+            $$(id + '_contents .pages a').each(function(_el){
+                if (-1 == _el.href.indexOf("#") 
+                    && -1 !== _el.href.indexOf(window.location.host)) {
+                
+                    _el.href = _el.href + id;
+                }
+            });
         }.bind(this));
     },
 

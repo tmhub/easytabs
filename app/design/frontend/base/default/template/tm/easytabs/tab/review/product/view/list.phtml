@@ -28,10 +28,8 @@
 <?php $_items = $this->getReviewsCollection()->getItems();?>
 <?php if (count($_items)):?>
 <div class="collateral-box dedicated-review-box" id="customer-reviews">
-
     <?php echo $this->getChildHtml('toolbar') ?>
-
-    <ol style="margin-top:15px;">
+    <ol class="review-list">
         <?php foreach ($_items as $_review):?>
             <li>
                 <strong><?php echo $this->htmlEscape($_review->getTitle()) ?></strong> <?php echo $this->__('Review by %s', $this->htmlEscape($_review->getNickname())) ?>
@@ -53,12 +51,9 @@
             </li>
         <?php endforeach; ?>
     </ol>
-
     <?php echo $this->getChildHtml('toolbar') ?>
 </div>
 <?php endif;?>
-
-<br/>
 
 <?php echo $this->getChildHtml('review_form') ?>
 

@@ -41,7 +41,7 @@
             <?php endif; ?>
                 <a href="<?php echo $_item->getProductUrl() ?>"
                 ><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50) ?>"
-                    srcset="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50 * 2) ?> 2x"
+                    srcset="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50) ?> 1x, <?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->resize(50 * 2) ?> 2x"
                     alt="<?php echo $this->htmlEscape($_item->getName()) ?>"
                     width="50" height="50"
                 /></a>

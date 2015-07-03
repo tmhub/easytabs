@@ -67,7 +67,7 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
      * @param string $template
      * @param array  $attributes
      */
-    public function addTab($alias, $title, $block, $template, $attributes = array())
+    public function addTab($alias, $title, $block = false, $template = false, $attributes = array())
     {
         if (!$title || ($block && $block !== 'easytabs/tab_html' && !$template)) {
             return false;

@@ -197,4 +197,9 @@ class TM_EasyTabs_Adminhtml_Easytabs_IndexController extends Mage_Adminhtml_Cont
 
         $this->getResponse()->setBody($content->toHtml());
     }
+
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('templates_master/easytabs');
+    }
 }

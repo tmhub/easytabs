@@ -45,6 +45,11 @@
     </frontend>
 
     <default>
+        <subscriptionchecker>
+            <ignored_sections>
+                <tm_easytabs/>
+            </ignored_sections>
+        </subscriptionchecker>
         <tm_easytabs>
             <general>
                 <enabled>0</enabled>

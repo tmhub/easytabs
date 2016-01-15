@@ -4,6 +4,19 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
 {
     protected $_tabs = array();
 
+    protected $disableCollection = false;
+
+    /**
+     *
+     * @param  boolean $status
+     * @return TM_EasyTabs_Block_Tabs
+     */
+    public function disableCollection($status = true)
+    {
+        $this->disableCollection = (bool) $status;
+        return $this;
+    }
+
     protected function _getCollection()
     {
         $collection = new TM_EasyTabs_Model_Config_Collection();
@@ -17,6 +30,9 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
     protected function _prepareLayout()
     {
         if (!Mage::getStoreConfig('tm_easytabs/general/enabled')) {
+            return parent::_prepareLayout();
+        }
+        if (true === $this->disableCollection) {
             return parent::_prepareLayout();
         }
         foreach ($this->_getCollection() as $tab) {

@@ -8,7 +8,9 @@ EasyTabs.prototype = {
     config: {
         tabs     : '.easytabs-anchor',
         container: '#easytabs',
-        trackHashValue: true
+        trackHashValue: true,
+        scrollSpeed: 0.5,
+        scrollOffset: -5
     },
     container : false,
 
@@ -63,15 +65,15 @@ EasyTabs.prototype = {
 
         $$(this.config.tabs).each(function(el ,i) {
             el.observe('click', this.onclick.bind(this, el));
-            
+
             var id = $(el).getAttribute('data-href');
             if (!id) {
                 return;
             }
             $$(id + '_contents .pages a').each(function(_el){
-                if (-1 == _el.href.indexOf("#") 
+                if (-1 == _el.href.indexOf("#")
                     && -1 !== _el.href.indexOf(window.location.host)) {
-                
+
                     _el.href = _el.href + id;
                 }
             });
@@ -83,7 +85,7 @@ EasyTabs.prototype = {
      * @param {Boolean} scroll  lag to indicate that page should be scrolled to the tab
      * @return {String|false}   Activated tab of false if tab wasn't found
      */
-    activate: function(tab, scroll) {
+    activate: function(tab, scroll, animate) {
         var content = $(this.tpl.content.replace(this.tpl.tab, tab));
         if (!content) {
             return false;
@@ -120,7 +122,10 @@ EasyTabs.prototype = {
                 return el.getStyle('display') !== 'none';
             });
             if (visibleTab) {
-                visibleTab.scrollTo();
+                Effect.ScrollTo(visibleTab, {
+                    duration: animate ? this.config.scrollSpeed : 0,
+                    offset: this.config.scrollOffset
+                });
             }
         }
 
@@ -191,7 +196,7 @@ EasyTabs.prototype = {
      * @param {String} tab      Tab to activate
      * @param {Boolean} scroll  Flag to indicate that page should be scrolled to the tab
      */
-    onclick: function(el, e, tab, scroll) {
+    onclick: function(el, e, tab, scroll, animate) {
         var isAccordion = false,
             accordionTrigger = $$('.easytabs-a-accordion').first();
         if (accordionTrigger) {
@@ -201,15 +206,16 @@ EasyTabs.prototype = {
 
         tab    = tab || this.getTabByHref(el.href || el.readAttribute('data-href'));
         scroll = scroll || el.hasClassName('easytabs-scroll');
+        animate = animate || el.hasClassName('easytabs-animate');
         if (isAccordion) {
             if (el.hasClassName('active')) {
                 this.deactivate(tab);
             } else {
-                this.activate(tab, scroll);
+                this.activate(tab, scroll, animate);
             }
         } else {
             this.deactivate();
-            this.activate(tab, scroll);
+            this.activate(tab, scroll, animate);
         }
     },
 

@@ -4,19 +4,6 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
 {
     protected $_tabs = array();
 
-    protected $disableCollection = false;
-
-    /**
-     *
-     * @param  boolean $status
-     * @return TM_EasyTabs_Block_Tabs
-     */
-    public function disableCollection($status = true)
-    {
-        $this->disableCollection = (bool) $status;
-        return $this;
-    }
-
     protected function _getCollection()
     {
         $collection = new TM_EasyTabs_Model_Config_Collection();
@@ -32,9 +19,7 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
         if (!Mage::getStoreConfig('tm_easytabs/general/enabled')) {
             return parent::_prepareLayout();
         }
-        if (true === $this->disableCollection) {
-            return parent::_prepareLayout();
-        }
+
         foreach ($this->_getCollection() as $tab) {
             $this->addTab(
                 $tab->getAlias(),
@@ -95,6 +80,10 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
                 return false;
             }
         } else {
+            // if (!Mage::registry('product') && strstr($block, 'product')) {
+            //     return false;
+            // }
+
             $block = $this->getLayout()
                 ->createBlock($block, $alias, $attributes)
                 ->setTemplate($template);

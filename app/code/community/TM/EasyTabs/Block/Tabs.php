@@ -20,7 +20,19 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template implements Mage_Wi
             return parent::_prepareLayout();
         }
 
-        foreach ($this->_getCollection() as $tab) {
+        $collection = $this->_getCollection();
+
+        // \Zend_Debug::dump($this->getData());
+        $filterTabs = $this->getFilterTabs();
+        // \Zend_Debug::dump($filterTabs);
+        if (!empty($filterTabs)) {
+            $filterTabs = str_replace(' ', '', $filterTabs);
+            $filterTabs = explode(',', $filterTabs);
+            $collection->addFieldToFilter('alias', array('in' => $filterTabs));
+        }
+        \Zend_Debug::dump($collection->getSize());
+
+        foreach ($collection as $tab) {
             $this->addTab(
                 $tab->getAlias(),
                 $tab->getTitle(),
@@ -74,9 +86,12 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template implements Mage_Wi
             return false;
         }
 
-        if (isset($attributes['handles'])) {
+        // \Zend_Debug::dump(func_get_args());
+        if (isset($attributes['handles']) && !empty($attributes['handles'])) {
             $handles = explode(',', $attributes['handles']);
+            // \Zend_Debug::dump($handles);
             $layoutHandles = $this->getLayout()->getUpdate()->getHandles();
+            // \Zend_Debug::dump($layoutHandles);
             $commonHandles = array_intersect($handles, $layoutHandles);
             if (!empty($handles) && count($commonHandles) < 1) {
                 return false;

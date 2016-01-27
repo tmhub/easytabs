@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<widgets>
+    <easytabs type="easytabs/tabs">
+        <name>Easy Tabs </name>
+        <description type="desc">Easy Tabs</description>
+    </easytabs>
+</widgets>

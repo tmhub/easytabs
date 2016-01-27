@@ -1,6 +1,6 @@
 <?php
 
-class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
+class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template implements Mage_Widget_Block_Interface
 {
     protected $_tabs = array();
 
@@ -183,5 +183,13 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
     public function getShowAnchor()
     {
         return Mage::getStoreConfigFlag('tm_easytabs/general/show_anchor');
+    }
+
+    protected function _toHtml()
+    {
+        if (!$this->getTemplate()) {
+            $this->setTemplate('tm/easytabs/tabs.phtml');
+        }
+        return parent::_toHtml();
     }
 }

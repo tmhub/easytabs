@@ -266,7 +266,7 @@
             <handles>
                 <label>Handles</label>
                 <type>text</type>
-                <visible>0</visible>
+                <visible>1</visible>
                 <required>0</required>
                 <value></value>
             </handles>

@@ -17,6 +17,13 @@
                 <required>0</required>
                 <value></value>
             </unset>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value></value>
+            </handles>
         </parameters>
     </html>
     <template type="easytabs/tab_template">
@@ -43,6 +50,15 @@
                 <required>0</required>
                 <value></value>
             </unset>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <!-- <type>multiselect</type> -->
+                <!-- <source_model>easytabs/layout_handle_collection</source_model> -->
+                <visible>1</visible>
+                <required>0</required>
+                <value></value>
+            </handles>
         </parameters>
     </template>
     <attribute type="easytabs/tab_attribute">
@@ -63,6 +79,13 @@
                 <required>1</required>
                 <value>tm/easytabs/tab/catalog/product/attribute.phtml</value>
             </template>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>catalog_product_view</value>
+            </handles>
         </parameters>
     </attribute>
     <product_description type="easytabs/tab_product_description">
@@ -82,6 +105,13 @@
                 <required>0</required>
                 <value>product.info::description</value>
             </unset>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>catalog_product_view</value>
+            </handles>
         </parameters>
     </product_description>
     <product_additional type="easytabs/tab_product_additional">
@@ -101,6 +131,13 @@
                 <required>0</required>
                 <value>product.info::additional</value>
             </unset>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>catalog_product_view</value>
+            </handles>
         </parameters>
     </product_additional>
     <product_upsell type="easytabs/tab_product_upsell">
@@ -120,6 +157,13 @@
                 <required>0</required>
                 <value>product.info::upsell_products</value>
             </unset>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>catalog_product_view</value>
+            </handles>
         </parameters>
     </product_upsell>
     <product_related type="easytabs/tab_product_related">
@@ -139,6 +183,13 @@
                 <required>0</required>
                 <value>right::catalog.product.related</value>
             </unset>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>catalog_product_view</value>
+            </handles>
         </parameters>
     </product_related>
     <product_tags type="easytabs/tab_product_tags">
@@ -158,6 +209,13 @@
                 <required>0</required>
                 <value>product.info.additional::product_tag_list</value>
             </unset>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>catalog_product_view</value>
+            </handles>
         </parameters>
     </product_tags>
     <product_review type="easytabs/tab_product_review">
@@ -178,6 +236,13 @@
                 <required>0</required>
                 <value>product.info::reviews</value>
             </unset>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>1</visible>
+                <required>0</required>
+                <value>catalog_product_view</value>
+            </handles>
         </parameters>
     </product_review>
     <cms type="easytabs/tab_cms">
@@ -198,6 +263,13 @@
                 <required>1</required>
                 <value>tm/easytabs/tab/cms.phtml</value>
             </template>
+            <handles>
+                <label>Handles</label>
+                <type>text</type>
+                <visible>0</visible>
+                <required>0</required>
+                <value></value>
+            </handles>
         </parameters>
     </cms>
 </easytabs>

@@ -65,6 +65,7 @@
       "custom_option":null,
       "template":"tm\/easytabs\/tab\/catalog\/product\/view\/description.phtml",
       "unset":"product.info::description",
+      "handles":"catalog_product_view",
       "sort_order":1,
       "status":true,
       "store_id":[
@@ -79,6 +80,7 @@
       "custom_option":null,
       "template":"tm\/easytabs\/tab\/catalog\/product\/view\/attributes.phtml",
       "unset":"product.info::additional",
+      "handles":"catalog_product_view",
       "sort_order":2,
       "status":true,
       "store_id":[
@@ -93,6 +95,7 @@
       "custom_option":null,
       "template":"catalog\/product\/list\/upsell.phtml",
       "unset":"product.info::upsell_products",
+      "handles":"catalog_product_view",
       "sort_order":4,
       "status":true,
       "store_id":[
@@ -107,6 +110,7 @@
       "custom_option":null,
       "template":"tm\/easytabs\/tab\/catalog\/product\/related.phtml",
       "unset":"right::catalog.product.related,product.info::related_products",
+      "handles":"catalog_product_view",
       "sort_order":5,
       "status":true,
       "store_id":[
@@ -121,6 +125,7 @@
       "custom_option":null,
       "template":"tm\/easytabs\/tab\/tag\/product\/list.phtml",
       "unset":"product.info.additional::product_tag_list",
+      "handles":"catalog_product_view",
       "sort_order":6,
       "status":true,
       "store_id":[
@@ -135,6 +140,7 @@
       "custom_option":null,
       "template":"tm\/easytabs\/tab\/review\/product\/view\/list.phtml",
       "unset":"product.info::reviews",
+      "handles":"catalog_product_view",
       "sort_order":7,
       "status":true,
       "store_id":[
@@ -163,6 +169,7 @@
       "custom_option":"color",
       "template":"tm\/easytabs\/tab\/catalog\/product\/attribute.phtml",
       "unset":"",
+      "handles":"catalog_product_view",
       "sort_order":9,
       "status":false,
       "store_id":[
@@ -177,6 +184,7 @@
       "custom_option":"payment\/catalog_product_view_profile",
       "template":"payment\/catalog\/product\/view\/profile\/schedule.phtml",
       "unset":"product.info::recurring_info",
+      "handles":"catalog_product_view",
       "sort_order":10,
       "status":true,
       "store_id":[

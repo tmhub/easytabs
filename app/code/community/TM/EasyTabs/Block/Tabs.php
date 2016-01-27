@@ -74,6 +74,17 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template
             return false;
         }
 
+        if (isset($attributes['handles'])) {
+            $handles = explode(',', $attributes['handles']);
+            $layoutHandles = $this->getLayout()->getUpdate()->getHandles();
+            $commonHandles = array_intersect($handles, $layoutHandles);
+            if (!empty($handles) && count($commonHandles) < 1) {
+                return false;
+            }
+        }
+
+
+
         if (!$block) {
             $block = $this->getLayout()->getBlock($alias);
             if (!$block) {

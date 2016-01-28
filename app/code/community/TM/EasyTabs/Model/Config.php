@@ -32,11 +32,18 @@ class TM_EasyTabs_Model_Config extends Varien_Object
         $section  = 'tm_easytabs';
         $websiteId = $storeId = 0;
 
+        $value = json_encode($items);
+
+        $ob = json_decode($value);
+        if($ob === null) {
+            throw new Mage_Exception("invalid json", 1);
+        }
+
         $groups = array(
             'general' => array(
                 'fields' => array(
                       'config' => array(
-                          'value' => json_encode($items)
+                          'value' => $value
         ))));
         Mage::getSingleton('adminhtml/config_data')
             ->setSection($section)

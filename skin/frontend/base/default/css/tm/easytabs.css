@@ -104,4 +104,19 @@
 
     #product_tabs_related_tabbed_contents li { float:none; margin: 0 0 10px; width: auto; }
     #product_tabs_related_tabbed_contents li:nth-child(1n) { width: auto; }
+
+    #product_tabs_review_tabbed_contents .ratings .rating-box {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        height: 19.6px;
+        text-align: center;
+        text-indent: 0;
+        width: 100%;
+    }
+
+    #product_tabs_review_tabbed_contents .ratings .rating-box .rating {
+        display: none;
+    }
+    #product_tabs_review_tabbed_contents .ratings .rating-box .rating-number {
+        display: inline-block;
+    }
 }

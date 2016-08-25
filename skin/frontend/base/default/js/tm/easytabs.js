@@ -60,7 +60,9 @@ EasyTabs.prototype = {
 
         if (!this.activeTabs.length) {
             var first = this.container.down(this.config.tabs);
-            this.activate(this.getTabByHref(first.href || first.readAttribute('data-href')));
+            if ('undefined' !== typeof first) {
+                this.activate(this.getTabByHref(first.href || first.readAttribute('data-href')));
+            }
         }
 
         $$(this.config.tabs).each(function(el ,i) {

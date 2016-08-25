@@ -4,7 +4,6 @@
     "homepage": "https://github.com/tmhub/easytabs",
     "license": "OSL-3.0",
     "description": "Tabs for product page",
-    "version": "2.3.5",
     "authors": [
         {
             "name": "Template Masters Team",
@@ -13,11 +12,5 @@
     ],
     "require": {
         "tm/core": "*"
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://tmhub.github.io/packages/"
-        }
-    ]
+    }
 }

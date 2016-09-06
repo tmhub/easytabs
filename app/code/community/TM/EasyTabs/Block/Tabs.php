@@ -194,11 +194,4 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template implements Mage_Wi
         return Mage::getStoreConfigFlag('tm_easytabs/general/show_anchor');
     }
 
-    protected function _toHtml()
-    {
-        if (!$this->getTemplate()) {
-            $this->setTemplate('tm/easytabs/tabs.phtml');
-        }
-        return parent::_toHtml();
-    }
 }

@@ -18,7 +18,7 @@
             var tab  = "<?php echo $this->getAlias(); ?>",
                 href = easytabs.tpl.href.replace(easytabs.tpl.tab, tab);
             window.location.hash = href;
-            easytabs.onclick(el, e, tab, true);
+            easytabs.onclick(el, e, tab, !writeReview);
             if (writeReview) {
                 $('review-form').scrollTo();
             }

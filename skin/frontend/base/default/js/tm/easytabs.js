@@ -260,3 +260,10 @@ EasyTabs.prototype = {
         return this.counters[tab];
     }
 };
+
+document.observe('dom:loaded', function(){
+    $$('.catalog-product-view').each(function(){
+        window.easytabs = new EasyTabs();
+        throw $break;
+    })
+});

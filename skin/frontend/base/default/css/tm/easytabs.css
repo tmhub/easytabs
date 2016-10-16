@@ -1,5 +1,5 @@
 .easytabs-wrapper { margin: 10px 0; }
-.easytabs {
+.std ul.easytabs, .easytabs {
     display: table;
     margin: 0;
     padding: 0;

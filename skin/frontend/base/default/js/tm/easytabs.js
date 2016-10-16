@@ -262,8 +262,7 @@ EasyTabs.prototype = {
 };
 
 document.observe('dom:loaded', function(){
-    $$('.catalog-product-view').each(function(){
+    $$('#easytabs').each(function(){
         window.easytabs = new EasyTabs();
-        throw $break;
     })
 });

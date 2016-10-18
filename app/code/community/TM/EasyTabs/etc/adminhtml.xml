@@ -9,6 +9,13 @@
                     <title>Easy Tabs</title>
                     <sort_order>540</sort_order>
                     <action>adminhtml/easytabs_index/index</action>
+                    <children>
+                        <custom_tabs translate="title" module="easytabs">
+                            <title>Custom Tabs</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/easytabs_custom</action>
+                        </custom_tabs>
+                    </children>
                 </easytabs>
             </children>
         </templates_master>

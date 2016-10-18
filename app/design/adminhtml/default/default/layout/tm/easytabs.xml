@@ -6,6 +6,10 @@
         </reference>
     </adminhtml_easytabs_index_index>
 
+     <adminhtml_easytabs_custom_index>
+        <update handle="adminhtml_easytabs_index_index" />
+     </adminhtml_easytabs_custom_index>
+
     <adminhtml_easytabs_index_edit>
         <update handle="editor"/>
         <reference name="js">
@@ -24,7 +28,7 @@
             </block>
         </reference>
     </adminhtml_easytabs_index_edit>
-    
+
     <adminhtml_easytabs_index_loadTabOptions>
         <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
     </adminhtml_easytabs_index_loadTabOptions>

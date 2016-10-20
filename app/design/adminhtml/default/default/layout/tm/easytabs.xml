@@ -2,12 +2,22 @@
 <layout version="0.1.0">
     <adminhtml_easytabs_index_index>
         <reference name="content">
-            <block type="easytabs/adminhtml_list" name="easytabs_list" />
+            <block type="easytabs/adminhtml_list" name="easytabs_list">
+                <action method="setTitle">
+                    <title>Product Tabs</title>
+                </action>
+            </block>
         </reference>
     </adminhtml_easytabs_index_index>
 
      <adminhtml_easytabs_custom_index>
-        <update handle="adminhtml_easytabs_index_index" />
+        <reference name="content">
+            <block type="easytabs/adminhtml_list" name="easytabs_list">
+                <action method="setTitle">
+                    <title>Custom Tabs</title>
+                </action>
+            </block>
+        </reference>
      </adminhtml_easytabs_custom_index>
 
     <adminhtml_easytabs_index_edit>

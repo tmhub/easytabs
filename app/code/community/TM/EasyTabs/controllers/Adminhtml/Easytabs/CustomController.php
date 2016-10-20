@@ -17,8 +17,9 @@ class TM_EasyTabs_Adminhtml_Easytabs_CustomController extends Mage_Adminhtml_Con
 
     public function indexAction()
     {
-        // Mage::register('easytabs_collection', $this->_getCollection());
-        // echo 'ffdddfff';
+        $this->_title($this->__('TM'))
+            ->_title($this->__('EasyTabs'))
+            ->_title($this->__('Custom Tabs'));
         $this->_initAction();
         $this->renderLayout();
     }

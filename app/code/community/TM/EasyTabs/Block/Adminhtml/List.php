@@ -4,13 +4,33 @@ class TM_EasyTabs_Block_Adminhtml_List extends Mage_Adminhtml_Block_Widget_Grid_
 {
     public function __construct()
     {
-//        Zend_Debug::dump(__LINE__);
-//        die;
+
         $this->_blockGroup = 'easytabs';
         $this->_controller = 'adminhtml_list';
 
-        $this->_headerText = Mage::helper('easytabs')->__('Tabs');
-//        $this->_addButtonLabel = Mage::helper('easytabs')->__('set a trap');
+        if (!$this->_isAllowedAction()) {
+            $this->_removeButton('add');
+        }
+
         parent::__construct();
     }
+
+    protected function _beforeToHtml()
+    {
+        $this->_headerText = Mage::helper('easytabs')->__($this->getTitle());
+        return parent::_beforeToHtml();
+    }
+
+    /**
+     * Check permission for passed action
+     *
+     * @param string $action
+     * @return bool
+     */
+    protected function _isAllowedAction()
+    {
+        return Mage::getSingleton('admin/session')
+            ->isAllowed('templates_master/easytabs');
+    }
+
 }

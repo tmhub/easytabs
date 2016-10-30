@@ -17,7 +17,7 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
 
         if (!$collection) {
             $collection = Mage::getModel('easytabs/tab')->getCollection();
-            $collection->addCustomTabsFilter();
+            $collection->addCustomTabFilter();
         }
         $this->setCollection($collection);
         return parent::_prepareCollection();
@@ -80,24 +80,14 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
             'options'   => Mage::getSingleton('easytabs/config_status')->toOptionHash(),
         ));
         if (!Mage::app()->isSingleStoreMode()) {
-//            $this->addColumn('website_id', array(
-//                'header'    => Mage::helper('salesrule')->__('Website'),
-//                'align'     =>'left',
-//                'index'     => 'website_id',
-//                'type'      => 'options',
-//                'sortable'  => false,
-//                'options'   => Mage::getModel('core/website')->getCollection()->toOptionHash(),
-//                'width'     => 200,
-//            ));
 
             $this->addColumn('store_id', array(
-                'header'     => Mage::helper('catalog')->__('Store'),
+                'header'     => Mage::helper('cms')->__('Store View'),
                 'index'      => 'store_id',
                 'type'       => 'store',
                 'store_all'  => true,
                 'store_view' => true,
                 'sortable'   => false,
-                'width'      => 100,
                 'filter_condition_callback'
                                 => array($this, '_filterStoreCondition'),
             ));
@@ -162,13 +152,17 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
 //         return $this;
 //     }
 
+    protected function _afterLoadCollection()
+    {
+        $this->getCollection()->walk('afterLoad');
+        parent::_afterLoadCollection();
+    }
+
     protected function _filterStoreCondition($collection, $column)
     {
         if (!$value = $column->getFilter()->getValue()) {
             return;
         }
-
-        $this->getCollection()
-            ->addFieldToFilter('store_id', array('in' => array($value)));
+        $this->getCollection()->addStoreFilter($value);
     }
 }

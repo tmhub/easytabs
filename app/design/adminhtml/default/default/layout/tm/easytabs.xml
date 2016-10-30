@@ -20,6 +20,29 @@
         </reference>
      </adminhtml_easytabs_custom_index>
 
+     <adminhtml_easytabs_custom_edit>
+        <update handle="editor"/>
+        <reference name="js">
+            <block type="core/template" template="catalog/wysiwyg/js.phtml" name="catalog.wysiwyg.js" />
+        </reference>
+        <reference name="content">
+            <block type="easytabs/adminhtml_edit" name="easytabs_edit"/>
+        </reference>
+        <reference name="left">
+            <block type="easytabs/adminhtml_edit_tabs" name="easytabs_edit_tabs">
+                <block type="easytabs/adminhtml_edit_tab_main" name="easytabs_edit_tab_main" />
+                <action method="addTab">
+                    <name>main_section</name>
+                    <block>easytabs_edit_tab_main</block>
+                </action>
+            </block>
+        </reference>
+     </adminhtml_easytabs_custom_edit>
+
+     <adminhtml_easytabs_custom_loadtaboptions>
+        <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
+    </adminhtml_easytabs_custom_loadtaboptions>
+
     <adminhtml_easytabs_index_edit>
         <update handle="editor"/>
         <reference name="js">

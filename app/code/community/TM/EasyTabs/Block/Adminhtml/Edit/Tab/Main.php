@@ -17,7 +17,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
 
     protected function _prepareForm()
     {
-        $model = Mage::registry('easytabs_tab_data');
+        $model = Mage::registry('easytabs_tab');
 
         $form  = new Varien_Data_Form();
 
@@ -28,9 +28,11 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             array('legend' => Mage::helper('easytabs')->__('General Details'))
         );
 
-        $fieldset->addField('id', 'hidden', array(
-            'name' => 'id',
-        ));
+        if ($model->getId()) {
+            $fieldset->addField('id', 'hidden', array(
+                'name' => 'id',
+            ));
+        }
 
         $fieldset->addField('title', 'text', array(
             'label'    => Mage::helper('easytabs')->__('Title'),
@@ -88,7 +90,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
 
         if (!Mage::app()->isSingleStoreMode()) {
             $field = $fieldset->addField('store_id', 'multiselect', array(
-                'name'     => 'store_id',
+                'name'     => 'stores[]',
                 'label'    => Mage::helper('checkout')->__('Store View'),
                 'title'    => Mage::helper('checkout')->__('Store View'),
                 'required' => true,

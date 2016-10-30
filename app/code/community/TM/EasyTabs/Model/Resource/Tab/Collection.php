@@ -14,7 +14,7 @@ class TM_EasyTabs_Model_Resource_Tab_Collection
         $this->_map['fields']['store'] = 'store_table.store_id';
     }
 
-        /**
+    /**
      * Add filter by store
      *
      * @param int|Mage_Core_Model_Store $store
@@ -73,12 +73,12 @@ class TM_EasyTabs_Model_Resource_Tab_Collection
 
     public function addProductTabFilter()
     {
-        return $this->addFilter('product_tab', array('eq' => 1));
+        return $this->addFilter('product_tab', array('eq' => '1'));
     }
 
-    public function addCustomTabsFilter()
+    public function addCustomTabFilter()
     {
-        return $this->addFilter('product_tab', array('eq' => 0));
+        return $this->addFilter('product_tab', array('eq' => '0'));
     }
 
 }

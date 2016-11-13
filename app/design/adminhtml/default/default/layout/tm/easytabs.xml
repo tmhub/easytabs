@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout version="0.1.0">
-    <adminhtml_easytabs_index_index>
+    <adminhtml_easytabs_product_index>
         <reference name="content">
             <block type="easytabs/adminhtml_list" name="easytabs_list">
                 <action method="setTitle">
                     <title>Product Tabs</title>
                 </action>
+                <action method="setProductTab">
+                    <value>1</value>
+                </action>
             </block>
         </reference>
-    </adminhtml_easytabs_index_index>
+    </adminhtml_easytabs_product_index>
 
      <adminhtml_easytabs_custom_index>
         <reference name="content">
             <block type="easytabs/adminhtml_list" name="easytabs_list">
                 <action method="setTitle">
                     <title>Custom Tabs</title>
+                </action>
+                <action method="setProductTab">
+                    <value>0</value>
                 </action>
             </block>
         </reference>

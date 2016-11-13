@@ -15,10 +15,28 @@ class TM_EasyTabs_Model_Resource_Tab
     protected function _beforeSave(Mage_Core_Model_Abstract $object)
     {
 
-        $object->setBlock($object->getBlockType());
+        if ($object->getBlockType() && !$object->getBlock()) {
+            $object->setBlock($object->getBlockType());
+        }
 
         return parent::_beforeSave($object);
 
+    }
+
+
+    /**
+     * Process page data before deleting
+     *
+     * @param Mage_Core_Model_Abstract $object
+     * @return Mage_Cms_Model_Resource_Page
+     */
+    protected function _beforeDelete(Mage_Core_Model_Abstract $object)
+    {
+        $condition = array(
+            'tab_id = ?'     => (int) $object->getId(),
+        );
+        $this->_getWriteAdapter()->delete($this->getTable('easytabs/store'), $condition);
+        return parent::_beforeDelete($object);
     }
 
     /**

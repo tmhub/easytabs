@@ -1,6 +1,6 @@
 <?php
 
-class TM_EasyTabs_Adminhtml_Easytabs_CustomController extends Mage_Adminhtml_Controller_Action
+class TM_EasyTabs_Adminhtml_Easytabs_ProductController extends Mage_Adminhtml_Controller_Action
 {
 
     protected function _initAction()
@@ -19,7 +19,7 @@ class TM_EasyTabs_Adminhtml_Easytabs_CustomController extends Mage_Adminhtml_Con
     {
         $this->_title($this->__('TM'))
             ->_title($this->__('EasyTabs'))
-            ->_title($this->__('Custom Tabs'));
+            ->_title($this->__('Product Tabs'));
         $this->_initAction();
         $this->renderLayout();
     }

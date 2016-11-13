@@ -13,12 +13,17 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
 
     protected function _prepareCollection()
     {
-        $collection = Mage::registry('easytabs_collection');
+        $collection = Mage::getModel('easytabs/tab')->getCollection();
 
-        if (!$collection) {
-            $collection = Mage::getModel('easytabs/tab')->getCollection();
-            $collection->addCustomTabFilter();
+        $blockList = $this->getLayout()->getBlock('easytabs_list');
+        if ($blockList) {
+            if ($blockList->getProductTab()) {
+                $collection->addProductTabFilter();
+            } else {
+                $collection->addCustomTabFilter();
+            }
         }
+
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -28,7 +33,7 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
         $this->addColumn('id', array(
           'header'    => Mage::helper('easytabs')->__('ID'),
           'align'     =>'right',
-          'width'     => '50px',
+          // 'width'     => '50px',
           'index'     => 'id',
           'type'      => 'number'
         ));
@@ -37,30 +42,11 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
             'align'     => 'left',
             'index'     => 'title',
         ));
-//        $this->addColumn('alias', array(
-//            'header'    => Mage::helper('easytabs')->__('Alias'),
-//            'align'     => 'left',
-//            'index'     => 'alias',
-//        ));
 
         $this->addColumn('block', array(
             'header'    => Mage::helper('easytabs')->__('Block'),
             'align'     => 'left',
             'index'     => 'block',
-        ));
-
-        $this->addColumn('template', array(
-            'header'    => Mage::helper('easytabs')->__('Template'),
-            'align'     => 'left',
-            'index'     => 'template',
-            'width'      => 300,
-        ));
-
-
-        $this->addColumn('unset', array(
-            'header'    => Mage::helper('easytabs')->__('Remove (reference::alias)'),
-            'align'     => 'left',
-            'index'     => 'unset',
         ));
 
         $this->addColumn('sort_order', array(
@@ -92,25 +78,6 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
                                 => array($this, '_filterStoreCondition'),
             ));
         }
-
-//        $this->addColumn('created_at', array(
-//            'header'        => Mage::helper('easytabs')->__('Created date'),
-//            'align'         => 'left',
-//            'type'          => 'datetime',
-//            'width'         => '100px',
-//            'index'         => 'created_at',
-//        ));
-//
-//        $this->addColumn('modified_at', array(
-//            'header'        => Mage::helper('easytabs')->__('Modified date'),
-//            'align'         => 'left',
-//            'type'          => 'datetime',
-//            'width'         => '100px',
-//            'index'         => 'modified_at',
-//        ));
-
-//        $this->addExportType('*/*/exportCsv', Mage::helper('easytabs')->__('CSV'));
-//        $this->addExportType('*/*/exportXml', Mage::helper('easytabs')->__('XML'));
 
         return parent::_prepareColumns();
     }

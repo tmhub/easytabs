@@ -87,6 +87,9 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'required' => true,
             'options'  => Mage::getSingleton('easytabs/config_status')->toOptionHash(),
         ));
+        if (!$model->getId()) {
+            $model->setData('status', '1');
+        }
 
         if (!Mage::app()->isSingleStoreMode()) {
             $field = $fieldset->addField('store_id', 'multiselect', array(

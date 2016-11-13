@@ -18,7 +18,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_Form_
 
     public function getHeaderText()
     {
-        $data = Mage::registry('easytabs_tab_data');
+        $data = Mage::registry('easytabs_tab');
         if ($data && $data->getId()) {
             return Mage::helper('easytabs')->__(
                 "Edit Tab # %s", $data->getTitle()

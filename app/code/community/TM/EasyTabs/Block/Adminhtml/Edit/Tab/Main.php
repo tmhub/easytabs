@@ -4,11 +4,15 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
     extends Mage_Adminhtml_Block_Widget_Form
         implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
-    protected function _getBlockTypes()
+    protected function _getBlockTypes($productTab)
     {
         $tabs = Mage::getSingleton('easytabs/tabs')->getTabsArray();
+        // var_dump($tabs);die;
         $types = array();
         foreach ($tabs as $tab) {
+            if (!in_array($tab['code'], array('cms', 'template', 'html')) && !$productTab) {
+                continue;
+            }
             $types[$tab['type']] = $tab['name'];
         }
         return $types;
@@ -34,6 +38,10 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             ));
         }
 
+        $fieldset->addField('product_tab', 'hidden', array(
+                'name' => 'product_tab',
+            ));
+
         $fieldset->addField('title', 'text', array(
             'label'    => Mage::helper('easytabs')->__('Title'),
             'class'    => 'required-entry',
@@ -49,7 +57,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
         ));
 
         $block = $model->getBlock();
-        $blockTypes = $this->_getBlockTypes();
+        $blockTypes = $this->_getBlockTypes($model->getProductTab());
         if (!isset($blockTypes[$block])) {
             $model->setBlock('easytabs/tab_html');
         }
@@ -59,7 +67,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'label'   => Mage::helper('easytabs')->__('Block Type'),
             'title'   => Mage::helper('easytabs')->__('Block Type'),
             'name'    => 'block_type',
-            'options' => $this->_getBlockTypes(),
+            'options' => $blockTypes,
         ));
 
         $fieldset->addField('block', 'text', array(

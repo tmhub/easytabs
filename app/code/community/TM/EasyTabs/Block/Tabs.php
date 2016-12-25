@@ -6,12 +6,13 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template implements Mage_Wi
 
     protected function _getCollection()
     {
-        $collection = new TM_EasyTabs_Model_Config_Collection();
+        $collection = Mage::getModel('easytabs/tab')->getCollection();
         $storeId    = Mage::app()->getStore()->getStoreId();
         return $collection
-            ->setOrder('sort_order', Varien_Data_Collection::SORT_ORDER_ASC)
+            ->addProductTabFilter()
+            ->addStoreFilter($storeId)
             ->addFieldToFilter('status', array('eq' => 1))
-            ->addFieldToFilter('store_id', array('in' => array($storeId, 0)));
+            ->setOrder('sort_order', Varien_Data_Collection::SORT_ORDER_ASC);
     }
 
     protected function _prepareLayout()

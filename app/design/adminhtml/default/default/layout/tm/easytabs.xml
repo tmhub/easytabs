@@ -17,7 +17,7 @@
         <reference name="content">
             <block type="easytabs/adminhtml_list" name="easytabs_list">
                 <action method="setTitle">
-                    <title>Custom Tabs</title>
+                    <title>Widget Tabs</title>
                 </action>
                 <action method="setProductTab">
                     <value>0</value>

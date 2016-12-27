@@ -76,7 +76,7 @@ class TM_EasyTabs_Model_Resource_Tab_Collection
         return $this->addFilter('product_tab', array('eq' => '1'));
     }
 
-    public function addCustomTabFilter()
+    public function addWidgetTabFilter()
     {
         return $this->addFilter('product_tab', array('eq' => '0'));
     }

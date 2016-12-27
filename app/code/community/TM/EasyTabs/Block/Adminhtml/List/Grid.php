@@ -20,7 +20,7 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
             if ($blockList->getProductTab()) {
                 $collection->addProductTabFilter();
             } else {
-                $collection->addCustomTabFilter();
+                $collection->addWidgetTabFilter();
             }
         }
 

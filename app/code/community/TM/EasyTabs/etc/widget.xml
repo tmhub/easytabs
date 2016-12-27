@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <widgets>
-    <easytabs type="easytabs/tabs">
+    <easytabs type="easytabs/widget">
         <name>Easy Tabs </name>
         <description type="desc">Easy Tabs</description>
         <parameters>

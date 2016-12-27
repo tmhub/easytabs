@@ -1,6 +1,6 @@
 <?php
 
-class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template implements Mage_Widget_Block_Interface
+abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
 {
     protected $_tabs = array();
 
@@ -9,7 +9,6 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template implements Mage_Wi
         $collection = Mage::getModel('easytabs/tab')->getCollection();
         $storeId    = Mage::app()->getStore()->getStoreId();
         return $collection
-            ->addProductTabFilter()
             ->addStoreFilter($storeId)
             ->addFieldToFilter('status', array('eq' => 1))
             ->setOrder('sort_order', Varien_Data_Collection::SORT_ORDER_ASC);
@@ -83,17 +82,6 @@ class TM_EasyTabs_Block_Tabs extends Mage_Core_Block_Template implements Mage_Wi
         if (!$title || ($block && $block !== 'easytabs/tab_html' && !$template)) {
             return false;
         }
-
-        if (isset($attributes['handles']) && !empty($attributes['handles'])) {
-            $handles = explode(',', $attributes['handles']);
-            $layoutHandles = $this->getLayout()->getUpdate()->getHandles();
-            $commonHandles = array_intersect($handles, $layoutHandles);
-            if (!empty($handles) && count($commonHandles) < 1) {
-                return false;
-            }
-        }
-
-
 
         if (!$block) {
             $block = $this->getLayout()->getBlock($alias);

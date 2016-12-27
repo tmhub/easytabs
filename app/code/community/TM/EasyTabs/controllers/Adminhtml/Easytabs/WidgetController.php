@@ -1,6 +1,6 @@
 <?php
 
-class TM_EasyTabs_Adminhtml_Easytabs_CustomController
+class TM_EasyTabs_Adminhtml_Easytabs_WidgetController
     extends TM_EasyTabs_Controller_Adminhtml_Abstract
 {
 

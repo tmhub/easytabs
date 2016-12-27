@@ -14,11 +14,11 @@
                             <sort_order>10</sort_order>
                             <action>adminhtml/easytabs_product</action>
                         </product_tabs>
-                        <custom_tabs translate="title" module="easytabs">
+                        <widget_tabs translate="title" module="easytabs">
                             <title>Widget Tabs</title>
                             <sort_order>20</sort_order>
-                            <action>adminhtml/easytabs_custom</action>
-                        </custom_tabs>
+                            <action>adminhtml/easytabs_widget</action>
+                        </widget_tabs>
                     </children>
                 </easytabs>
             </children>

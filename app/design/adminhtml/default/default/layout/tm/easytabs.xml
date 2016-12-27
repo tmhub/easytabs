@@ -13,7 +13,7 @@
         </reference>
     </adminhtml_easytabs_product_index>
 
-     <adminhtml_easytabs_custom_index>
+     <adminhtml_easytabs_widget_index>
         <reference name="content">
             <block type="easytabs/adminhtml_list" name="easytabs_list">
                 <action method="setTitle">
@@ -24,9 +24,9 @@
                 </action>
             </block>
         </reference>
-     </adminhtml_easytabs_custom_index>
+     </adminhtml_easytabs_widget_index>
 
-     <adminhtml_easytabs_custom_edit>
+     <adminhtml_easytabs_widget_edit>
         <update handle="editor"/>
         <reference name="js">
             <block type="core/template" template="catalog/wysiwyg/js.phtml" name="catalog.wysiwyg.js" />
@@ -43,11 +43,11 @@
                 </action>
             </block>
         </reference>
-     </adminhtml_easytabs_custom_edit>
+     </adminhtml_easytabs_widget_edit>
 
-     <adminhtml_easytabs_custom_loadtaboptions>
+     <adminhtml_easytabs_widget_loadtaboptions>
         <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
-    </adminhtml_easytabs_custom_loadtaboptions>
+    </adminhtml_easytabs_widget_loadtaboptions>
 
     <adminhtml_easytabs_product_edit>
         <update handle="editor"/>

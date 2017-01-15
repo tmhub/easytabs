@@ -75,4 +75,14 @@
     <adminhtml_easytabs_product_loadtaboptions>
         <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
     </adminhtml_easytabs_product_loadtaboptions>
+
+    <editor>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/chosen/chosen.css</name>
+            </action>
+        </reference>
+    </editor>
+
 </layout>

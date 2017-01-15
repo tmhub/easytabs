@@ -4,13 +4,19 @@
         <name>Easy Tabs </name>
         <description type="desc">Easy Tabs</description>
         <parameters>
-            <filter_tabs>
-                <label>Tabs</label>
-                <type>multiselect</type>
-                <source_model>easytabs/config_tabs</source_model>
+            <filter_tabs type="complex">
                 <visible>1</visible>
                 <required>1</required>
-                <value>10</value>
+                <label>Tabs to show</label>
+                <type>label</type>
+                <helper_block>
+                    <type>easytabs/adminhtml_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Tabs...</open>
+                        </button>
+                    </data>
+                </helper_block>
             </filter_tabs>
         </parameters>
     </easytabs>

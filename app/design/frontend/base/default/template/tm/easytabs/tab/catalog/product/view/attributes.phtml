@@ -20,12 +20,10 @@
             ->setSortOrder()
             ->load();
 
-        $groupNames = array();
         $attributeCodes = array();
         foreach ($groups as $group) {
             $groupName          = $group->getAttributeGroupName();
             $groupId            = $group->getAttributeGroupId();
-            $groupNames[$groupId] = $groupName;
 
             $attributes = Mage::getResourceModel('catalog/product_attribute_collection')
                 ->setAttributeGroupFilter($group->getId())
@@ -35,19 +33,31 @@
             if ($attributes->getSize() > 0) {
                 foreach ($attributes->getItems() as $attribute) {
                     /* @var $child Mage_Eav_Model_Entity_Attribute */
-                    $attributeCodes[$attribute->getAttributeCode()] = $groupId;
+                    $attributeCodes[$attribute->getAttributeCode()] = array(
+                        'id' => $groupId,
+                        'name' => $groupName,
+                        'sort_order' => $group->getSortOrder()
+                    );
+                    // uncomment for debug
+                    // if ($attribute->getIsVisibleOnFront() && $attribute->getIsUserDefined()) {
+                        // $_additional[$attribute->getAttributeCode()] = array(
+                        //     "label" => $attribute->getFrontendLabel(),
+                        //     "value" => $attribute->getDefaultValue() . ' xx',
+                        //     "code" => $attribute->getAttributeCode()
+                        // );
+                    // }
                 }
             }
         }
 
         foreach ($_additional as &$data) {
-            $data['group_id'] = isset($attributeCodes[$data['code']]) ? $attributeCodes[$data['code']] : 0;
+            $data['group'] = isset($attributeCodes[$data['code']]) ? $attributeCodes[$data['code']] : array();
         }
         usort($_additional, function($a, $b) {
-            return $a['group_id'] - $b['group_id'];
+            return $a['group']['sort_order'] - $b['group']['sort_order'];
         });
         $_additionalFirst = current($_additional);
-        $groupId = $_additionalFirst['group_id'];
+        $groupId = $_additionalFirst['group']['id'];
         $groupName = $groupNames[$groupId];
         $firstGroupRendered = false;
     }
@@ -58,13 +68,13 @@
         <col />
         <tbody>
         <?php foreach ($_additional as $_data):
-            if ($grouped && (false == $firstGroupRendered || $_data['group_id'] != $groupId)) :
-                $groupId = $_data['group_id'];
-                $groupName = $groupNames[$groupId];
+            if ($grouped && (false == $firstGroupRendered || $_data['group']['id'] != $groupId)) :
+                $groupId = $_data['group']['id'];
+                $groupName = $_data['group']['name'];
                 $firstGroupRendered = true;
             ?>
             <tr>
-                <th class="label group-label" colspan="2"><?php echo $groupName ?></th>
+                <th class="data group-label" colspan="2"><?php echo $groupName ?></th>
             </tr>
             <?php endif;
                 $_label = $this->htmlEscape($this->__($_data['label']));

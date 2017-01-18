@@ -82,6 +82,10 @@
                 <type>js_css</type>
                 <name>tm/lib/chosen/chosen.css</name>
             </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>tm/lib/chosen/chosen.proto.js</name>
+            </action>
         </reference>
     </editor>
 

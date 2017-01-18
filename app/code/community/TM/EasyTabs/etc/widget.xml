@@ -1,17 +1,23 @@
 <?xml version="1.0"?>
 <widgets>
-    <easytabs type="easytabs/tabs">
+    <easytabs type="easytabs/widget">
         <name>Easy Tabs </name>
         <description type="desc">Easy Tabs</description>
         <parameters>
             <filter_tabs>
-                <label>Tabs</label>
-                <type>multiselect</type>
-                <source_model>easytabs/config_tabs</source_model>
                 <visible>1</visible>
                 <required>1</required>
-                <value>10</value>
+                <label>Tabs to show</label>
+                <type>multiselect</type>
+                <source_model>easytabs/config_tabs</source_model>
+                <helper_block>
+                    <type>easytabs/adminhtml_widget_chosen</type>
+                </helper_block>
             </filter_tabs>
+            <template>
+                <type>hidden</type>
+                <value>tm/easytabs/tabs.phtml</value>
+            </template>
         </parameters>
     </easytabs>
 </widgets>

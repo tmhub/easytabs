@@ -50,7 +50,7 @@ EasyTabs.prototype = {
                 var first = this.container.down(this.config.tabs);
                 href = first.href || first.readAttribute('data-href');
             } else {
-                if (-1 === href.indexOf('#product_tabs_')) {
+                if (-1 === href.indexOf('#tab_')) {
                     return;
                 }
             }

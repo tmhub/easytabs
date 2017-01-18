@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout version="0.1.0">
-    <adminhtml_easytabs_index_index>
+    <adminhtml_easytabs_product_index>
         <reference name="content">
-            <block type="easytabs/adminhtml_list" name="easytabs_list" />
+            <block type="easytabs/adminhtml_list" name="easytabs_list">
+                <action method="setTitle">
+                    <title>Product Tabs</title>
+                </action>
+                <action method="setProductTab">
+                    <value>1</value>
+                </action>
+            </block>
         </reference>
-    </adminhtml_easytabs_index_index>
+    </adminhtml_easytabs_product_index>
 
-    <adminhtml_easytabs_index_edit>
+     <adminhtml_easytabs_widget_index>
+        <reference name="content">
+            <block type="easytabs/adminhtml_list" name="easytabs_list">
+                <action method="setTitle">
+                    <title>Widget Tabs</title>
+                </action>
+                <action method="setProductTab">
+                    <value>0</value>
+                </action>
+            </block>
+        </reference>
+     </adminhtml_easytabs_widget_index>
+
+     <adminhtml_easytabs_widget_edit>
         <update handle="editor"/>
         <reference name="js">
             <block type="core/template" template="catalog/wysiwyg/js.phtml" name="catalog.wysiwyg.js" />
@@ -23,13 +43,50 @@
                 </action>
             </block>
         </reference>
-    </adminhtml_easytabs_index_edit>
-    
-    <adminhtml_easytabs_index_loadTabOptions>
-        <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
-    </adminhtml_easytabs_index_loadTabOptions>
+     </adminhtml_easytabs_widget_edit>
 
-    <adminhtml_easytabs_index_loadtaboptions>
+     <adminhtml_easytabs_widget_loadtaboptions>
         <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
-    </adminhtml_easytabs_index_loadtaboptions>
+    </adminhtml_easytabs_widget_loadtaboptions>
+
+    <adminhtml_easytabs_product_edit>
+        <update handle="editor"/>
+        <reference name="js">
+            <block type="core/template" template="catalog/wysiwyg/js.phtml" name="catalog.wysiwyg.js" />
+        </reference>
+        <reference name="content">
+            <block type="easytabs/adminhtml_edit" name="easytabs_edit"/>
+        </reference>
+        <reference name="left">
+            <block type="easytabs/adminhtml_edit_tabs" name="easytabs_edit_tabs">
+                <block type="easytabs/adminhtml_edit_tab_main" name="easytabs_edit_tab_main" />
+                <action method="addTab">
+                    <name>main_section</name>
+                    <block>easytabs_edit_tab_main</block>
+                </action>
+            </block>
+        </reference>
+    </adminhtml_easytabs_product_edit>
+
+    <adminhtml_easytabs_product_loadTabOptions>
+        <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
+    </adminhtml_easytabs_product_loadTabOptions>
+
+    <adminhtml_easytabs_product_loadtaboptions>
+        <block name="easytabs.tab.options" type="easytabs/adminhtml_tab_options" output="toHtml" />
+    </adminhtml_easytabs_product_loadtaboptions>
+
+    <editor>
+        <reference name="head">
+            <action method="addItem">
+                <type>js_css</type>
+                <name>tm/lib/chosen/chosen.css</name>
+            </action>
+            <action method="addItem">
+                <type>js</type>
+                <name>tm/lib/chosen/chosen.proto.js</name>
+            </action>
+        </reference>
+    </editor>
+
 </layout>

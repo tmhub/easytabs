@@ -4,11 +4,15 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
     extends Mage_Adminhtml_Block_Widget_Form
         implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
-    protected function _getBlockTypes()
+    protected function _getBlockTypes($productTab)
     {
         $tabs = Mage::getSingleton('easytabs/tabs')->getTabsArray();
+        // var_dump($tabs);die;
         $types = array();
         foreach ($tabs as $tab) {
+            if (!in_array($tab['code'], array('cms', 'template', 'html')) && !$productTab) {
+                continue;
+            }
             $types[$tab['type']] = $tab['name'];
         }
         return $types;
@@ -17,7 +21,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
 
     protected function _prepareForm()
     {
-        $model = Mage::registry('easytabs_tab_data');
+        $model = Mage::registry('easytabs_tab');
 
         $form  = new Varien_Data_Form();
 
@@ -28,9 +32,15 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             array('legend' => Mage::helper('easytabs')->__('General Details'))
         );
 
-        $fieldset->addField('id', 'hidden', array(
-            'name' => 'id',
-        ));
+        if ($model->getId()) {
+            $fieldset->addField('id', 'hidden', array(
+                'name' => 'id',
+            ));
+        }
+
+        $fieldset->addField('product_tab', 'hidden', array(
+                'name' => 'product_tab',
+            ));
 
         $fieldset->addField('title', 'text', array(
             'label'    => Mage::helper('easytabs')->__('Title'),
@@ -47,7 +57,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
         ));
 
         $block = $model->getBlock();
-        $blockTypes = $this->_getBlockTypes();
+        $blockTypes = $this->_getBlockTypes($model->getProductTab());
         if (!isset($blockTypes[$block])) {
             $model->setBlock('easytabs/tab_html');
         }
@@ -57,7 +67,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'label'   => Mage::helper('easytabs')->__('Block Type'),
             'title'   => Mage::helper('easytabs')->__('Block Type'),
             'name'    => 'block_type',
-            'options' => $this->_getBlockTypes(),
+            'options' => $blockTypes,
         ));
 
         $fieldset->addField('block', 'text', array(
@@ -85,10 +95,13 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'required' => true,
             'options'  => Mage::getSingleton('easytabs/config_status')->toOptionHash(),
         ));
+        if (!$model->getId()) {
+            $model->setData('status', '1');
+        }
 
         if (!Mage::app()->isSingleStoreMode()) {
             $field = $fieldset->addField('store_id', 'multiselect', array(
-                'name'     => 'store_id',
+                'name'     => 'stores[]',
                 'label'    => Mage::helper('checkout')->__('Store View'),
                 'title'    => Mage::helper('checkout')->__('Store View'),
                 'required' => true,

@@ -16,8 +16,8 @@ class TM_EasyTabs_Model_Config_Tabs //extends Varien_Object
 
     public function toOptionHash()
     {
-        $collection = new TM_EasyTabs_Model_Config_Collection();
-        $collection->addFieldToFilter('status', array('eq' => 1));
+        $collection = Mage::getModel('easytabs/tab')->getCollection()
+            ->addWidgetTabFilter();
 
         // \Zend_Debug::dump($collection->getFirstItem()->getData());
         $res = array();

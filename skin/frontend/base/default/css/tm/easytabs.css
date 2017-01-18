@@ -82,6 +82,11 @@
 #product_tabs_related_tabbed_contents .product-details { margin-left: 75px; }
 #product_tabs_related_tabbed_contents .price-box { margin: 0; }
 
+#product_tabs_additional_tabbed_contents .group-label{
+    font-size: 18px;
+    padding-top: 30px;
+}
+
 .easytabs,
 .easytabs-content,
 .product-collateral,

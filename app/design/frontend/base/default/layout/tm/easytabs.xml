@@ -22,5 +22,10 @@
                 </action>
             </block>
         </reference>
+        <reference name="additional_tabbed">
+            <action method="setIsGrouped">
+                <status>1</status>
+            </action>
+        </reference>
     </catalog_product_view>
 </layout>

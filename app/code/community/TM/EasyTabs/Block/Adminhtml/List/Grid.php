@@ -87,37 +87,36 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
         return $this->getUrl('*/*/edit', array('id' => $row->getId()));
     }
 
-//     protected function _prepareMassaction()
-//     {
-//         $this->setMassactionIdField('entity_id');
-//         $this->getMassactionBlock()->setFormFieldName('easytabs');
+    protected function _prepareMassaction()
+    {
+        $this->setMassactionIdField('entity_id');
+        $this->getMassactionBlock()->setFormFieldName('easytabs');
 
-//         $this->getMassactionBlock()->addItem('delete', array(
-//              'label'    => Mage::helper('easytabs')->__('Delete'),
-//              'url'      => $this->getUrl('*/*/massDelete'),
-//              'confirm'  => Mage::helper('easytabs')->__('Are you sure?')
-//         ));
+        $this->getMassactionBlock()->addItem('delete', array(
+             'label'    => Mage::helper('easytabs')->__('Delete'),
+             'url'      => $this->getUrl('*/*/massDelete'),
+             'confirm'  => Mage::helper('easytabs')->__('Are you sure?')
+        ));
 
-//         $statuses = Mage::getSingleton('easytabs/config_status')->toOptionArray();
+        $statuses = Mage::getSingleton('easytabs/config_status')->toOptionArray();
 
-//         array_unshift($statuses, array('label'=>'', 'value'=>''));
-// //        Zend_Debug::dump($statuses);die;
-//         $this->getMassactionBlock()->addItem('status', array(
-//             'label'=> Mage::helper('easytabs')->__('Change status'),
-//             'url' => $this->getUrl('*/*/massStatus', array('_current'=>true)),
-//             'additional' => array(
-//                 'visibility' => array(
-//                     'name'   => 'status',
-//                     'type'   => 'select',
-//                     'class'  => 'required-entry',
-//                     'label'  => Mage::helper('easytabs')->__('Status'),
-//                     'values' => $statuses
-//                 )
-//             )
-//         ));
+        array_unshift($statuses, array('label'=>'', 'value'=>''));
+        $this->getMassactionBlock()->addItem('status', array(
+            'label'=> Mage::helper('easytabs')->__('Change status'),
+            'url' => $this->getUrl('*/*/massStatus', array('_current'=>true)),
+            'additional' => array(
+                'visibility' => array(
+                    'name'   => 'status',
+                    'type'   => 'select',
+                    'class'  => 'required-entry',
+                    'label'  => Mage::helper('easytabs')->__('Status'),
+                    'values' => $statuses
+                )
+            )
+        ));
 
-//         return $this;
-//     }
+        return $this;
+    }
 
     protected function _afterLoadCollection()
     {

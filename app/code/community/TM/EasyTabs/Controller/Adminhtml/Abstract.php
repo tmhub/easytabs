@@ -213,4 +213,53 @@ abstract class TM_EasyTabs_Controller_Adminhtml_Abstract
         }
     }
 
+    public function massDeleteAction()
+    {
+        $ids = $this->getRequest()->getParam('easytabs');
+        if (!is_array($ids)) {
+            Mage::getSingleton('adminhtml/session')
+                ->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
+        } else {
+            try {
+                foreach ($ids as $id) {
+                    $model = Mage::getModel('easytabs/tab')->load($id);
+                    $model->delete();
+                }
+                Mage::getSingleton('adminhtml/session')->addSuccess(
+                    Mage::helper('adminhtml')->__(
+                        'Total of %d record(s) were successfully deleted', count($ids)
+                    )
+                );
+            } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            }
+        }
+        $this->_redirect('*/*/index');
+    }
+    public function massStatusAction()
+    {
+        $ids = $this->getRequest()->getParam('easytabs');
+        if (!is_array($ids)) {
+            Mage::getSingleton('adminhtml/session')
+                ->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
+        } else {
+            try {
+                $status = $this->getRequest()->getParam('status');
+                foreach ($ids as $id) {
+                    $model = Mage::getModel('easytabs/tab')->load($id);
+                    $model->setStatus($status)
+                        ->save();
+                }
+                Mage::getSingleton('adminhtml/session')->addSuccess(
+                    Mage::helper('adminhtml')->__(
+                        'Total of %d record(s) were successfully updated', count($ids)
+                    )
+                );
+            } catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            }
+        }
+        $this->_redirect('*/*/index');
+    }
+
 }

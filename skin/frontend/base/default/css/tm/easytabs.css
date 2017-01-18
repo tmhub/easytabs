@@ -97,6 +97,9 @@
 .product-collateral:after,
 .easytabs-content .form-add:after { content: '.'; visibility: hidden; clear: both; display: block; height: 0; font-size: 0; }
 
+.easytabs-content .data-table caption { margin-top: 20px; }
+.easytabs-content .data-table:first-child caption { margin-top: 0; }
+
 @media (max-width: 480px) {
     /*
      * .easytabs-a-tab should be hidden.

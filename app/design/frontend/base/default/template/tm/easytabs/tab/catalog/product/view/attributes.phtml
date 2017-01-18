@@ -56,37 +56,31 @@
         usort($_additional, function($a, $b) {
             return $a['group']['sort_order'] - $b['group']['sort_order'];
         });
-        $_additionalFirst = current($_additional);
-        $groupId = $_additionalFirst['group']['id'];
-        $groupName = $groupNames[$groupId];
-        $firstGroupRendered = false;
     }
+    $_prevGroupId = -1;
 ?>
 <div class="box-collateral box-additional">
-    <table class="data-table" id="product-attribute-specs-table">
+<?php foreach ($_additional as $_data): ?>
+    <?php $_groupId = isset($_data['group']) ? $_data['group']['id'] : 0; ?>
+    <?php if ($_groupId != $_prevGroupId) : ?>
+        <?php $_prevGroupId = $_groupId; ?>
+    <table class="data-table">
+        <caption class="h2"><?php echo $grouped ? $_data['group']['name'] : '';?></caption>
         <col width="25%" />
         <col />
         <tbody>
-        <?php foreach ($_additional as $_data):
-            if ($grouped && (false == $firstGroupRendered || $_data['group']['id'] != $groupId)) :
-                $groupId = $_data['group']['id'];
-                $groupName = $_data['group']['name'];
-                $firstGroupRendered = true;
-            ?>
-            <tr>
-                <th class="data group-label" colspan="2"><?php echo $groupName ?></th>
-            </tr>
-            <?php endif;
-                $_label = $this->htmlEscape($this->__($_data['label']));
-                $_value = $_helper->productAttribute($_product, $_data['value'], $_data['code']);
-            ?>
+    <?php endif; ?>
+    <?php
+        $_label = $this->htmlEscape($this->__($_data['label']));
+        $_value = $_helper
+            ->productAttribute($_product, $_data['value'], $_data['code']);
+    ?>
             <tr>
                 <th class="label"><?php echo $_label ?></th>
                 <td class="data"><?php echo $_value ?></td>
             </tr>
-        <?php endforeach; ?>
+<?php endforeach; ?>
         </tbody>
     </table>
-    <script type="text/javascript">decorateTable('product-attribute-specs-table')</script>
 </div>
 <?php endif;?>

@@ -12,7 +12,7 @@
         $tabs[$_index] = $_tab;
     }
 ?>
-<div class="easytabs-wrapper" id="easytabs">
+<div class="easytabs-wrapper" id="<?php echo $this->getHtmlId();?>" <?php echo $this->getUpdateUrlHash() ? 'data-track-hash' : ''; ?>>
     <div class="easytabs-ul-wrapper">
         <ul class="easytabs">
             <?php foreach ($tabs as $_index => $_tab) : ?>

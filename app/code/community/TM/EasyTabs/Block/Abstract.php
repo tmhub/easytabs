@@ -173,4 +173,9 @@ abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
         return Mage::getStoreConfigFlag('tm_easytabs/general/show_anchor');
     }
 
+    public function getHtmlId()
+    {
+        return 'easytabs';
+    }
+
 }

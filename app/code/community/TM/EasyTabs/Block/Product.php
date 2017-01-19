@@ -18,4 +18,9 @@ class TM_EasyTabs_Block_Product extends TM_EasyTabs_Block_Abstract
         return Mage::getStoreConfigFlag('tm_easytabs/general/update_url_hash');
     }
 
+    public function getHtmlId()
+    {
+        return 'easytabs-product';
+    }
+
 }

@@ -7,37 +7,17 @@ EasyTabs.prototype = {
     },
     config: {
         tabs     : '.easytabs-anchor',
-        container: '#easytabs',
-        trackHashValue: true,
         scrollSpeed: 0.5,
         scrollOffset: -5
     },
-    container : false,
 
-    /**
-     * Tabs that are active at this moment
-     * Multiple tabs allowed in accordion mode
-     *
-     * @type {Array}
-     */
-    activeTabs: [],
-
-    /**
-     * Activity counters
-     * {
-     *   tab_id: activation_count,
-     *   ...
-     * }
-     *
-     * @type {Object}
-     */
-    counters: {},
-
-    initialize: function(options) {
+    initialize: function(container, options) {
         Object.extend(this.config, options || {});
-        this.container = $$(this.config.container).first();
+        this.container = container;
+        this.activeTabs = [];
+        this.counters = {}; // Activity counters
 
-        if (this.config.trackHashValue && window.location.hash.length > 1) {
+        if (this.container.hasAttribute("data-track-hash") && window.location.hash.length > 1) {
             this.activate(this.getTabByHref(window.location.hash), true);
             Event.observe(window, "load", function() {
                 this.activate(this.getTabByHref(window.location.hash), true);
@@ -65,7 +45,7 @@ EasyTabs.prototype = {
             }
         }
 
-        $$(this.config.tabs).each(function(el ,i) {
+        this.container.select(this.config.tabs).each(function(el ,i) {
             el.observe('click', this.onclick.bind(this, el));
 
             var id = $(el).getAttribute('data-href');
@@ -262,7 +242,8 @@ EasyTabs.prototype = {
 };
 
 document.observe('dom:loaded', function(){
-    $$('#easytabs').each(function(){
-        window.easytabs = new EasyTabs();
+    window.easytabs = [];
+    $$('.easytabs-wrapper').each(function (container){
+        window.easytabs.push(new EasyTabs(container));
     })
 });

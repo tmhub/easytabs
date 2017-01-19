@@ -15,4 +15,23 @@ class TM_EasyTabs_Block_Widget extends TM_EasyTabs_Block_Abstract implements Mag
         return $collection;
     }
 
+    /**
+     * Returns show anchor flag
+     *
+     * @return boolean
+     */
+    public function getUpdateUrlHash()
+    {
+        return 0;
+    }
+
+    public function getHtmlId()
+    {
+        $htmlId = 'easytabs-widget-';
+        foreach ($this->_getCollection() as $tab) {
+            $htmlId .= $tab->getId();
+        }
+        return $htmlId;
+    }
+
 }

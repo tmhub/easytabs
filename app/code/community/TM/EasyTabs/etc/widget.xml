@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <widgets>
     <easytabs type="easytabs/widget">
-        <name>Easy Tabs </name>
-        <description type="desc">Easy Tabs</description>
+        <name>Easy Tabs</name>
         <parameters>
             <filter_tabs>
                 <visible>1</visible>
                 <required>1</required>
                 <label>Tabs to show</label>
+                <description><![CDATA[List of tabs from "Templates Master" &rarr; "Easytabs" &rarr; "Widget Tabs"]]></description>
                 <type>multiselect</type>
                 <source_model>easytabs/config_tabs</source_model>
                 <helper_block>

@@ -13,7 +13,10 @@ class TM_EasyTabs_Block_Adminhtml_Widget_Chosen
     public function prepareElementHtml(Varien_Data_Form_Element_Abstract $element)
     {
         $html = '<script type="text/javascript">'
-            . 'new Chosen($("' . $element->getId() . '"), {width: "400px"});'
+            . 'new Chosen('
+            .  '$("' . $element->getId() . '"),'
+            .  '{width: "280px", placeholder_text: "' . $this->__('Select Tabs') . '"}'
+            . ');'
             . '$("'. $element->getId() .'")'
             . '.up(".entry-edit .fieldset .hor-scroll")'
             . '.setStyle({overflow: "visible"});'

@@ -27,11 +27,14 @@ class TM_EasyTabs_Block_Widget extends TM_EasyTabs_Block_Abstract implements Mag
 
     public function getHtmlId()
     {
-        $htmlId = 'easytabs-widget-';
-        foreach ($this->_getCollection() as $tab) {
-            $htmlId .= $tab->getId();
+        if (!$this->getData('html_id')) {
+            $htmlId = 'easytabs-widget-';
+            foreach ($this->_getCollection() as $tab) {
+                $htmlId .= $tab->getId();
+            }
+            $this->setData('html_id', $htmlId);
         }
-        return $htmlId;
+        return $this->getData('html_id');
     }
 
 }

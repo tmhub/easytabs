@@ -11,3 +11,4 @@ app/locale/nl_NL/TM_EasyTabs.csv                            app/locale/nl_NL/TM_
 app/locale/pt_PT/TM_EasyTabs.csv                            app/locale/pt_PT/TM_EasyTabs.csv
 skin/frontend/base/default/css/tm/easytabs.css              skin/frontend/base/default/css/tm/easytabs.css
 skin/frontend/base/default/js/tm/easytabs.js                skin/frontend/base/default/js/tm/easytabs.js
+skin/adminhtml/default/default/images/widget/easytabs__widget.gif  skin/adminhtml/default/default/images/widget/easytabs__widget.gif

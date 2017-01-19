@@ -43,6 +43,11 @@ class TM_EasyTabs_Block_Adminhtml_List_Grid extends Mage_Adminhtml_Block_Widget_
             'index'     => 'title',
         ));
 
+        $this->addColumn('alias', array(
+            'header'    => Mage::helper('easytabs')->__('Alias'),
+            'index'     => 'alias',
+        ));
+
         $this->addColumn('block', array(
             'header'    => Mage::helper('easytabs')->__('Block'),
             'align'     => 'left',

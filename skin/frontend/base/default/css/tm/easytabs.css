@@ -99,7 +99,7 @@
      * .easytabs-a-tab should be hidden.
      * See the easytabs.js~12: el.getStyle('display') !== 'none'
      */
-    .easytabs, .easytabs-a-tab { display: none; }
+    .std ul.easytabs, .easytabs, .easytabs-a-tab { display: none; }
     .easytabs-a-accordion { display: block; }
 
     #product_tabs_tags_tabbed_contents .input-box input { width: 200px; }

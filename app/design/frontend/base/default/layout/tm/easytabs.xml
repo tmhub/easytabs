@@ -16,6 +16,13 @@
     </default>
 
     <catalog_product_view>
+        <reference name="head">
+            <action method="addItem" ifconfig="tm_easytabs/general/enabled">
+                <type>skin_js</type>
+                <name>tm/easytabs/js/product.js</name>
+                <params>defer</params>
+            </action>
+        </reference>
         <reference name="product.info.additional">
             <block type="easytabs/product" name="product.info.tabs" as="info_tabs">
                 <action method="setTemplate" ifconfig="tm_easytabs/general/enabled">

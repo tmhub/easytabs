@@ -40,6 +40,7 @@
             ><?php echo $this->__($_tab['title']); ?></span>
             <div class="easytabs-content"
                 id="product_tabs_<?php echo $_tab['alias'] ?>_contents"
+                data-tab-alias="<?php echo $_tab['alias'] ?>"
                 style="display:none">
                 <?php echo $_tab['child_html']; ?>
                 </div>

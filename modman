@@ -9,6 +9,5 @@ app/locale/fr_FR/TM_EasyTabs.csv                            app/locale/fr_FR/TM_
 app/locale/it_IT/TM_EasyTabs.csv                            app/locale/it_IT/TM_EasyTabs.csv
 app/locale/nl_NL/TM_EasyTabs.csv                            app/locale/nl_NL/TM_EasyTabs.csv
 app/locale/pt_PT/TM_EasyTabs.csv                            app/locale/pt_PT/TM_EasyTabs.csv
-skin/frontend/base/default/css/tm/easytabs.css              skin/frontend/base/default/css/tm/easytabs.css
-skin/frontend/base/default/js/tm/easytabs.js                skin/frontend/base/default/js/tm/easytabs.js
+skin/frontend/base/default/tm/easytabs                      skin/frontend/base/default/tm/easytabs
 skin/adminhtml/default/default/images/widget/easytabs__widget.gif  skin/adminhtml/default/default/images/widget/easytabs__widget.gif

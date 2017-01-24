@@ -5,11 +5,11 @@
         <reference name="head">
             <action method="addItem" ifconfig="tm_easytabs/general/enabled">
                 <type>skin_css</type>
-                <name>css/tm/easytabs.css</name>
+                <name>tm/easytabs/css/styles.css</name>
             </action>
             <action method="addItem" ifconfig="tm_easytabs/general/enabled">
                 <type>skin_js</type>
-                <name>js/tm/easytabs.js</name>
+                <name>tm/easytabs/js/main.js</name>
                 <params>defer</params>
             </action>
         </reference>

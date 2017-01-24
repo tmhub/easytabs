@@ -1,7 +1,6 @@
 <?php
 
     $attributeCode = $this->getAttributeCode();
-    //Mage::getStoreConfig('easy_tabs/custom/customtabid');
     $product = $this->getProduct();
 
     if(!$attributeCode || !$product) {
@@ -16,7 +15,7 @@
         return;
     }
     $_helper = $this->helper('catalog/output');
-    ?>
+?>
     <div class="product-specs">
     <?php echo $_helper->productAttribute(
         $this->getProduct(), $content, $attributeCode

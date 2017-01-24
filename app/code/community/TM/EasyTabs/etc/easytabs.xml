@@ -122,25 +122,6 @@
             </unset>
         </parameters>
     </product_upsell>
-    <product_related type="easytabs/tab_product_related">
-        <name>Related Products</name>
-        <parameters>
-            <template>
-                <label>Template</label>
-                <type>text</type>
-                <visible>1</visible>
-                <required>1</required>
-                <value>tm/easytabs/tab/catalog/product/related.phtml</value>
-            </template>
-            <unset>
-                <label>Unset</label>
-                <type>text</type>
-                <visible>1</visible>
-                <required>0</required>
-                <value>right::catalog.product.related</value>
-            </unset>
-        </parameters>
-    </product_related>
     <product_tags type="easytabs/tab_product_tags">
         <name>Product Tags ({{eval code="getCount()"}})</name>
         <parameters>

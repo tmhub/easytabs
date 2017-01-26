@@ -2,6 +2,9 @@
 
 abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
 {
+
+    const PATTERN = '/{{.*?}}/si';
+
     protected $_tabs = array();
 
     protected function _getCollection()
@@ -152,15 +155,22 @@ abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
 
     public function getTabTitle($tab)
     {
-        if (!strstr($tab['title'], '{{') || !strstr($tab['title'], '}}')) {
-            return $tab['title'];
-        }
-        $scope = $this->getChild($tab['alias']);
-        /** @var TM_EasyTabs_Model_Template_Filter $processor **/
-        $processor = Mage::getModel('easytabs/template_filter')
-            ->setScope($scope);
+        $args = array();
+        if (strstr($tab['title'], '{{') && strstr($tab['title'], '}}')) {
+            $scope = $this->getChild($tab['alias']);
+            /** @var TM_EasyTabs_Model_Template_Filter $processor **/
+            $processor = Mage::getModel('easytabs/template_filter')
+                ->setScope($scope);
 
-        return $processor->filter($tab['title']);
+            preg_match_all(self::PATTERN, $tab['title'], $matches);
+            foreach ($matches[0] as $evalCode) {
+                $tab['title'] = str_replace($evalCode, '%s', $tab['title']);
+                $args[] = $processor->filter($evalCode);
+            }
+        }
+        array_unshift($args, $tab['title']);
+
+        return call_user_func_array(array($this, "__"), $args);
     }
 
     /**

@@ -7,7 +7,6 @@
             continue;
         }
         $_tab['child_html'] = $childHtml;
-        $_tab['title'] = $this->getTabTitle($_tab);
 
         $tabs[$_index] = $_tab;
     }
@@ -19,14 +18,14 @@
                 <li>
                     <?php if ($this->getUpdateUrlHash() == 1) : ?>
                         <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab">
-                            <?php echo $this->__($_tab['title']); ?>
+                            <?php echo $this->getTabTitle($_tab); ?>
                         </a>
                     <?php else : ?>
                         <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab">
                             <?php if ($this->getShowAnchor()) : ?>
                                 <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor-icon">#</a>
                             <?php endif ?>
-                            <?php echo $this->__($_tab['title']); ?>
+                            <?php echo $this->getTabTitle($_tab); ?>
                         </span>
                     <?php endif ?>
                 </li>
@@ -36,7 +35,7 @@
     <div class="padder easytabs-content-wrapper">
     <?php foreach ($tabs as $_index => $_tab) : ?>
         <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-accordion">
-            <?php echo $this->__($_tab['title']);?>
+            <?php echo $this->getTabTitle($_tab);?>
         </span>
         <div class="easytabs-content"
             id="product_tabs_<?php echo $_tab['alias'] ?>_contents"

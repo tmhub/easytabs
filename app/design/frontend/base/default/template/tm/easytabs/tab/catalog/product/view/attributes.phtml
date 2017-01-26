@@ -16,6 +16,7 @@
 <?php foreach ($_additional as $_data): ?>
     <?php $_groupId = isset($_data['group']) ? $_data['group']['id'] : 0; ?>
     <?php if ($_groupId != $_prevGroupId) : ?>
+        <?php echo ($_prevGroupId != -1) ? '</tbody></table>' : '';?>
         <?php $_prevGroupId = $_groupId; ?>
     <table class="data-table">
         <caption class="h2">

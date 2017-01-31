@@ -14,7 +14,7 @@ class TM_EasyTabs_Adminhtml_Easytabs_ProductController
     public function indexAction()
     {
         $this->_title($this->__('TM'))
-            ->_title($this->__('EasyTabs'))
+            ->_title($this->__('Easy Tabs'))
             ->_title($this->__('Product Tabs'));
         parent::indexAction();
     }

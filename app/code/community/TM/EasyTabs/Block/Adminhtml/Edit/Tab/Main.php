@@ -53,6 +53,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit_Tab_Main
             'label'    => Mage::helper('easytabs')->__('Alias'),
             'class'    => 'required-entry',
             'required' => true,
+            'class'    => 'validate-data',
             'name'     => 'alias',
         ));
 

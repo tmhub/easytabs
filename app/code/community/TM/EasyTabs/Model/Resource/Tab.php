@@ -25,10 +25,10 @@ class TM_EasyTabs_Model_Resource_Tab
 
 
     /**
-     * Process page data before deleting
+     * Process tab data before deleting
      *
      * @param Mage_Core_Model_Abstract $object
-     * @return Mage_Cms_Model_Resource_Page
+     * @return TM_EasyTabs_Model_Resource_Tab
      */
     protected function _beforeDelete(Mage_Core_Model_Abstract $object)
     {
@@ -104,12 +104,12 @@ class TM_EasyTabs_Model_Resource_Tab
      * @param int $id
      * @return array
      */
-    public function lookupStoreIds($dealId)
+    public function lookupStoreIds($tabId)
     {
         $adapter = $this->_getReadAdapter();
         $select  = $adapter->select()
             ->from($this->getTable('easytabs/store'), 'store_id')
-            ->where('tab_id = ?',(int)$dealId);
+            ->where('tab_id = ?', (int)$tabId);
         return $adapter->fetchCol($select);
     }
 

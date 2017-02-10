@@ -12,5 +12,14 @@
     ],
     "require": {
         "tm/core": "*"
+    },
+    "extra": {
+        "tm": {
+            "links": {
+                "download"  : "https://swissuplabs.com/product-tabs-magento-extension.html",
+                "docs"      : "http://docs.swissuplabs.com/m1/extensions/easytabs/",
+                "changelog" : "http://docs.swissuplabs.com/m1/extensions/easytabs/changelog/"
+            }
+        }
     }
 }

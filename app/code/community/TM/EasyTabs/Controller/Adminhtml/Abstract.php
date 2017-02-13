@@ -236,6 +236,7 @@ abstract class TM_EasyTabs_Controller_Adminhtml_Abstract
         }
         $this->_redirect('*/*/index');
     }
+
     public function massStatusAction()
     {
         $ids = $this->getRequest()->getParam('easytabs');
@@ -260,6 +261,13 @@ abstract class TM_EasyTabs_Controller_Adminhtml_Abstract
             }
         }
         $this->_redirect('*/*/index');
+    }
+
+    protected function _isAllowed()
+    {
+        $tabsType = $this->productTab ? 'product_tabs' : 'widget_tabs';
+        return Mage::getSingleton('admin/session')
+            ->isAllowed('templates_master/easytabs/' . $tabsType);
     }
 
 }

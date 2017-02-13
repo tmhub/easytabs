@@ -45,7 +45,16 @@
                             <easytabs module="easytabs">
                                 <title>Easy Tabs</title>
                                 <sort_order>540</sort_order>
-                                <action>adminhtml/easytabs_index/index</action>
+                                <children>
+                                    <product_tabs translate="title" module="easytabs">
+                                        <title>Product Tabs</title>
+                                        <sort_order>10</sort_order>
+                                    </product_tabs>
+                                    <widget_tabs translate="title" module="easytabs">
+                                        <title>Widget Tabs</title>
+                                        <sort_order>20</sort_order>
+                                    </widget_tabs>
+                                </children>
                             </easytabs>
                         </children>
                     </templates_master>

@@ -20,7 +20,7 @@
         <?php $_prevGroupId = $_groupId; ?>
     <table class="data-table">
         <caption class="h2">
-            <?php echo $this->getIsGrouped() ? $_data['group']['name'] : '';?>
+            <?php echo $this->getIsGrouped() ? $this->__($_data['group']['name']) : '';?>
         </caption>
         <col width="25%" />
         <col />

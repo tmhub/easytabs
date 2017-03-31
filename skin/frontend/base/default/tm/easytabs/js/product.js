@@ -3,10 +3,6 @@ document.observe('dom:loaded', function(){
     // listen click on write review link
     $$('.rating-links a, .no-rating a').each(function(el) {
         el.observe('click', function(event) {
-            var writeReview = (el.href.indexOf('#review-form') > -1);
-            if (!writeReview && !$('review-form')) {
-                return;
-            }
             var stopEventFlag = false;
             easytabs.each(function (tabs){
                 var reviewForm = tabs.container.down('#review-form');

@@ -4,20 +4,24 @@ document.observe('dom:loaded', function(){
     $$('.rating-links a, .no-rating a').each(function(el) {
         el.observe('click', function(event) {
             var writeReview = (el.href.indexOf('#review-form') > -1);
-            if (writeReview && !$('review-form')) {
+            if (!writeReview && !$('review-form')) {
                 return;
             }
-            event.stop();
+            var stopEventFlag = false;
             easytabs.each(function (tabs){
                 var reviewForm = tabs.container.down('#review-form');
                 if (!reviewForm) { return; }
                 var tabContent = reviewForm.up('.easytabs-content');
                 if (!tabContent) { return; }
                 var alias = tabContent.readAttribute('data-tab-alias');
+                stopEventFlag = true;
                 window.location.hash =
                     tabs.tpl.href.replace(tabs.tpl.tab, alias);
                 tabs.onclick(el, event, alias, true);
             });
+            if (stopEventFlag) {
+                event.stop();
+            }
         });
     });
 

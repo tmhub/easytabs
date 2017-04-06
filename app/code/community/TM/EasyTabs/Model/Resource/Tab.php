@@ -67,12 +67,20 @@ class TM_EasyTabs_Model_Resource_Tab
         if ($insert) {
             $data = array();
             foreach ($insert as $storeId) {
-                $data[] = array(
-                    'tab_id'  => (int) $object->getId(),
-                    'store_id' => (int) $storeId
-                );
+                try {
+                    $store = Mage::app()->getStore($storeId);
+                    $data[] = array(
+                        'tab_id'  => (int) $object->getId(),
+                        'store_id' => (int) $store->getId()
+                    );
+                }
+                catch (Exception $e) {
+                    // ignore id if there are no such store
+                }
             }
-            $this->_getWriteAdapter()->insertMultiple($table, $data);
+            if (empty($data)) {
+                $this->_getWriteAdapter()->insertMultiple($table, $data);
+            }
         }
 
         //Mark layout cache as invalidated

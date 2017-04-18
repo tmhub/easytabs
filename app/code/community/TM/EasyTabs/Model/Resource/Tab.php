@@ -78,7 +78,7 @@ class TM_EasyTabs_Model_Resource_Tab
                     // ignore id if there are no such store
                 }
             }
-            if (empty($data)) {
+            if (!empty($data)) {
                 $this->_getWriteAdapter()->insertMultiple($table, $data);
             }
         }

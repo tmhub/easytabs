@@ -1,6 +1,6 @@
 <?php
 
-class TM_EasyTabs_Model_Tab extends Mage_Core_Model_Abstract
+class TM_EasyTabs_Model_Tab extends Mage_Rule_Model_Abstract
 {
 
     const CACHE_TAG = 'easytabs_tab_';
@@ -12,6 +12,21 @@ class TM_EasyTabs_Model_Tab extends Mage_Core_Model_Abstract
     protected function _construct()
     {
         $this->_init('easytabs/tab');
+    }
+
+    /**
+     * Getter for rule actions collection instance
+     *
+     * @return Mage_Rule_Model_Action_Collection
+     */
+    public function getActionsInstance()
+    {
+        return Mage::getModel('rule/action_collection');
+    }
+
+    public function getConditionsInstance()
+    {
+        return Mage::getModel('catalogrule/rule_condition_combine');
     }
 
 }

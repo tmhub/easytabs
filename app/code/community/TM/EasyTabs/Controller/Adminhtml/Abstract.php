@@ -76,13 +76,19 @@ abstract class TM_EasyTabs_Controller_Adminhtml_Abstract
         // check if data sent
         if ($data = $this->getRequest()->getPost()) {
 
+            if (isset($data['rule']['conditions'])) {
+                $data['conditions'] = $data['rule']['conditions'];
+                unset($data['rule']);
+            }
+
             //init model and set data
             $model = Mage::getModel('easytabs/tab');
             if ($id = $this->getRequest()->getParam('id')) {
                 $model->load($id);
             }
 
-            $model->setData($data);
+            // $model->setData($data);
+            $model->loadPost($data);
             foreach ($data['parameters'] as $key => $value) {
                 $model->setData($key, $value);
             }

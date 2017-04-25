@@ -51,6 +51,10 @@
 
     <adminhtml_easytabs_product_edit>
         <update handle="editor"/>
+        <reference name="head">
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+        </reference>
         <reference name="js">
             <block type="core/template" template="catalog/wysiwyg/js.phtml" name="catalog.wysiwyg.js" />
         </reference>
@@ -60,9 +64,14 @@
         <reference name="left">
             <block type="easytabs/adminhtml_edit_tabs" name="easytabs_edit_tabs">
                 <block type="easytabs/adminhtml_edit_tab_main" name="easytabs_edit_tab_main" />
+                <block type="easytabs/adminhtml_edit_tab_conditions" name="easytabs_edit_tab_conditions" />
                 <action method="addTab">
                     <name>main_section</name>
                     <block>easytabs_edit_tab_main</block>
+                </action>
+                <action method="addTab">
+                    <name>conditions_section</name>
+                    <block>easytabs_edit_tab_conditions</block>
                 </action>
             </block>
         </reference>

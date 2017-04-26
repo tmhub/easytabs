@@ -19,7 +19,7 @@ class TM_EasyTabs_Model_Rule_Condition_Combine
             $conditions[1]['value'] = $this->getType();
         }
         // very bold assumption that $conditions[2] is product attributes
-        if (isset($conditions[2])) {
+        if (isset($conditions[2]) && !$this->getRule()->getProductTab()) {
             unset($conditions[2]);
         }
         return $conditions;

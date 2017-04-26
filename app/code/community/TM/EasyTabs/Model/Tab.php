@@ -26,7 +26,18 @@ class TM_EasyTabs_Model_Tab extends Mage_Rule_Model_Abstract
 
     public function getConditionsInstance()
     {
-        return Mage::getModel('catalogrule/rule_condition_combine');
+        return Mage::getModel('easytabs/rule_condition_combine');
+    }
+
+    public function validateConditions()
+    {
+        $result = true;
+        if ($this->getProductTab()) {
+            $product = Mage::registry('product');
+            $result = $this->getConditions()->validate($product);
+        }
+        return $result;
+
     }
 
 }

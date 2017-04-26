@@ -33,6 +33,9 @@ abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
         }
 
         foreach ($collection as $tab) {
+
+            if (!$tab->validateConditions()) continue;
+
             $this->addTab(
                 $tab->getAlias(),
                 $tab->getTitle(),

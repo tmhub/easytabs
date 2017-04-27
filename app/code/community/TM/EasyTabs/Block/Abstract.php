@@ -7,6 +7,8 @@ abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
 
     protected $_tabs = array();
 
+    protected $_objectToValidate = null;
+
     protected function _getCollection()
     {
         $collection = Mage::getModel('easytabs/tab')->getCollection();
@@ -34,7 +36,8 @@ abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
 
         foreach ($collection as $tab) {
 
-            if (!$tab->validateConditions()) continue;
+            if (!$tab->getConditions()->validate($this->getObjectToValidate()))
+                continue;
 
             $this->addTab(
                 $tab->getAlias(),
@@ -189,6 +192,25 @@ abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
     public function getHtmlId()
     {
         return 'easytabs';
+    }
+
+    /**
+     * get object to check tabs conditions
+     * @return [type] [description]
+     */
+    public function getObjectToValidate()
+    {
+        if ($this->_objectToValidate === null) {
+            if (Mage::registry('product')) {
+                $this->_objectToValidate = Mage::registry('product');
+            } else {
+                $this->_objectToValidate = new Varien_Object();
+            }
+            $this->_objectToValidate->setCustomerGroup(
+                Mage::getSingleton('customer/session')->getCustomerGroupId()
+            );
+        }
+        return $this->_objectToValidate;
     }
 
 }

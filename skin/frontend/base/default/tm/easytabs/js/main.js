@@ -68,8 +68,10 @@ EasyTabs.prototype = {
      * @return {String|false}   Activated tab of false if tab wasn't found
      */
     activate: function(tab, scroll, animate) {
-        var content = this.container
-            .down('#' + this.tpl.content.replace(this.tpl.tab, tab));
+        var tabContentId = this.tpl.content.replace(this.tpl.tab, tab);
+        tabContentId = tabContentId.replace(/\./g, '\\.'); // allow id with period
+
+        var content = this.container.down('#' + tabContentId);
         if (!content) {
             return false;
         }
@@ -138,8 +140,10 @@ EasyTabs.prototype = {
             this.activeTabs.splice(index, 1);
         }
 
-        var content = this.container
-            .down('#' + this.tpl.content.replace(this.tpl.tab, tab));
+        var tabContentId = this.tpl.content.replace(this.tpl.tab, tab);
+        tabContentId = tabContentId.replace(/\./g, '\\.'); // allow id with period
+
+        var content = this.container.down('#' + tabContentId);
         if (!content) {
             return false;
         }

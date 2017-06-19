@@ -26,6 +26,13 @@
     box-shadow: none;
     text-shadow: 0px 1px 1px rgba(255,255,255, 0.6);
 }
+
+.easytabs .tab-title {
+    margin-bottom: auto;
+    padding: inherit;
+    font-size: inherit;
+}
+
 .easytabs-a {
     display: block;
     padding: 9px 12px;

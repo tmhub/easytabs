@@ -28,8 +28,8 @@
 }
 
 .easytabs .tab-title {
-    margin-bottom: auto;
-    padding: inherit;
+    margin: 0;
+    padding: 0;
     font-size: inherit;
 }
 

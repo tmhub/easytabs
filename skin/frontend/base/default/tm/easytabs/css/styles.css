@@ -1,10 +1,9 @@
 .easytabs-wrapper { margin: 0 0 10px; }
 .std ul.easytabs, .easytabs {
-    display: table;
-    margin: 0;
+    display: inline-table;
+    margin: 0 0 0 -5px;
     padding: 0;
     border-spacing: 5px 0;
-    margin-left: -5px;
     position: relative;
     z-index: 6;
     /*width: 100%; box-sizing: border-box; -moz-box-sizing: border-box; */

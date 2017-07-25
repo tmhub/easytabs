@@ -38,7 +38,7 @@ EasyTabs.prototype = {
             this.activate(this.getTabByHref(href));
         }.bind(this));
 
-        if (!this.activeTabs.length) {
+        if (!this.activeTabs.length && !this.container.hasAttribute('data-collapsed')) {
             var first = this.container.down(this.config.tabs);
             if ('undefined' !== typeof first) {
                 this.activate(this.getTabByHref(first.href || first.readAttribute('data-href')));

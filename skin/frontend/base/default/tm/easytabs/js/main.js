@@ -186,7 +186,7 @@ EasyTabs.prototype = {
      */
     onclick: function(el, e, tab, scroll, animate) {
         var isAccordion = false,
-            accordionTrigger = $$('.easytabs-a-accordion').first();
+            accordionTrigger = this.container.down('.easytabs-a-accordion');
         if (accordionTrigger) {
             // accordion tabs are hidden for desktop
             isAccordion = (accordionTrigger.getStyle('display') !== 'none');

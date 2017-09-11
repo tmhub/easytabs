@@ -47,6 +47,7 @@ EasyTabs.prototype = {
 
         this.container.select(this.config.tabs).each(function(el ,i) {
             el.observe('click', this.onclick.bind(this, el));
+            el.addClassName('easytabs-inited');
 
             var id = $(el).getAttribute('data-href');
             if (!id) {
@@ -252,4 +253,25 @@ document.observe('dom:loaded', function(){
     $$('.easytabs-wrapper').each(function (container){
         window.easytabs.push(new EasyTabs(container));
     })
+    // initialize custom links
+    if (easytabs.length) {
+        var linkSelector = easytabs.first().config.tabs;
+        $$(linkSelector).each(function (customLink){
+            if (customLink.hasClassName('easytabs-inited')) {
+                return;
+            };
+            customLink.observe('click', function(event) {
+                var element = this;
+                easytabs.each(function (tabs){
+                    tab = tabs.getTabByHref(element.readAttribute('href'));
+                    if (tab) {
+                        tabs.onclick(element);
+                        event.stop();
+                        throw $break;
+                    }
+                });
+            });
+            customLink.addClassName('easytabs-inited');
+        });
+    };
 });

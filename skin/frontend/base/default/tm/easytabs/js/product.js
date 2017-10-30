@@ -13,7 +13,16 @@ document.observe('dom:loaded', function(){
                 stopEventFlag = true;
                 window.location.hash =
                     tabs.tpl.href.replace(tabs.tpl.tab, alias);
-                tabs.onclick(el, event, alias, true);
+                tabs.onclick(el, event, alias, false);
+                // scroll to form itself so customer could post review right away
+                Effect.ScrollTo(reviewForm.up('.form-add'), {
+                    duration: el.hasClassName('easytabs-animate')
+                        ? tabs.config.scrollSpeed
+                        : 0,
+                    offset: $$('.header-container[sticky_kit]').first()
+                        ? -$$('.header-container[sticky_kit]').first().getHeight()
+                        : 0
+                });
             });
             if (stopEventFlag) {
                 event.stop();

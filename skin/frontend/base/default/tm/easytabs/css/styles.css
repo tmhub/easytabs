@@ -1,6 +1,7 @@
 .easytabs-wrapper { margin: 0 0 10px; }
 .std ul.easytabs, .easytabs {
     display: inline-table;
+    vertical-align: top;
     margin: 0 0 0 -5px;
     padding: 0;
     border-spacing: 5px 0;

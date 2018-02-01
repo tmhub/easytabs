@@ -215,7 +215,7 @@ EasyTabs.prototype = {
      */
     getTabByHref: function(href) {
         var tab = href.match(this.tpl.href + '$');
-        if (!tab) {
+        if (!tab || this.isExpandedTabs()) {
             return false;
         }
         return tab[1];
@@ -245,6 +245,10 @@ EasyTabs.prototype = {
             this.counters[tab] = 0;
         }
         return this.counters[tab];
+    },
+
+    isExpandedTabs: function () {
+        return $(this.container).hasClassName('expanded');
     }
 };
 

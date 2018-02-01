@@ -102,6 +102,45 @@
 .easytabs-content .data-table caption { margin-top: 20px; }
 .easytabs-content .data-table:first-child caption { margin-top: 0; }
 
+.expanded .easytabs-ul-wrapper {
+    display: none;
+}
+
+.expanded .easytabs-a-accordion {
+    display: block;
+    font-size: 18px;
+    line-height: normal;
+}
+
+.expanded .easytabs-content-wrapper .tab-wrapper {
+    display: flex;
+}
+.expanded .easytabs-content-wrapper .tab-wrapper .easytabs-a-accordion {
+    flex: 1;
+    background: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    text-shadow: none;
+    cursor: auto;
+}
+.expanded .easytabs-content-wrapper .tab-wrapper .easytabs-content {
+    flex: 3;
+    display: block !important;
+    border-left: none;
+    border-right: none;
+}
+
+@media (max-width: 768px) {
+    .expanded .easytabs-content-wrapper .tab-wrapper {
+        display: block;
+    }
+
+    .expanded .easytabs-content-wrapper .tab-wrapper .easytabs-content {
+        border-top: none;
+    }
+}
+
 @media (max-width: 480px) {
     /*
      * .easytabs-a-tab should be hidden.

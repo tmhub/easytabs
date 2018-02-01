@@ -36,14 +36,16 @@
     </div>
     <div class="padder easytabs-content-wrapper">
     <?php foreach ($tabs as $_index => $_tab) : ?>
-        <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-accordion">
-            <?php echo $this->getTabTitle($_tab);?>
-        </span>
-        <div class="easytabs-content"
-            id="product_tabs_<?php echo $_tab['alias'] ?>_contents"
-            data-tab-alias="<?php echo $_tab['alias'] ?>"
-            style="display:none">
-            <?php echo $_tab['child_html']; ?>
+        <div class="tab-wrapper" data-tab="<?php echo $_tab['alias'] ?>">
+            <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-accordion">
+                <?php echo $this->getTabTitle($_tab);?>
+            </span>
+            <div class="easytabs-content"
+                id="product_tabs_<?php echo $_tab['alias'] ?>_contents"
+                data-tab-alias="<?php echo $_tab['alias'] ?>"
+                style="display:none">
+                <?php echo $_tab['child_html']; ?>
+            </div>
         </div>
     <?php endforeach; ?>
     </div>

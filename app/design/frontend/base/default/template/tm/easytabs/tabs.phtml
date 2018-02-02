@@ -18,7 +18,7 @@
                 <li>
                     <h2 class="tab-title" >
                         <?php if ($this->getUpdateUrlHash() == 1) : ?>
-                            <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab">
+                            <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab <?php echo $this->isExpandedLayout() ? 'easytabs-animate' : ''?>">
                                 <?php echo $this->getTabTitle($_tab); ?>
                             </a>
                         <?php else : ?>

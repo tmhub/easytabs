@@ -17,11 +17,14 @@ EasyTabs.prototype = {
         this.activeTabs = [];
         this.counters = {}; // Activity counters
 
+        var isActivateFirstTab = !this.isExpandedLayout()
+            && !this.container.hasAttribute('data-collapsed');
+
         if (this.container.hasAttribute("data-track-hash") && window.location.hash.length > 1) {
-            this.activate(this.getTabByHref(window.location.hash), true);
-            Event.observe(window, "load", function() {
-                this.activate(this.getTabByHref(window.location.hash), true);
-            }.bind(this));
+            if (this.activate(this.getTabByHref(window.location.hash), true)) {
+                // some tab already activated so do not activate first tab
+                isActivateFirstTab = false;
+            }
         }
 
         Event.observe(window, "hashchange", function() {
@@ -38,7 +41,7 @@ EasyTabs.prototype = {
             this.activate(this.getTabByHref(href));
         }.bind(this));
 
-        if (!this.activeTabs.length && !this.container.hasAttribute('data-collapsed')) {
+        if (isActivateFirstTab) {
             var first = this.container.down(this.config.tabs);
             if ('undefined' !== typeof first) {
                 this.activate(this.getTabByHref(first.href || first.readAttribute('data-href')));
@@ -83,13 +86,29 @@ EasyTabs.prototype = {
             'easytabs': this
         });
 
-        this._updateCounter(tab);
-        content.addClassName('active');
-        content.show();
-
         if (-1 === this.activeTabs.indexOf(tab)) {
             this.activeTabs.push(tab);
         }
+
+        if (this.isExpandedLayout()) {
+            this.scrollToTab(tab, content, animate);
+        } else {
+            this.openTab(tab, content, scroll, animate);
+        }
+
+        document.fire('easytabs:afterActivate', {
+            'tab'     : tab,
+            'content' : content,
+            'easytabs': this
+        });
+
+        return tab;
+    },
+
+    openTab: function (tab, content, scroll, animate) {
+        this._updateCounter(tab);
+        content.addClassName('active');
+        content.show();
 
         var href = this.tpl.href.replace(this.tpl.tab, tab),
             tabs = this.container.select(
@@ -114,14 +133,14 @@ EasyTabs.prototype = {
                 });
             }
         }
+    },
 
-        document.fire('easytabs:afterActivate', {
-            'tab'     : tab,
-            'content' : content,
-            'easytabs': this
+    scrollToTab: function (tab, content, animate) {
+        // debugger;
+        Effect.ScrollTo(content, {
+            duration: animate ? this.config.scrollSpeed : 0,
+            offset: this.config.scrollOffset
         });
-
-        return tab;
     },
 
     /**
@@ -129,6 +148,7 @@ EasyTabs.prototype = {
      * @return {String|false}   Last deactivated tab or false if tab not found
      */
     deactivate: function(tab) {
+        debugger;
         if (!tab) {
             while (this.activeTabs.length) {
                 this.deactivate(this.activeTabs[0]);
@@ -139,6 +159,11 @@ EasyTabs.prototype = {
         var index = this.activeTabs.indexOf(tab);
         if (index > -1) {
             this.activeTabs.splice(index, 1);
+        }
+
+        if (this.isExpandedLayout()) {
+            // do nothing if expanded layout enabled
+            return tab;
         }
 
         var tabContentId = this.tpl.content.replace(this.tpl.tab, tab);
@@ -196,6 +221,7 @@ EasyTabs.prototype = {
         tab    = tab || this.getTabByHref(el.href || el.readAttribute('data-href'));
         scroll = scroll || el.hasClassName('easytabs-scroll');
         animate = animate || el.hasClassName('easytabs-animate');
+
         if (isAccordion) {
             if (el.hasClassName('active')) {
                 this.deactivate(tab);
@@ -247,7 +273,7 @@ EasyTabs.prototype = {
         return this.counters[tab];
     },
 
-    isExpandedTabs: function () {
+    isExpandedLayout: function () {
         return $(this.container).hasClassName('expanded');
     }
 };

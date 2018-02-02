@@ -213,4 +213,13 @@ abstract class TM_EasyTabs_Block_Abstract extends Mage_Core_Block_Template
         return $this->_objectToValidate;
     }
 
+    /**
+     * Check is tabs layout == expanded
+     *
+     * @return boolean
+     */
+    public function isExpandedLayout()
+    {
+        return $this->getTabsLayout() == TM_EasyTabs_Model_Config_Layout::LAYOUT_EXPANDED;
+    }
 }

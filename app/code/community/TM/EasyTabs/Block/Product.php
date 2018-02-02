@@ -23,4 +23,14 @@ class TM_EasyTabs_Block_Product extends TM_EasyTabs_Block_Abstract
         return 'easytabs-product';
     }
 
+    /**
+     * Get product tabs layout name
+     *
+     * @return string
+     */
+    public function getTabsLayout()
+    {
+        return Mage::getStoreConfig('tm_easytabs/general/tabs_layout');
+    }
+
 }

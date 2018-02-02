@@ -122,7 +122,6 @@
 }
 .easytabs-wrapper.expanded .tab-wrapper .easytabs-content {
     flex: 3;
-    display: block !important;
     border-left: none;
     border-right: none;
     padding-top: 20px;

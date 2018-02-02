@@ -215,7 +215,7 @@ EasyTabs.prototype = {
      */
     getTabByHref: function(href) {
         var tab = href.match(this.tpl.href + '$');
-        if (!tab || this.isExpandedTabs()) {
+        if (!tab) {
             return false;
         }
         return tab[1];

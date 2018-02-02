@@ -37,7 +37,7 @@
     <div class="padder easytabs-content-wrapper">
     <?php foreach ($tabs as $_index => $_tab) : ?>
         <div class="tab-wrapper" data-tab="<?php echo $_tab['alias'] ?>">
-            <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-accordion <?php echo $this->isExpandedLayout() ? 'h2' : ''?>">
+            <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="<?php echo $this->isExpandedLayout() ? 'h2' : 'easytabs-anchor easytabs-a'?>  easytabs-a-accordion">
                 <?php echo $this->getTabTitle($_tab);?>
             </span>
             <div class="easytabs-content"

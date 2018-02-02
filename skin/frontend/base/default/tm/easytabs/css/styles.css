@@ -108,16 +108,12 @@
 .easytabs-wrapper.expanded .tab-wrapper { display: flex; }
 .easytabs-wrapper.expanded .tab-wrapper .easytabs-a-accordion {
     flex: 1;
-    background: none;
     border-left: none;
     border-right: none;
     box-shadow: none;
-    color: #000;
-    cursor: auto;
     display: block;
     padding-top: 20px;
     padding-bottom: 20px;
-    text-shadow: none;
     margin: -1px 0 0;
 }
 .easytabs-wrapper.expanded .tab-wrapper .easytabs-content {

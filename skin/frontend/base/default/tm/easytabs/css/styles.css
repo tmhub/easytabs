@@ -1,4 +1,4 @@
-.easytabs-wrapper { margin: 0 0 10px; }
+.easytabs-wrapper { margin: 0 0 20px; }
 .std ul.easytabs, .easytabs {
     display: inline-table;
     vertical-align: top;
@@ -54,9 +54,11 @@
     padding: 7px 8px;
     border: 1px solid #ccc;
     position: relative;
-    z-index: 5;
     margin-top: -1px;
     background: #fbfbfb;
+}
+.easytabs-wrapper:not(.expanded) .easytabs-content {
+    z-index: 5;
 }
 .easytabs-a-accordion { margin-top: -1px; background: #f1f1f1; display: none; padding: 12px; }
 .easytabs-a-accordion.active { box-shadow: none; color: #48494a; }
@@ -102,43 +104,34 @@
 .easytabs-content .data-table caption { margin-top: 20px; }
 .easytabs-content .data-table:first-child caption { margin-top: 0; }
 
-.expanded .easytabs-ul-wrapper {
-    display: none;
-}
-
-.expanded .easytabs-a-accordion {
-    display: block;
-    font-size: 18px;
-    line-height: normal;
-}
-
-.expanded .easytabs-content-wrapper .tab-wrapper {
-    display: flex;
-}
-.expanded .easytabs-content-wrapper .tab-wrapper .easytabs-a-accordion {
+.easytabs-wrapper.expanded .easytabs-ul-wrapper { display: none; }
+.easytabs-wrapper.expanded .tab-wrapper { display: flex; }
+.easytabs-wrapper.expanded .tab-wrapper .easytabs-a-accordion {
     flex: 1;
     background: none;
     border-left: none;
     border-right: none;
     box-shadow: none;
-    text-shadow: none;
+    color: #000;
     cursor: auto;
+    display: block;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-shadow: none;
+    margin: -1px 0 0;
 }
-.expanded .easytabs-content-wrapper .tab-wrapper .easytabs-content {
+.easytabs-wrapper.expanded .tab-wrapper .easytabs-content {
     flex: 3;
     display: block !important;
     border-left: none;
     border-right: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 @media (max-width: 768px) {
-    .expanded .easytabs-content-wrapper .tab-wrapper {
-        display: block;
-    }
-
-    .expanded .easytabs-content-wrapper .tab-wrapper .easytabs-content {
-        border-top: none;
-    }
+    .easytabs-wrapper.expanded .tab-wrapper { display: block; }
+    .easytabs-wrapper.expanded .tab-wrapper .easytabs-content { border-top: none; padding-top: 0; }
 }
 
 @media (max-width: 480px) {

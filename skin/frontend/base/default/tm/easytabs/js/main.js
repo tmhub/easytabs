@@ -64,6 +64,11 @@ EasyTabs.prototype = {
                 }
             });
         }.bind(this));
+
+        // appply sticky tabs
+        if (this.container.hasAttribute('data-sticky-tabs')) {
+            this.stickTabsHeader();
+        }
     },
 
     /**
@@ -90,10 +95,15 @@ EasyTabs.prototype = {
             this.activeTabs.push(tab);
         }
 
-        if (this.isExpandedLayout()) {
+        this.markTabAsActive(tab);
+        if (!this.isExpandedLayout()) {
+            this.openTab(tab, content);
+            if (this.isTabsHeaderSticked()) {
+                this.scrollToTab(tab, content, animate);
+            }
+        }
+        if (scroll) {
             this.scrollToTab(tab, content, animate);
-        } else {
-            this.openTab(tab, content, scroll, animate);
         }
 
         document.fire('easytabs:afterActivate', {
@@ -105,38 +115,14 @@ EasyTabs.prototype = {
         return tab;
     },
 
-    openTab: function (tab, content, scroll, animate) {
+    openTab: function (tab, content) {
         this._updateCounter(tab);
         content.addClassName('active');
         content.show();
-
-        var href = this.tpl.href.replace(this.tpl.tab, tab),
-            tabs = this.container.select(
-                this.config.tabs + '[href="' + href + '"]',
-                this.config.tabs + '[data-href="' + href + '"]'
-            );
-
-        tabs.each(function(a) {
-            a.addClassName('active');
-            var parentLi = a.up('li');
-            parentLi && parentLi.addClassName('active');
-        });
-
-        if (scroll) {
-            var visibleTab = tabs.detect(function(el) {
-                return el.getStyle('display') !== 'none';
-            });
-            if (visibleTab) {
-                Effect.ScrollTo(visibleTab, {
-                    duration: animate ? this.config.scrollSpeed : 0,
-                    offset: this.config.scrollOffset
-                });
-            }
-        }
+        if (this.container.hasClassName()) {}
     },
 
     scrollToTab: function (tab, content, animate) {
-        // debugger;
         Effect.ScrollTo(content, {
             duration: animate ? this.config.scrollSpeed : 0,
             offset: this.config.scrollOffset
@@ -148,7 +134,6 @@ EasyTabs.prototype = {
      * @return {String|false}   Last deactivated tab or false if tab not found
      */
     deactivate: function(tab) {
-        debugger;
         if (!tab) {
             while (this.activeTabs.length) {
                 this.deactivate(this.activeTabs[0]);
@@ -159,11 +144,6 @@ EasyTabs.prototype = {
         var index = this.activeTabs.indexOf(tab);
         if (index > -1) {
             this.activeTabs.splice(index, 1);
-        }
-
-        if (this.isExpandedLayout()) {
-            // do nothing if expanded layout enabled
-            return tab;
         }
 
         var tabContentId = this.tpl.content.replace(this.tpl.tab, tab);
@@ -180,8 +160,10 @@ EasyTabs.prototype = {
             'easytabs': this
         });
 
-        content.removeClassName('active');
-        content.hide();
+        if (!this.isExpandedLayout()) {
+            content.removeClassName('active');
+            content.hide();
+        }
 
         var href = this.tpl.href.replace(this.tpl.tab, tab),
             tabs = this.container.select(
@@ -213,13 +195,13 @@ EasyTabs.prototype = {
     onclick: function(el, e, tab, scroll, animate) {
         var isAccordion = false,
             accordionTrigger = this.container.down('.easytabs-a-accordion');
-        if (accordionTrigger) {
+        if (accordionTrigger && !this.isExpandedLayout()) {
             // accordion tabs are hidden for desktop
             isAccordion = (accordionTrigger.getStyle('display') !== 'none');
         }
 
         tab    = tab || this.getTabByHref(el.href || el.readAttribute('data-href'));
-        scroll = scroll || el.hasClassName('easytabs-scroll');
+        scroll = scroll || el.hasClassName('easytabs-scroll') || this.isExpandedLayout();
         animate = animate || el.hasClassName('easytabs-animate');
 
         if (isAccordion) {
@@ -273,8 +255,92 @@ EasyTabs.prototype = {
         return this.counters[tab];
     },
 
+    /**
+     * Check is tabs with expanded layout
+     *
+     * @return {Boolean}
+     */
     isExpandedLayout: function () {
         return $(this.container).hasClassName('expanded');
+    },
+
+    /**
+     * Check is tabs header sticked at the moment
+     *
+     * @return {Boolean}
+     */
+    isTabsHeaderSticked: function () {
+        var header = this.container.down('.easytabs-ul-wrapper');
+        return header ? header.hasClassName('is_stuck') : false;
+    },
+
+    /**
+     * Stick tabs header
+     *
+     * @return void
+     */
+    stickTabsHeader: function () {
+        var el = this.container.down('.easytabs-ul-wrapper');
+        var sticky = new StickInParent({parent: this.container });
+        this.config.scrollOffset = -el.getDimensions().height;
+        sticky.stick(el);
+        if (this.isExpandedLayout()) {
+            Event.observe(
+                window,
+                'scroll',
+                this._debounce(this.activateTabAfterScroll.bind(this), 50, false)
+            );
+        }
+    },
+
+    /**
+     * Find active tab after scrolling
+     *
+     * @return void
+     */
+    activateTabAfterScroll: function () {
+        var topScrollOffset = document.viewport.getScrollOffsets().top,
+            self = this,
+            maxNegative = -99999999,
+            tabAlias = '';
+        this.container.select('.tab-wrapper').each(function (el) {
+            var distance = $(el).cumulativeOffset().top - topScrollOffset + self.config.scrollOffset;
+            if (distance < 0 && distance >= maxNegative) {
+                tabAlias = $(el).readAttribute('data-tab');
+            }
+        });
+        if (tabAlias) {
+            this.deactivate();
+            this.activate(tabAlias, false, false);
+        }
+    },
+
+    _debounce: function (func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            var later = function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    },
+
+    markTabAsActive: function (tab) {
+        var href = this.tpl.href.replace(this.tpl.tab, tab),
+            tabs = this.container.select(
+                this.config.tabs + '[href="' + href + '"]',
+                this.config.tabs + '[data-href="' + href + '"]'
+            );
+        tabs.each(function(a) {
+            a.addClassName('active');
+            var parentLi = a.up('li');
+            parentLi && parentLi.addClassName('active');
+        });
     }
 };
 

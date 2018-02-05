@@ -33,4 +33,9 @@ class TM_EasyTabs_Block_Product extends TM_EasyTabs_Block_Abstract
         return Mage::getStoreConfig('tm_easytabs/general/tabs_layout');
     }
 
+    public function getStickyTabs()
+    {
+        return Mage::getStoreConfigFlag('tm_easytabs/general/sticky_tabs');
+    }
+
 }

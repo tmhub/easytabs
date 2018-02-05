@@ -104,7 +104,11 @@
 .easytabs-content .data-table caption { margin-top: 20px; }
 .easytabs-content .data-table:first-child caption { margin-top: 0; }
 
-.easytabs-wrapper.expanded .easytabs-ul-wrapper { display: none; }
+.easytabs-wrapper .easytabs-ul-wrapper.is_stuck { z-index: 11; background: #eaeaea; }
+.easytabs-wrapper .easytabs-ul-wrapper.is_stuck .easytabs li { background: none; border: none; box-shadow: none; }
+
+.easytabs-wrapper.expanded .easytabs-ul-wrapper { visibility: hidden; }
+.easytabs-wrapper.expanded .easytabs-ul-wrapper.is_stuck { visibility: visible; }
 .easytabs-wrapper.expanded .tab-wrapper { display: flex; }
 .easytabs-wrapper.expanded .tab-wrapper .easytabs-a-accordion {
     flex: 1;

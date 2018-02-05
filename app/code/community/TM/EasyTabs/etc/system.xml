@@ -50,6 +50,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </tabs_layout>
+                        <sticky_tabs translate="label">
+                            <label>Stick tabs header on scroll</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sticky_tabs>
                         <group_attributes translate="label">
                             <label>Group attributes on "Additional Information" tab</label>
                             <frontend_type>select</frontend_type>

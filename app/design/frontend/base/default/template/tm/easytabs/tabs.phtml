@@ -11,7 +11,7 @@
         $tabs[$_index] = $_tab;
     }
 ?>
-<div class="easytabs-wrapper <?php echo $this->getTabsLayout(); ?>" id="<?php echo $this->getHtmlId();?>" <?php echo $this->getUpdateUrlHash() ? 'data-track-hash' : ''; ?> <?php echo $this->getInitiallyCollapsed() ? 'data-collapsed' : ''; ?>>
+<div class="easytabs-wrapper <?php echo $this->getTabsLayout(); ?>" id="<?php echo $this->getHtmlId();?>" <?php echo $this->getUpdateUrlHash() ? 'data-track-hash' : ''; ?> <?php echo $this->getInitiallyCollapsed() ? 'data-collapsed' : ''; ?> <?php echo $this->getStickyTabs() ? 'data-sticky-tabs' : ''; ?>>
     <div class="easytabs-ul-wrapper">
         <ul class="easytabs">
             <?php foreach ($tabs as $_index => $_tab) : ?>

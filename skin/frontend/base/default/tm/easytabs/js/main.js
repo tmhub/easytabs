@@ -280,10 +280,24 @@ EasyTabs.prototype = {
      * @return void
      */
     stickTabsHeader: function () {
-        var el = this.container.down('.easytabs-ul-wrapper');
-        var sticky = new StickInParent({parent: this.container });
-        this.config.scrollOffset = -el.getDimensions().height;
-        sticky.stick(el);
+        var tabsHeader = this.container.down('.easytabs-ul-wrapper'),
+            tabsContent = this.container.down('.easytabs-content-wrapper'),
+            stickyOptins = {
+                offset_top: this.getStickyTabsOffset(),
+                parent: this.container
+            };
+        // update tabs scroll offset when sticky tabs header enabled
+        this.config.scrollOffset = -tabsHeader.getDimensions().height - this.getStickyTabsOffset();
+        if (this.isExpandedLayout()) {
+            // MAGIC FOR EXPANDED LAYOUT
+            // hide empty space of ul-wrapper becuase it has 'visibility: hidden'
+            tabsHeader.setStyle({'margin-top': -tabsHeader.getDimensions().height + 'px'});
+            stickyOptins.offset_top += tabsHeader.getDimensions().height;
+        }
+        // initialize sticky
+        var sticky = new StickInParent(stickyOptins);
+        sticky.stick(tabsHeader);
+        // listen scroll to activate tab
         if (this.isExpandedLayout()) {
             Event.observe(
                 window,
@@ -305,7 +319,7 @@ EasyTabs.prototype = {
             tabAlias = '';
         this.container.select('.tab-wrapper').each(function (el) {
             var distance = $(el).cumulativeOffset().top - topScrollOffset + self.config.scrollOffset;
-            if (distance < 0 && distance >= maxNegative) {
+            if (distance < 5 && distance >= maxNegative) {
                 tabAlias = $(el).readAttribute('data-tab');
             }
         });
@@ -341,6 +355,11 @@ EasyTabs.prototype = {
             var parentLi = a.up('li');
             parentLi && parentLi.addClassName('active');
         });
+    },
+
+    getStickyTabsOffset: function () {
+        var themeStickyHeader = $$('.header-container[sticky_kit], .header-content[sticky_kit]').first();
+        return themeStickyHeader ? themeStickyHeader.getHeight(): 0
     }
 };
 

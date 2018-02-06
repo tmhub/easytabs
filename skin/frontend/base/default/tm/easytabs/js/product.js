@@ -15,15 +15,11 @@ document.observe('dom:loaded', function(){
                     tabs.tpl.href.replace(tabs.tpl.tab, alias);
                 tabs.onclick(el, event, alias, false);
                 // scroll to form itself so customer could post review right away
-                var stickyHeader = $$('.header-container[sticky_kit]').first()
-                Effect.ScrollTo(reviewForm.up('.form-add'), {
-                    duration: el.hasClassName('easytabs-animate')
-                        ? tabs.config.scrollSpeed
-                        : 0,
-                    offset: stickyHeader
-                        ? -stickyHeader.getHeight() + tabs.config.scrollOffset
-                        : tabs.config.scrollOffset
-                });
+                tabs.scrollToTab(
+                    alias,
+                    reviewForm.up('.form-add'),
+                    el.hasClassName('easytabs-animate')
+                );
             });
             if (stopEventFlag) {
                 event.stop();

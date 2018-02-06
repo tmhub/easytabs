@@ -12,13 +12,14 @@
     }
 ?>
 <div class="easytabs-wrapper <?php echo $this->getTabsLayout(); ?>" id="<?php echo $this->getHtmlId();?>" <?php echo $this->getUpdateUrlHash() ? 'data-track-hash' : ''; ?> <?php echo $this->getInitiallyCollapsed() ? 'data-collapsed' : ''; ?> <?php echo $this->getStickyTabs() ? 'data-sticky-tabs' : ''; ?>>
+    <?php if (!$this->isExpandedLayout() || $this->getStickyTabs()): ?>
     <div class="easytabs-ul-wrapper">
         <ul class="easytabs">
             <?php foreach ($tabs as $_index => $_tab) : ?>
                 <li>
                     <h2 class="tab-title" >
                         <?php if ($this->getUpdateUrlHash() == 1) : ?>
-                            <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab <?php echo $this->isExpandedLayout() ? 'easytabs-animate' : ''?>">
+                            <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab <?php echo $this->isExpandedLayout() ? 'easytabs-animate easytabs-scroll' : ''?>">
                                 <?php echo $this->getTabTitle($_tab); ?>
                             </a>
                         <?php else : ?>
@@ -34,10 +35,11 @@
             <?php endforeach; ?>
         </ul>
     </div>
+    <?php endif ?>
     <div class="padder easytabs-content-wrapper">
     <?php foreach ($tabs as $_index => $_tab) : ?>
         <div class="tab-wrapper" data-tab="<?php echo $_tab['alias'] ?>">
-            <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="<?php echo $this->isExpandedLayout() ? 'h2' : 'easytabs-anchor easytabs-a'?>  easytabs-a-accordion">
+            <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="<?php echo $this->isExpandedLayout() ? 'h2 easytabs-animate easytabs-scroll' : ' easytabs-a-accordion easytabs-a'?> easytabs-anchor">
                 <?php echo $this->getTabTitle($_tab);?>
             </span>
             <div class="easytabs-content"

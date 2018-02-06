@@ -109,24 +109,18 @@
 
 .easytabs-wrapper.expanded .easytabs-ul-wrapper { visibility: hidden; }
 .easytabs-wrapper.expanded .easytabs-ul-wrapper.is_stuck { visibility: visible; }
-.easytabs-wrapper.expanded .tab-wrapper { display: flex; }
-.easytabs-wrapper.expanded .tab-wrapper .easytabs-a-accordion {
-    flex: 1;
-    border-left: none;
-    border-right: none;
-    box-shadow: none;
-    display: block;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin: -1px 0 0;
-}
+.easytabs-wrapper.expanded .tab-wrapper { display: flex; border-top: 1px solid #ccc;}
+.easytabs-wrapper.expanded .tab-wrapper:last-child { border-bottom: 1px solid #ccc;}
+.easytabs-wrapper.expanded .tab-wrapper .easytabs-anchor,
 .easytabs-wrapper.expanded .tab-wrapper .easytabs-content {
-    flex: 3;
-    border-left: none;
-    border-right: none;
+    flex: 1;
+    display: block;
+    border: none;
     padding-top: 20px;
     padding-bottom: 20px;
+    margin-top: 0;
 }
+.easytabs-wrapper.expanded .tab-wrapper .easytabs-content { flex: 3; }
 
 @media (max-width: 768px) {
     .easytabs-wrapper.expanded .tab-wrapper { display: block; }

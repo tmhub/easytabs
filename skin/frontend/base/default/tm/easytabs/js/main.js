@@ -65,9 +65,13 @@ EasyTabs.prototype = {
             });
         }.bind(this));
 
-        // appply sticky tabs
+        var headerHeight = this.getThemeStickyHeaderHeight();
         if (this.container.hasAttribute('data-sticky-tabs')) {
+            this.config.scrollOffset = -headerHeight;
+            // appply sticky tabs
             this.stickTabsHeader();
+        } else {
+            this.config.scrollOffset -= headerHeight;
         }
     },
 
@@ -77,10 +81,7 @@ EasyTabs.prototype = {
      * @return {String|false}   Activated tab of false if tab wasn't found
      */
     activate: function(tab, scroll, animate) {
-        var tabContentId = this.tpl.content.replace(this.tpl.tab, tab);
-        tabContentId = tabContentId.replace(/\./g, '\\.'); // allow id with period
-
-        var content = this.container.down('#' + tabContentId);
+        var content = this.getTabContent(tab);
         if (!content) {
             return false;
         }
@@ -95,7 +96,11 @@ EasyTabs.prototype = {
             this.activeTabs.push(tab);
         }
 
-        this.markTabAsActive(tab);
+        this.getTabs(tab).each(function(a) {
+            a.addClassName('active');
+            var parentLi = a.up('li');
+            parentLi && parentLi.addClassName('active');
+        });
         if (!this.isExpandedLayout()) {
             this.openTab(tab, content);
             if (this.isTabsHeaderSticked()) {
@@ -146,10 +151,7 @@ EasyTabs.prototype = {
             this.activeTabs.splice(index, 1);
         }
 
-        var tabContentId = this.tpl.content.replace(this.tpl.tab, tab);
-        tabContentId = tabContentId.replace(/\./g, '\\.'); // allow id with period
-
-        var content = this.container.down('#' + tabContentId);
+        var content = this.getTabContent(tab);
         if (!content) {
             return false;
         }
@@ -165,13 +167,7 @@ EasyTabs.prototype = {
             content.hide();
         }
 
-        var href = this.tpl.href.replace(this.tpl.tab, tab),
-            tabs = this.container.select(
-                this.config.tabs + '[href="' + href + '"]',
-                this.config.tabs + '[data-href="' + href + '"]'
-            );
-
-        tabs.each(function(a) {
+        this.getTabs(tab).each(function(a) {
             a.removeClassName('active');
             var parentLi = a.up('li');
             parentLi && parentLi.removeClassName('active');
@@ -195,13 +191,13 @@ EasyTabs.prototype = {
     onclick: function(el, e, tab, scroll, animate) {
         var isAccordion = false,
             accordionTrigger = this.container.down('.easytabs-a-accordion');
-        if (accordionTrigger && !this.isExpandedLayout()) {
+        if (accordionTrigger) {
             // accordion tabs are hidden for desktop
             isAccordion = (accordionTrigger.getStyle('display') !== 'none');
         }
 
         tab    = tab || this.getTabByHref(el.href || el.readAttribute('data-href'));
-        scroll = scroll || el.hasClassName('easytabs-scroll') || this.isExpandedLayout();
+        scroll = scroll || el.hasClassName('easytabs-scroll');
         animate = animate || el.hasClassName('easytabs-animate');
 
         if (isAccordion) {
@@ -283,11 +279,11 @@ EasyTabs.prototype = {
         var tabsHeader = this.container.down('.easytabs-ul-wrapper'),
             tabsContent = this.container.down('.easytabs-content-wrapper'),
             stickyOptins = {
-                offset_top: this.getStickyTabsOffset(),
+                offset_top: this.getThemeStickyHeaderHeight(),
                 parent: this.container
             };
         // update tabs scroll offset when sticky tabs header enabled
-        this.config.scrollOffset = -tabsHeader.getDimensions().height - this.getStickyTabsOffset();
+        this.config.scrollOffset -= tabsHeader.getDimensions().height;
         if (this.isExpandedLayout()) {
             // MAGIC FOR EXPANDED LAYOUT
             // hide empty space of ul-wrapper becuase it has 'visibility: hidden'
@@ -344,22 +340,29 @@ EasyTabs.prototype = {
         };
     },
 
-    markTabAsActive: function (tab) {
-        var href = this.tpl.href.replace(this.tpl.tab, tab),
-            tabs = this.container.select(
-                this.config.tabs + '[href="' + href + '"]',
-                this.config.tabs + '[data-href="' + href + '"]'
-            );
-        tabs.each(function(a) {
-            a.addClassName('active');
-            var parentLi = a.up('li');
-            parentLi && parentLi.addClassName('active');
-        });
+    getTabs: function (alias) {
+        var href = this.tpl.href.replace(this.tpl.tab, alias);
+        return this.container.select(
+            this.config.tabs + '[href="' + href + '"]',
+            this.config.tabs + '[data-href="' + href + '"]'
+        );
     },
 
-    getStickyTabsOffset: function () {
-        var themeStickyHeader = $$('.header-container[sticky_kit], .header-content[sticky_kit]').first();
-        return themeStickyHeader ? themeStickyHeader.getHeight(): 0
+    getTabContent: function (alias) {
+        var tabContentId = this.tpl.content.replace(this.tpl.tab, alias);
+        tabContentId = tabContentId.replace(/\./g, '\\.'); // allow id with period
+        return this.container.down('#' + tabContentId);
+    },
+
+    getThemeStickyHeaderHeight: function () {
+        var stickyHeaderSelectors = [
+                '.header-container[sticky_kit]', // flat sticky header
+                '.header-content[sticky_kit]' // pure 2 sticky header
+            ],
+            themeStickyHeader = $$(stickyHeaderSelectors.join(',')).first();
+        return themeStickyHeader
+            ? themeStickyHeader.getHeight()
+            : 0;
     }
 };
 

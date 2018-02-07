@@ -10,6 +10,8 @@
 
         $tabs[$_index] = $_tab;
     }
+    $tabClasses = 'easytabs-anchor easytabs-a easytabs-a-tab'
+        . ($this->isExpandedLayout() ? ' easytabs-animate easytabs-scroll' : '');
 ?>
 <div class="easytabs-wrapper <?php echo $this->getTabsLayout(); ?>" id="<?php echo $this->getHtmlId();?>" <?php echo $this->getUpdateUrlHash() ? 'data-track-hash' : ''; ?> <?php echo $this->getInitiallyCollapsed() ? 'data-collapsed' : ''; ?> <?php echo $this->getStickyTabs() ? 'data-sticky-tabs' : ''; ?>>
     <?php if (!$this->isExpandedLayout() || $this->getStickyTabs()): ?>
@@ -19,11 +21,11 @@
                 <li>
                     <h2 class="tab-title" >
                         <?php if ($this->getUpdateUrlHash() == 1) : ?>
-                            <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab <?php echo $this->isExpandedLayout() ? 'easytabs-animate easytabs-scroll' : ''?>">
+                            <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="<?php echo $tabClasses; ?>">
                                 <?php echo $this->getTabTitle($_tab); ?>
                             </a>
                         <?php else : ?>
-                            <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor easytabs-a easytabs-a-tab">
+                            <span data-href="#product_tabs_<?php echo $_tab['alias'] ?>" class="<?php echo $tabClasses; ?>">
                                 <?php if ($this->getShowAnchor()) : ?>
                                     <a href="#product_tabs_<?php echo $_tab['alias'] ?>" class="easytabs-anchor-icon">#</a>
                                 <?php endif ?>

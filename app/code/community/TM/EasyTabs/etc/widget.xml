@@ -14,6 +14,18 @@
                     <type>easytabs/adminhtml_widget_chosen</type>
                 </helper_block>
             </filter_tabs>
+            <tabs_layout>
+                <visible>1</visible>
+                <label>Layout</label>
+                <type>select</type>
+                <source_model>easytabs/config_layout</source_model>
+            </tabs_layout>
+            <sticky_tabs>
+                <visible>1</visible>
+                <label>Stick tabs header on scroll</label>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+            </sticky_tabs>
             <template>
                 <type>hidden</type>
                 <value>tm/easytabs/tabs.phtml</value>

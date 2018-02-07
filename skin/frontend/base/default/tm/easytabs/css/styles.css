@@ -104,17 +104,19 @@
 .easytabs-content .data-table caption { margin-top: 20px; }
 .easytabs-content .data-table:first-child caption { margin-top: 0; }
 
-.easytabs-wrapper .easytabs-ul-wrapper.is_stuck { z-index: 900; }
-.easytabs-wrapper:not(.expanded) .easytabs-ul-wrapper.is_stuck { background: #fff; box-shadow: inset 0 -1px 0 #ccc; }
-.easytabs-wrapper.expanded .easytabs-ul-wrapper.is_stuck,
-.easytabs-wrapper.expanded .easytabs-ul-wrapper.is_stuck::before { background: #eaeaea; }
+.easytabs-wrapper .easytabs-ul-wrapper.is_stuck { z-index: 900; background: #fff; }
+.easytabs-wrapper:not(.expanded) .easytabs-ul-wrapper.is_stuck { box-shadow: inset 0 -1px 0 #ccc; }
 .easytabs-wrapper.expanded .easytabs-ul-wrapper.is_stuck::before {
+    background: #fff;
+    box-shadow: 0 4px 2px -2px rgba(0,0,0,.15);
     content: ' ';
     position: absolute;
-    left: -500px;
+    left: -100vw;
     height: 100%;
-    width: 2200px;
+    width: 200vw;
 }
+/* style below prevents horisontall scroll; at Argento Luxury scroll appears when scticky parent our of screen */
+.easytabs-wrapper.expanded .easytabs-ul-wrapper.is_stuck[style*="absolute"]::before { display: none; }
 .easytabs-wrapper.expanded .easytabs-ul-wrapper.is_stuck .easytabs li { background: none; border: none; box-shadow: none; }
 
 .easytabs-wrapper.expanded .easytabs-ul-wrapper { visibility: hidden; }

@@ -18,7 +18,7 @@ document.observe('dom:loaded', function(){
                 tabs.scrollToTab(
                     alias,
                     reviewForm.up('.form-add'),
-                    el.hasClassName('easytabs-animate')
+                    true
                 );
             });
             if (stopEventFlag) {

@@ -357,7 +357,8 @@ EasyTabs.prototype = {
     getThemeStickyHeaderHeight: function () {
         var stickyHeaderSelectors = [
                 '.header-container[sticky_kit]', // flat sticky header
-                '.header-content[sticky_kit]' // pure 2 sticky header
+                '.header-content[sticky_kit]', // pure 2 sticky header
+                '.nav-container[sticky_kit]' // luxury sticky header
             ],
             themeStickyHeader = $$(stickyHeaderSelectors.join(',')).first();
         return themeStickyHeader

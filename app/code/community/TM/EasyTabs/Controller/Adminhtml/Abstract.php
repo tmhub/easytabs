@@ -281,7 +281,7 @@ abstract class TM_EasyTabs_Controller_Adminhtml_Abstract
         $model = Mage::getModel($type)
             ->setId($id)
             ->setType($type)
-            ->setRule(Mage::getModel('easytabs/tab'))
+            ->setRule(Mage::getModel('easytabs/tab', array('product_tab' => $this->productTab)))
             ->setPrefix('conditions');
         if (!empty($typeArr[1])) {
             $model->setAttribute($typeArr[1]);

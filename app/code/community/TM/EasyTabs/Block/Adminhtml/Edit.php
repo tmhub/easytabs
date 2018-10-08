@@ -40,6 +40,7 @@ class TM_EasyTabs_Block_Adminhtml_Edit extends Mage_Adminhtml_Block_Widget_Form_
 
         $model  = Mage::registry('easytabs_tab');
         $values = $model->getData();
+        unset($values['conditions_serialized']);
         $values = isset($values['id']) ? Mage::helper('core')->jsonEncode($values) : 'false';
         $this->_formScripts[] = "
             function saveAndContinueEdit(){

@@ -1,0 +1,25 @@
+<?php
+    $tabs = array();
+    foreach ($this->getTabs() as $_index => $_tab) {
+        if (!($childHtml = $this->getChildHtml($_tab['alias']))
+            || $this->isEmptyString($childHtml)) {
+
+            continue;
+        }
+        $_tab['child_html'] = $childHtml;
+
+        $tabs[$_index] = $_tab;
+    }
+?>
+<amp-accordion class="collateral-tabs" animate>
+<?php foreach ($tabs as $_index => $_tab) : ?>
+    <section expanded>
+        <dt id="#product_tabs_<?php echo $_tab['alias'] ?>" class="tab">
+            <?php echo $this->getTabTitle($_tab);?>
+        </dt>
+        <dd id="product_tabs_<?php echo $_tab['alias'] ?>_contents" class="tab-container">
+            <div class="tab-content"><?php echo $_tab['child_html']; ?></div>
+        </dd>
+    </section>
+<?php endforeach; ?>
+</amp-accordion>

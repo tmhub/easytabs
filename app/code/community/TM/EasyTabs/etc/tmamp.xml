@@ -1,0 +1,20 @@
+<config>
+    <tmamp>
+        <whitelist>
+            <layout_updates>
+                <tm_easytabs>
+                    <xml>tm/easytabs.xml</xml>
+                </tm_easytabs>
+            </layout_updates>
+            <block_types>
+                <tm_easytabs>
+                    <product>easytabs/product</product>
+                    <product_description>easytabs/tab_product_description</product_description>
+                    <product_additional>easytabs/tab_product_additional</product_additional>
+                    <template>easytabs/tab_template</template>
+                    <html>easytabs/tab_html</html>
+                </tm_easytabs>
+            </block_types>
+        </whitelist>
+    </tmamp>
+</config>

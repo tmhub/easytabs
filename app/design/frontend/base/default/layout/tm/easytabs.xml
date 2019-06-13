@@ -18,6 +18,9 @@
                 <params>defer</params>
             </action>
         </reference>
+        <reference name="tmamp.styles">
+            <action method="addItem"><name>tm/easytabs/css/tmamp</name></action>
+        </reference>
     </default>
 
     <catalog_product_view>
@@ -36,5 +39,15 @@
             </block>
         </reference>
     </catalog_product_view>
+
+    <tmamp_catalog_product_view>
+        <reference name="product.info">
+            <block type="easytabs/product" name="product.info.tabs" as="product_additional_data">
+                <action method="setTemplate" ifconfig="tm_easytabs/general/enabled">
+                    <template>tm/easytabs/tabs.phtml</template>
+                </action>
+            </block>
+        </reference>
+    </tmamp_catalog_product_view>
 
 </layout>

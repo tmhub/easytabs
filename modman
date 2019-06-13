@@ -2,6 +2,7 @@ app/code/community/TM/EasyTabs                              app/code/community/T
 app/design/adminhtml/default/default/layout/tm/easytabs.xml app/design/adminhtml/default/default/layout/tm/easytabs.xml
 app/design/frontend/base/default/layout/tm/easytabs.xml     app/design/frontend/base/default/layout/tm/easytabs.xml
 app/design/frontend/base/default/template/tm/easytabs       app/design/frontend/base/default/template/tm/easytabs
+app/design/frontend/tmamp/default/template/tm/easytabs      app/design/frontend/tmamp/default/template/tm/easytabs
 app/etc/modules/TM_EasyTabs.xml                             app/etc/modules/TM_EasyTabs.xml
 app/locale/en_US/TM_EasyTabs.csv                            app/locale/en_US/TM_EasyTabs.csv
 app/locale/es_ES/TM_EasyTabs.csv                            app/locale/es_ES/TM_EasyTabs.csv

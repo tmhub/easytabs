@@ -14,12 +14,12 @@
 <amp-accordion class="collateral-tabs" animate>
 <?php foreach ($tabs as $_index => $_tab) : ?>
     <section expanded>
-        <dt id="#product_tabs_<?php echo $_tab['alias'] ?>" class="tab">
+        <h5 id="#product_tabs_<?php echo $_tab['alias'] ?>" class="tab">
             <?php echo $this->getTabTitle($_tab);?>
-        </dt>
-        <dd id="product_tabs_<?php echo $_tab['alias'] ?>_contents" class="tab-container">
+        </h5>
+        <div id="product_tabs_<?php echo $_tab['alias'] ?>_contents" class="tab-container">
             <div class="tab-content"><?php echo $_tab['child_html']; ?></div>
-        </dd>
+        </div>
     </section>
 <?php endforeach; ?>
 </amp-accordion>

@@ -145,7 +145,7 @@ abstract class TM_EasyTabs_Controller_Adminhtml_Abstract
      */
     public function wysiwygAction()
     {
-        $elementId = $this->getRequest()->getParam('element_id', md5(microtime()));
+        $elementId = $this->getRequest()->getParam('element_id', sha1(microtime()));
         $storeId = $this->getRequest()->getParam('store_id', 0);
         $storeMediaUrl = Mage::app()->getStore($storeId)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);
 

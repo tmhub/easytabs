@@ -12,6 +12,9 @@
     }
     $content = $attribute->getFrontend()->getValue($product);
     if(empty($content)) {
+        $content = $attribute->getDefaultValue();
+    }
+    if(empty($content)) {
         return;
     }
     $_helper = $this->helper('catalog/output');

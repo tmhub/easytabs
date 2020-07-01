@@ -52,6 +52,7 @@ $table = $installer->getConnection()
     ->newTable($installer->getTable('easytabs/store'))
     ->addColumn('tab_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'nullable'  => false,
+        'unsigned' => true,
         'primary'   => true,
         ), 'Tab ID')
     ->addColumn('store_id', Varien_Db_Ddl_Table::TYPE_SMALLINT, null, array(
